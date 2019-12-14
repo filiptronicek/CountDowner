@@ -1,5 +1,13 @@
 let currentState = "all";
 
+const http = new XMLHttpRequest();
+
+http.open("GET", "https://time-server.now.sh/api/");
+http.send();
+http.onload = () => {
+    console.log("Server time: " + (http.responseText) );
+};
+
 function writeOnOut(text) {
   document.getElementById("time_to").innerHTML = text;
 }
@@ -67,4 +75,4 @@ var x = setInterval(function() {
     document.getElementById("time_to").innerHTML =
       "This countdown has expired";
   }
-}, 1000);
+}, 100);

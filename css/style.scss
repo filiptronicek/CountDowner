@@ -1,4 +1,4 @@
-// Disable selection
+$breakpoint-tablet: 768px;
 @mixin disable-selection {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Safari */
@@ -21,4 +21,10 @@
 }
 #event_name {
     margin-top: 10vh;
+}
+@media (max-width: $breakpoint-tablet) {
+  #time_to {
+    width: 100vw;
+
+  }
 }

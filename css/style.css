@@ -22,4 +22,10 @@
 #event_name {
   margin-top: 10vh;
 }
+
+@media (max-width: 768px) {
+  #time_to {
+    width: 100vw;
+  }
+}
 /*# sourceMappingURL=style.css.map */

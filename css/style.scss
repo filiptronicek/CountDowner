@@ -1,3 +1,13 @@
+// Disable selection
+@mixin disable-selection {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
 #time_to {
     margin-top: 10vh;
     font-size: 6em;
@@ -6,6 +16,8 @@
     margin-right: auto;
     background: #aaaaaa;
     cursor: pointer;
+    @include disable-selection;
+
 }
 #event_name {
     margin-top: 10vh;

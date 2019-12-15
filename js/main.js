@@ -1,11 +1,11 @@
 let currentState = "all";
 /*
 const http = new XMLHttpRequest();
-
 http.open("GET", "https://time-server.now.sh/api/");
 http.send();
 http.onload = () => {
     console.log("Server time: " + (http.responseText) );
+    //now = http.responseText;
 };
 */
 var date = new Date();
@@ -97,6 +97,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-    location.href = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
+    console.log("original: " + "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
+    var encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄")
+    console.log("encoded: " + encoded);
+    location.href = encoded;
   //alert("This event hasn't been set");
 }

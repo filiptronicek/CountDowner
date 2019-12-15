@@ -5,7 +5,9 @@ if (month == 11) {
     count: 30,
     maxSize: 20,
     speed: 1.5,
-    wind: false
+    wind: false,
+    maxOpacity: 0.3
+
   });
 }
 

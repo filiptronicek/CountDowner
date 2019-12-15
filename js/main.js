@@ -15,7 +15,8 @@ if (month == 11) {
     count: 60,
     maxSize: 80,
     wind: true,
-    speed: 0.5
+    speed: 0.5,
+    maxOpacity: 0.5
   });
 }
 

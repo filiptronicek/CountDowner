@@ -68,16 +68,31 @@ if (urlParams.has("d") && urlParams.has("n")) {
     var totalSeconds = totalMinutes * 60 + seconds;
 
     if (currentState == "all") {
-      writeOnOut(
-        days +
-          " days " +
-          hours +
-          " hours " +
-          minutes +
-          " minutes " +
-          seconds +
-          " seconds "
-      );
+      if (days > 0) {
+        writeOnOut(
+          days +
+            " days " +
+            hours +
+            " hours " +
+            minutes +
+            " minutes " +
+            seconds +
+            " seconds "
+        );
+      } else {
+        if (hours > 0) {
+          writeOnOut(
+            hours + " hours " + minutes + " minutes " + seconds + " seconds "
+          );
+        } else {
+          writeOnOut(minutes + " minutes " + seconds + " seconds ");
+          if (minutes > 0) {
+            writeOnOut(minutes + " minutes " + seconds + " seconds ");
+          } else {
+            writeOnOut(seconds + " seconds ");
+          }
+        }
+      }
     } else if (currentState == "days") {
       writeOnOut(days.toLocaleString() + " days");
     } else if (currentState == "hours") {
@@ -97,9 +112,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-    console.log("original: " + "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
-    var encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄")
-    console.log("encoded: " + encoded);
-    location.href = encoded;
+  console.log(
+    "original: " + "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄"
+  );
+  var encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
+  console.log("encoded: " + encoded);
+  location.href = encoded;
   //alert("This event hasn't been set");
 }

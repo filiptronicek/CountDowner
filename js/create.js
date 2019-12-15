@@ -1,3 +1,15 @@
+var date = new Date();
+var month = date.getMonth();
+if (month == 11) {
+  var sf = new Snowflakes({
+    count: 30,
+    maxSize: 20,
+    speed: 1.5,
+    wind: false
+  });
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
   var elems = document.querySelectorAll(".datepicker");
   var instances = M.Datepicker.init(elems);

@@ -8,6 +8,17 @@ http.onload = () => {
     console.log("Server time: " + (http.responseText) );
 };
 */
+var date = new Date();
+var month = date.getMonth();
+if (month == 11) {
+  var sf = new Snowflakes({
+    count: 60,
+    maxSize: 80,
+    wind: true,
+    speed: 0.5
+  });
+}
+
 function writeOnOut(text) {
   document.getElementById("time_to").innerHTML = text;
 }
@@ -85,6 +96,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-    location.href = "./create";
+    location.href = "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄";
   //alert("This event hasn't been set");
 }

@@ -12,7 +12,7 @@ var date = new Date();
 var month = date.getMonth();
 if (month == 11) {
   var sf = new Snowflakes({
-    count: 60,
+    count: 20,
     maxSize: 80,
     wind: true,
     speed: 0.5,

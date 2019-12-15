@@ -41,10 +41,6 @@ li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
-  background-color: #f44336;
-}
-
 .datepicker-date-display,
 .datepicker-table td.is-selected,
 .timepicker-digital-display {

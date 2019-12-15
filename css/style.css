@@ -41,10 +41,6 @@ li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
-  background-color: #f44336;
-}
-
 #time_to {
   margin-top: 10vh;
   font-size: 6em;
@@ -64,6 +60,7 @@ li a:hover:not(.active) {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome and Opera */
+  background: #202020;
 }
 
 #event_name {

@@ -97,6 +97,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-    location.href = "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄";
+    location.href = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
   //alert("This event hasn't been set");
 }

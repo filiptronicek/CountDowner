@@ -29,12 +29,11 @@ document.getElementById("time_to").onclick = function() {
 
 var urlParams = new URLSearchParams(window.location.search);
 
-console.log(`Countdown date: ${urlParams.get("d")}`);
-console.log(`Countdown name: ${urlParams.get("n")}`);
-
 if (urlParams.has("d") && urlParams.has("n")) {
   const countDownDate = new Date(urlParams.get("d")).getTime();
   const countDownName = urlParams.get("n");
+  console.log(`Countdown date: ${urlParams.get("d")}`);
+  console.log(`Countdown name: ${urlParams.get("n")}`);
   document.getElementById("event_name").innerHTML = countDownName;
   // Update the count down every 100 miliseconds
   var x = setInterval(function() {
@@ -86,5 +85,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-    alert("This event hasn't been set");
+    location.href = "./create";
+  //alert("This event hasn't been set");
 }

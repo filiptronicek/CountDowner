@@ -1,0 +1,23 @@
+.datepicker-date-display, .datepicker-table td.is-selected, .timepicker-digital-display {
+  background-color: #f44336;
+}
+
+.datepicker-table td.is-today, .datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done, .timepicker-close {
+  color: #f44336;
+}
+
+div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+  background-color: #f44336;
+}
+
+.datepicker input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  -webkit-box-shadow: 0 1px 0 0 #000;
+          box-shadow: 0 1px 0 0 #000;
+}
+
+.btn-large {
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=create.css.map */

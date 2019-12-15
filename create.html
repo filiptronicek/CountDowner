@@ -1,44 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
-    <link rel="stylesheet" href="css/create.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="css/create.css" />
     <title>Create Event | CountDowner</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="center">Create a countdown</h1>
-        <br>
-        <h2 class="center">
-            Name:
-        </h2>
-        <div class="row">
-            <input id="name" placeholder="The event's name" id="first_name" type="text" class="center validate offset-l5 offset-s3 col l2 s6">
-        </div>
-        <h2 class="center">
-            Pick a date:
-        </h2>
-        <div class="row">
-            <input id="date" placeholder="The event's date" type="text" class="center offset-l5 offset-s3 datepicker col l2 s6 text-darken-2">
-        </div>
-        <h2 class="center">
-            Pick a time:
-        </h2>
-        <div class="row"> 
-            <input id="time" placeholder="The event's time" type="text" class="center offset-l5 offset-s3 timepicker col l2 s6 text-darken-2"> 
-        </div>
-        <div class="row"> 
-            <a onclick="outPutInputs()" class=" btn-large waves-effect waves-light red col s4 offset-s4">Create countdown</a>
-        </div>
-
-
+      <h1 class="center">Create a countdown</h1>
+      <br />
+      <h2 class="center">
+        Name:
+      </h2>
+      <div class="row">
+        <input
+          id="name"
+          placeholder="The event's name"
+          id="first_name"
+          type="text"
+          class="center validate offset-l5 offset-s3 col l2 s6"
+        />
+      </div>
+      <h2 class="center">
+        Pick a date:
+      </h2>
+      <div class="row">
+        <input
+          id="date"
+          placeholder="The event's date"
+          type="text"
+          class="center offset-l5 offset-s3 datepicker col l2 s6 text-darken-2"
+        />
+      </div>
+      <h2 class="center">
+        Pick a time:
+      </h2>
+      <div class="row">
+        <input
+          id="time"
+          placeholder="The event's time"
+          type="text"
+          class="center offset-l5 offset-s3 timepicker col l2 s6 text-darken-2"
+        />
+      </div>
+      <div class="row">
+        <a
+          onclick="outPutInputs()"
+          class=" btn-large waves-effect waves-light red col s4 offset-s4"
+          >Create countdown</a
+        >
+      </div>
     </div>
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+  <footer>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <div class="madeBy center">
+      made with <i class="icon ion-heart"></i> and a little bit of code by
+      &nbsp;
+      <span
+        ><a href="https://github.com/filiptronicek"
+          ><img src="http://github.com/filiptronicek.png"/></a
+      ></span>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<script src="js/create.js"></script>
+  <script src="js/create.js"></script>
 </html>

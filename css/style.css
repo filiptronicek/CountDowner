@@ -60,7 +60,6 @@ li a:hover:not(.active) {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome and Opera */
-  background: #202020;
 }
 
 #event_name {

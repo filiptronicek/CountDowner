@@ -20,7 +20,6 @@ $breakpoint-tablet: 768px;
     background: #aaaaaa;
     cursor: pointer;
     @include disable-selection;
-    background: #202020;
 }
 #event_name {
     margin-top: 10vh;

@@ -1,3 +1,8 @@
 {
-    "routes": [{ "src": "/create", "dest": "/create.html" }]
+  "routes": [
+    { "src": "/e/(?<id>[^/]*)", "dest": "/redirect.js?e=$id" },
+    {
+      "cleanUrls": true
+    }
+  ]
 }

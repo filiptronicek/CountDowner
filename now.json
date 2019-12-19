@@ -1,5 +1,5 @@
 {
   "routes": [
-    { "src": "/e/(?<id>[^/]*)", "dest": "/redirect.html?e=$id" }
+    { "src": "/e/(?<id>[^/]*)", "dest": "/r/redirect.html?e=$id" }
   ]
 }

@@ -1,8 +1,5 @@
 {
   "routes": [
-    { "src": "/e/(?<id>[^/]*)", "dest": "/redirect.html?e=$id" },
-    {
-      "cleanUrls": true
-    }
+    { "src": "/e/(?<id>[^/]*)", "dest": "/redirect.html?e=$id" }
   ]
 }

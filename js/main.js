@@ -62,6 +62,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     );
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
 
     var totalHours = days * 24 + hours;
     var totalMinutes = totalHours * 60 + minutes;
@@ -88,7 +89,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
           writeOnOut(minutes + " minutes " + seconds + " seconds ");
           if (minutes > 0) {
             writeOnOut(minutes + " minutes " + seconds + " seconds ");
-          } else {
+          } else if (minutes < 1 && seconds < 20) {
+            writeOnOut(seconds+"," + Math.floor((distance % 1000)/100) +" seconds ");
+
+          } 
+          else {
             writeOnOut(seconds + " seconds ");
           }
         }

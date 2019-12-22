@@ -1,5 +1,5 @@
 {
   "routes": [
-    { "src": "/e/christmas", "dest": "/r/redirect.html?e=christmas" }, {"src" : "create", "dest": "create.html"}
+    {"src" : "create", "dest": "create.html"}
   ]
 }

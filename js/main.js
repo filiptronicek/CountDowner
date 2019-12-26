@@ -118,9 +118,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
   }, 100);
 } else {
   console.log(
-    "original: " + "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄"
+    "original: " + "/?d=1/1/2020&n=🎇 Silvestr 2020 🎆"
   );
-  var encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
+  var encoded = encodeURI("/?d=1/1/2020&n=🎇 Silvestr 2020 🎆");
   console.log("encoded: " + encoded);
   location.href = encoded;
   //alert("This event hasn't been set");

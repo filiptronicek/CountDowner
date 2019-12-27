@@ -8,10 +8,10 @@ http.onload = () => {
     //now = http.responseText;
 };
 */
-var date = new Date();
-var month = date.getMonth();
+let date = new Date();
+let month = date.getMonth();
 if (month == 11) {
-  var sf = new Snowflakes({
+  let sf = new Snowflakes({
     count: 20,
     maxSize: 40,
     wind: true,
@@ -39,7 +39,7 @@ document.getElementById("time_to").onclick = function() {
   console.log("Layout: " + currentState);
 };
 
-var urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("d") && urlParams.has("n")) {
   const countDownDate = new Date(urlParams.get("d")).getTime();
@@ -48,53 +48,60 @@ if (urlParams.has("d") && urlParams.has("n")) {
   console.log(`Countdown name: ${urlParams.get("n")}`);
   document.getElementById("event_name").innerHTML = countDownName;
   // Update the count down every 100 miliseconds
-  var x = setInterval(function() {
+  let x = setInterval(function() {
     // Get todays date and time
-    var now = new Date().getTime();
+    let now = new Date().getTime();
 
     // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+    let distance = countDownDate - now;
 
     // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor(
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    var totalHours = days * 24 + hours;
-    var totalMinutes = totalHours * 60 + minutes;
-    var totalSeconds = totalMinutes * 60 + seconds;
+    let weeks = days / 7 - (days % 7);
+    let totalHours = days * 24 + hours;
+    let totalMinutes = totalHours * 60 + minutes;
+    let totalSeconds = totalMinutes * 60 + seconds;
 
     if (currentState == "all") {
-      if (days > 0) {
-        writeOnOut(
-          days +
-            " days " +
-            hours +
-            " hours " +
-            minutes +
-            " minutes " +
-            seconds +
-            " seconds "
-        );
+      if (weeks > 0) {
+
       } else {
-        if (hours > 0) {
+        if (days > 0) {
           writeOnOut(
-            hours + " hours " + minutes + " minutes " + seconds + " seconds "
+            days +
+              " days " +
+              hours +
+              " hours " +
+              minutes +
+              " minutes " +
+              seconds +
+              " seconds "
           );
         } else {
-          writeOnOut(minutes + " minutes " + seconds + " seconds ");
-          if (minutes > 0) {
+          if (hours > 0) {
+            writeOnOut(
+              hours + " hours " + minutes + " minutes " + seconds + " seconds "
+            );
+          } else {
             writeOnOut(minutes + " minutes " + seconds + " seconds ");
-          } else if (minutes < 1 && seconds < 20) {
-            writeOnOut(seconds+"," + Math.floor((distance % 1000)/100) +" seconds ");
-
-          } 
-          else {
-            writeOnOut(seconds + " seconds ");
+            if (minutes > 0) {
+              writeOnOut(minutes + " minutes " + seconds + " seconds ");
+            } else if (minutes < 1 && seconds < 20) {
+              writeOnOut(
+                seconds +
+                  "," +
+                  Math.floor((distance % 1000) / 100) +
+                  " seconds "
+              );
+            } else {
+              writeOnOut(seconds + " seconds ");
+            }
           }
         }
       }
@@ -120,7 +127,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
   console.log(
     "original: " + "/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄"
   );
-  var encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
+  let encoded = encodeURI("/?d=Dec 24, 2019 07:00 PM&n=🎄 Christmas 2019 🎄");
   console.log("encoded: " + encoded);
   location.href = encoded;
   //alert("This event hasn't been set");

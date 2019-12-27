@@ -56,21 +56,33 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let distance = countDownDate - now;
 
     // Time calculations for days, hours, minutes and seconds
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let days = totaldays % 7;
     let hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    let weeks = days / 7 - (days % 7);
+    let weeks = (totaldays - totaldays % 7) / 7;
     let totalHours = days * 24 + hours;
     let totalMinutes = totalHours * 60 + minutes;
     let totalSeconds = totalMinutes * 60 + seconds;
 
     if (currentState == "all") {
       if (weeks > 0) {
-
+        writeOnOut(
+          weeks +
+            " weeks " +
+            days +
+            " days " +
+            hours +
+            " hours " +
+            minutes +
+            " minutes " +
+            seconds +
+            " seconds "
+        );
       } else {
         if (days > 0) {
           writeOnOut(
@@ -124,9 +136,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-  console.log(
-    "original: " + "/?d=1/1/2020&n=🎇 Silvestr 2020 🎆"
-  );
+  console.log("original: " + "/?d=1/1/2020&n=🎇 Silvestr 2020 🎆");
   let encoded = encodeURI("/?d=1/1/2020&n=🎇 Silvestr 2020 🎆");
   console.log("encoded: " + encoded);
   location.href = encoded;

@@ -68,7 +68,8 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let totalHours = days * 24 + hours;
     let totalMinutes = totalHours * 60 + minutes;
     let totalSeconds = totalMinutes * 60 + seconds;
-
+      let displayTotalSeconds = (totaldays * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
+    
     if (currentState == "all") {
       if (weeks > 0) {
         writeOnOut(
@@ -118,13 +119,13 @@ if (urlParams.has("d") && urlParams.has("n")) {
         }
       }
     } else if (currentState == "days") {
-      writeOnOut(days.toLocaleString() + " days");
+      writeOnOut(totaldays.toLocaleString() + " days");
     } else if (currentState == "hours") {
       writeOnOut(totalHours.toLocaleString() + " hours");
     } else if (currentState == "minutes") {
       writeOnOut(totalMinutes.toLocaleString() + " minutes");
     } else if (currentState == "seconds") {
-      writeOnOut(totalSeconds.toLocaleString() + " seconds");
+      writeOnOut(displayTotalSeconds.toLocaleString() + " seconds");
     }
     // Output the result in an element with id="demo"
 

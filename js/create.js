@@ -42,6 +42,5 @@ function outPutInputs() {
     } else if (!patt.test(cntdDate)) {
       alert("Your date is in an incorrect format");
     } else if (cntdTime == "") {
-      instance.showView();
     }
 }

@@ -22,5 +22,5 @@ if (urlSearch !== "") {
     location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `;
   }
 } else {
-  location.href = "../";
+  //location.href = "../";
 }

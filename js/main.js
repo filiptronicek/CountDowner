@@ -64,12 +64,15 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    let weeks = (totaldays - totaldays % 7) / 7;
+    let weeks = (totaldays - (totaldays % 7)) / 7;
     let totalHours = days * 24 + hours;
     let totalMinutes = totalHours * 60 + minutes;
     let totalSeconds = totalMinutes * 60 + seconds;
-      let displayTotalSeconds = (totaldays * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
-    
+    let displayTotalSeconds =
+      totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
+    let displayTotalMinutes =  totaldays * 24 * 60 + hours * 60 + minutes;
+    let displayTotalHours = totaldays * 24 + hours;
+
     if (currentState == "all") {
       if (weeks > 0) {
         writeOnOut(
@@ -121,9 +124,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
     } else if (currentState == "days") {
       writeOnOut(totaldays.toLocaleString() + " days");
     } else if (currentState == "hours") {
-      writeOnOut(totalHours.toLocaleString() + " hours");
+      writeOnOut(displayTotalHours.toLocaleString() + " hours");
     } else if (currentState == "minutes") {
-      writeOnOut(totalMinutes.toLocaleString() + " minutes");
+      writeOnOut(displayTotalMinutes.toLocaleString() + " minutes");
     } else if (currentState == "seconds") {
       writeOnOut(displayTotalSeconds.toLocaleString() + " seconds");
     }

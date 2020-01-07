@@ -137,8 +137,8 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-  console.log("original: " + "/?d=1/1/2020&n=🎇 Silvestr 2020 🎆");
-  let encoded = encodeURI("/?d=1/1/2020&n=🎇 Silvestr 2020 🎆");
+  console.log("original: " + "/e/nwyr");
+  let encoded = encodeURI("/e/nwyr");
   console.log("encoded: " + encoded);
   location.href = encoded;
   //alert("This event hasn't been set");

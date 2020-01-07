@@ -1,3 +1,4 @@
 {
-  "routes": [{ "src": "/create", "dest": "/create.html" }]
+  "routes": [{ "src": "/create", "dest": "/create.html" }
+             {"src": "/e/nwyr", "dest": "/r/redirect.html?e=new-years"}]
 } 

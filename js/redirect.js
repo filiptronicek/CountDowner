@@ -5,7 +5,14 @@ let month = date.getMonth();
 let year = date.getFullYear();
 
 console.log(`Lol e is ${urlParams.get("e")}`);
-if (urlParams.has("e")) {
+
+let urlSearch = "";
+
+if(urlParams.has("e")) urlSearch = urlParams.get("e"); 
+if(location.href.split("/")[3] == "e") urlSearch = location.href.split("/")[4];
+
+
+if (urlSearch !== "") {
   eventName = urlParams.get("e");
   if (eventName == "christmas-eve") {
     location.href = `../?d=12/24/${year} 19:00&n=🎄 Christmas ${year} 🎄`;

@@ -71,4 +71,24 @@ li a:hover:not(.active) {
     width: 100vw;
   }
 }
+
+#installContainer {
+  position: absolute;
+  bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+#installContainer button {
+  background-color: inherit;
+  border: 1px solid white;
+  color: white;
+  font-size: 1em;
+  padding: 0.75em;
+}
 /*# sourceMappingURL=style.css.map */

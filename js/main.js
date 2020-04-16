@@ -72,29 +72,35 @@ if (urlParams.has("d") && urlParams.has("n")) {
     if (currentState == "all") {
       if (weeks > 0) {
         writeOnOut(
-          `${format("week", weeks)} ${format("day", days)} ${format("hour", hours)} ${format("minute", minutes)} ${format("second", seconds)}`
+          `${format("week", weeks)} ${format("day", days)} ${format(
+            "hour",
+            hours
+          )} ${format("minute", minutes)} ${format("second", seconds)}`
         );
       } else {
         if (days > 0) {
           writeOnOut(
-            days +
-              " days " +
-              hours +
-              " hours " +
-              minutes +
-              " minutes " +
-              seconds +
-              " seconds "
+            `${format("day", days)} ${format("hour", hours)} ${format(
+              "minute",
+              minutes
+            )} ${format("second", seconds)}`
           );
         } else {
           if (hours > 0) {
             writeOnOut(
-              hours + " hours " + minutes + " minutes " + seconds + " seconds "
+              `${format("hour", hours)} ${format("minute", minutes)} ${format(
+                "second",
+                seconds
+              )}`
             );
           } else {
-            writeOnOut(minutes + " minutes " + seconds + " seconds ");
+            writeOnOut(
+              `${format("minute", minutes)} ${format("second", seconds)}`
+            );
             if (minutes > 0) {
-              writeOnOut(minutes + " minutes " + seconds + " seconds ");
+              writeOnOut(
+                `${format("minute", minutes)} ${format("second", seconds)}`
+              );
             } else if (minutes < 1 && seconds < 20) {
               writeOnOut(
                 seconds +

@@ -114,11 +114,14 @@ if (urlParams.has("d") && urlParams.has("n")) {
         }
       }
     } else if (currentState == "days") {
-      writeOnOut(totaldays.toLocaleString() + " days");
+      if(totaldays < 1) currentState = "hours";
+      else writeOnOut(totaldays.toLocaleString() + " days");
     } else if (currentState == "hours") {
-      writeOnOut(displayTotalHours.toLocaleString() + " hours");
+      if(totalHours < 1) currentState = "minutes";
+      else writeOnOut(displayTotalHours.toLocaleString() + " hours");
     } else if (currentState == "minutes") {
-      writeOnOut(displayTotalMinutes.toLocaleString() + " minutes");
+      if(totalMinutes < 1) currentState = "seconds";
+      else writeOnOut(displayTotalMinutes.toLocaleString() + " minutes");
     } else if (currentState == "seconds") {
       writeOnOut(displayTotalSeconds.toLocaleString() + " seconds");
     }

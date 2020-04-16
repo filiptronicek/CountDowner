@@ -8,15 +8,19 @@ if (month == 11) {
     maxSize: 40,
     wind: true,
     speed: 0.5,
-    maxOpacity: 0.5
+    maxOpacity: 0.5,
   });
 }
 
 function writeOnOut(text) {
   document.getElementById("time_to").innerHTML = text;
 }
-
-document.getElementById("time_to").onclick = function() {
+function format(text, value) {
+  if (value === 1) return `${value} ${text}`;
+  else if (value > 1 || value === 0) return `${value} ${text}s`;
+  else return `${value} ${text}`;
+}
+document.getElementById("time_to").onclick = function () {
   if (currentState == "all") {
     currentState = "days";
   } else if (currentState == "days") {
@@ -40,7 +44,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
   console.log(`Countdown name: ${urlParams.get("n")}`);
   document.getElementById("event_name").innerHTML = countDownName;
   // Update the count down every 100 miliseconds
-  let x = setInterval(function() {
+  let x = setInterval(function () {
     // Get todays date and time
     let now = new Date().getTime();
 
@@ -62,22 +66,13 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let totalSeconds = totalMinutes * 60 + seconds;
     let displayTotalSeconds =
       totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
-    let displayTotalMinutes =  totaldays * 24 * 60 + hours * 60 + minutes;
+    let displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
     let displayTotalHours = totaldays * 24 + hours;
 
     if (currentState == "all") {
       if (weeks > 0) {
         writeOnOut(
-          weeks +
-            " weeks " +
-            days +
-            " days " +
-            hours +
-            " hours " +
-            minutes +
-            " minutes " +
-            seconds +
-            " seconds "
+          `${format("week", weeks)} ${format("day", days)} ${format("hour", hours)} ${format("minute", minutes)} ${format("second", seconds)}`
         );
       } else {
         if (days > 0) {
@@ -114,13 +109,13 @@ if (urlParams.has("d") && urlParams.has("n")) {
         }
       }
     } else if (currentState == "days") {
-      if(totaldays < 1) currentState = "hours";
+      if (totaldays < 1) currentState = "hours";
       else writeOnOut(totaldays.toLocaleString() + " days");
     } else if (currentState == "hours") {
-      if(totalHours < 1) currentState = "minutes";
+      if (totalHours < 1) currentState = "minutes";
       else writeOnOut(displayTotalHours.toLocaleString() + " hours");
     } else if (currentState == "minutes") {
-      if(totalMinutes < 1) currentState = "seconds";
+      if (totalMinutes < 1) currentState = "seconds";
       else writeOnOut(displayTotalMinutes.toLocaleString() + " minutes");
     } else if (currentState == "seconds") {
       writeOnOut(displayTotalSeconds.toLocaleString() + " seconds");
@@ -141,16 +136,14 @@ if (urlParams.has("d") && urlParams.has("n")) {
   location.href = encoded;
   //alert("This event hasn't been set");
 }
-const divInstall = document.getElementById('installContainer');
-const butInstall = document.getElementById('butInstall');
+const divInstall = document.getElementById("installContainer");
+const butInstall = document.getElementById("butInstall");
 
 /* Put code here */
 
-
-
 /* Only register a service worker if it's supported */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/js/service-worker.js');
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/js/service-worker.js");
 }
 
 /**
@@ -159,7 +152,7 @@ if ('serviceWorker' in navigator) {
  * Installability requires a service worker with a fetch event handler, and
  * if the page isn't served over HTTPS, the service worker won't load.
  */
-if (window.location.protocol === 'http:') {
-  const link = requireHTTPS.querySelector('a');
-  link.href = window.location.href.replace('http://', 'https://');
+if (window.location.protocol === "http:") {
+  const link = requireHTTPS.querySelector("a");
+  link.href = window.location.href.replace("http://", "https://");
 }

@@ -1,13 +1,5 @@
 let currentState = "all";
-/*
-const http = new XMLHttpRequest();
-http.open("GET", "https://time-server.now.sh/api/");
-http.send();
-http.onload = () => {
-    console.log("Server time: " + (http.responseText) );
-    //now = http.responseText;
-};
-*/
+
 let date = new Date();
 let month = date.getMonth();
 if (month == 11) {

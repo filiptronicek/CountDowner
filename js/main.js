@@ -15,10 +15,13 @@ if (month == 11) {
 function writeOnOut(text) {
   document.getElementById("time_to").innerHTML = text;
 }
-function format(text, value) {
+function format(text, value, total = false) {
   if (value === 1) return `${value} ${text}`;
-  else if (value > 1 || value === 0) return `${value} ${text}s`;
-  else return `${value} ${text}`;
+  else if (value > 1 || value === 0)
+    if (!total) return `${value} ${text}s`;
+    else return `${value.toLocaleString()} ${text}s`;
+  else if (!total) return `${value} ${text}`;
+  else return `${value.toLocaleString()} ${text}`;
 }
 document.getElementById("time_to").onclick = function () {
   if (currentState == "all") {
@@ -63,7 +66,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let weeks = (totaldays - (totaldays % 7)) / 7;
     let totalHours = days * 24 + hours;
     let totalMinutes = totalHours * 60 + minutes;
-    let totalSeconds = totalMinutes * 60 + seconds;
     let displayTotalSeconds =
       totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
     let displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
@@ -116,15 +118,15 @@ if (urlParams.has("d") && urlParams.has("n")) {
       }
     } else if (currentState == "days") {
       if (totaldays < 1) currentState = "hours";
-      else writeOnOut(totaldays.toLocaleString() + " days");
+      else writeOnOut(`${format("day", totaldays, true)}`);
     } else if (currentState == "hours") {
       if (totalHours < 1) currentState = "minutes";
-      else writeOnOut(displayTotalHours.toLocaleString() + " hours");
+      else writeOnOut(`${format("hour", totalHours, true)}`);
     } else if (currentState == "minutes") {
       if (totalMinutes < 1) currentState = "seconds";
-      else writeOnOut(displayTotalMinutes.toLocaleString() + " minutes");
+      else writeOnOut(`${format("minute", displayTotalMinutes, true)}`);
     } else if (currentState == "seconds") {
-      writeOnOut(displayTotalSeconds.toLocaleString() + " seconds");
+      writeOnOut(`${format("second", displayTotalSeconds, true)}`);
     }
     // Output the result in an element with id="demo"
 

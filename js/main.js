@@ -1,7 +1,7 @@
 let currentState = "all";
 
-let date = new Date();
-let month = date.getMonth();
+const date = new Date();
+const month = date.getMonth();
 if (month == 11) {
   let sf = new Snowflakes({
     count: 20,
@@ -49,10 +49,10 @@ if (urlParams.has("d") && urlParams.has("n")) {
   // Update the count down every 100 miliseconds
   let x = setInterval(function () {
     // Get todays date and time
-    let now = new Date().getTime();
+    const now = new Date().getTime();
 
     // Find the distance between now and the count down date
-    let distance = countDownDate - now;
+    const distance = countDownDate - now;
 
     // Time calculations for days, hours, minutes and seconds
     let totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -69,7 +69,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let displayTotalSeconds =
       totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
     let displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
-    let displayTotalHours = totaldays * 24 + hours;
 
     if (currentState == "all") {
       if (weeks > 0) {

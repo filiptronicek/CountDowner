@@ -64,7 +64,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     let weeks = (totaldays - (totaldays % 7)) / 7;
-    let totalHours = days * 24 + hours;
+    let totalHours = totaldays * 24 + hours;
     let totalMinutes = totalHours * 60 + minutes;
     let displayTotalSeconds =
       totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;

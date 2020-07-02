@@ -43,7 +43,7 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has("d") && urlParams.has("n")) {
   const countDownDate = new Date(urlParams.get("d")).getTime();
   const countDownName = urlParams.get("n");
-  console.log(`Countdown date: ${urlParams.get("d")}`);
+  console.log(`Countdown date: ${countDownDate}`);
   console.log(`Countdown name: ${urlParams.get("n")}`);
   document.getElementById("event_name").innerHTML = countDownName;
   // Update the count down every 100 miliseconds

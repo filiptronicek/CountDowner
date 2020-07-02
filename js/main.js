@@ -3,7 +3,7 @@ let currentState = "all";
 const date = new Date();
 const month = date.getMonth();
 if (month == 11) {
-  let sf = new Snowflakes({
+  new Snowflakes({
     count: 20,
     maxSize: 40,
     wind: true,

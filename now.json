@@ -1,4 +1,6 @@
 {
-  "routes": [{ "src": "/create", "dest": "/create.html" },
-             {"src": "/e/(?<id>[^/]*)", "dest": "/r/redirect.html?e=$id"}]
+  "routes": [
+    { "src": "/create", "dest": "/create.html" },
+    {"src": "/e/(?<id>[^/]*)", "dest": "/r/redirect.html?e=$id"}
+  ]
 } 

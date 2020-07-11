@@ -1,4 +1,4 @@
 {
   "routes": [{ "src": "/create", "dest": "/create.html" },
-             {"src": "/e/nwyr", "dest": "/r/redirect.html?e=new-years"}]
+             {"src": "/e/(?<id>[^/]*)", "dest": "/r/redirect.html?e=$id"}]
 } 

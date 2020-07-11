@@ -138,7 +138,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
   }, 100);
 } else {
   console.log("original: " + "/e/nwyr");
-  let encoded = encodeURI("/e/nwyr");
+  const encoded = encodeURI("/e/nwyr");
   console.log("encoded: " + encoded);
   location.href = encoded;
   //alert("This event hasn't been set");

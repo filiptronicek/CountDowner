@@ -137,11 +137,8 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-  console.log("original: " + "/e/nwyr");
-  const encoded = encodeURI("/e/nwyr");
-  console.log("encoded: " + encoded);
+  const encoded = encodeURI("/e/christmas-eve");
   location.href = encoded;
-  //alert("This event hasn't been set");
 }
 const divInstall = document.getElementById("installContainer");
 const butInstall = document.getElementById("butInstall");

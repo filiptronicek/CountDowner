@@ -1,10 +1,8 @@
-let urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
 
-let date = new Date();
-let month = date.getMonth();
-let year = date.getFullYear();
-
-console.log(`Lol e is ${urlParams.get("e")}`);
+const date = new Date();
+const month = date.getMonth();
+const year = date.getFullYear();
 
 let urlSearch = "";
 
@@ -22,5 +20,5 @@ if (urlSearch !== "") {
     location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `;
   }
 } else {
-  //location.href = "../";
+  location.href = "../";
 }

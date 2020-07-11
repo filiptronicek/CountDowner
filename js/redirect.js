@@ -12,6 +12,7 @@ if(location.href.split("/")[3] == "e") urlSearch = location.href.split("/")[4];
 
 if (urlSearch !== "") {
   eventName = urlSearch;
+  console.log(eventName)
   let redir;
   switch(eventName) {
     case "christmas-eve":
@@ -23,7 +24,7 @@ if (urlSearch !== "") {
     case "new-years":
       location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;
-    case "nwyrs":
+    case "nwyr":
       location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;
   }

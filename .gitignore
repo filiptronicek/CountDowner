@@ -1,2 +1,4 @@
 *.map
 .vscode/settings.json
+
+.vercel

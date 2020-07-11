@@ -4,15 +4,13 @@ const date = new Date();
 const month = date.getMonth();
 const year = date.getFullYear();
 
-let urlSearch = "";
+let eventName = "";
 
-if(urlParams.has("e")) urlSearch = urlParams.get("e"); 
-if(location.href.split("/")[3] == "e") urlSearch = location.href.split("/")[4];
+if(urlParams.has("e")) eventName = urlParams.get("e"); 
+if(location.href.split("/")[3] == "e") eventName = location.href.split("/")[4];
 
 
 if (urlSearch !== "") {
-  eventName = urlSearch;
-  console.log(eventName)
   let redir;
   switch(eventName) {
     case "christmas-eve":

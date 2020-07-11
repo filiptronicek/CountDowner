@@ -137,7 +137,16 @@ if (urlParams.has("d") && urlParams.has("n")) {
     }
   }, 100);
 } else {
-  const encoded = encodeURI("/e/christmas-eve");
+  let redirString;
+  switch(month + 1){
+    case 12:
+      if(date.getDate() > 24) redirString = "nwyr"
+      else redirString = "christmas-eve"
+      break;
+    default:
+      redirString = "nwyr"
+  }
+  const encoded = encodeURI(`/e/${redirString}`);
   location.href = encoded;
 }
 const divInstall = document.getElementById("installContainer");

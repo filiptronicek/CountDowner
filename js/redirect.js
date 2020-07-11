@@ -15,19 +15,18 @@ if (urlSearch !== "") {
   let redir;
   switch(eventName) {
     case "christmas-eve":
-      redir = `../?d=12/24/${year} 19:00&n=🎄 Christmas ${year} 🎄`
+      location.href = `../?d=12/24/${year} 19:00&n=🎄 Christmas ${year} 🎄`
       break;
     case "christmas":
-      redir = `../?d=12/25/${year} 8:00&n=🎄 Christmas ${year} 🎄`
+      location.href = `../?d=12/25/${year} 8:00&n=🎄 Christmas ${year} 🎄`
       break
     case "new-years":
-      redir = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
+      location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;
     case "nwyrs":
-      redir = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
+      location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;
   }
-  location.href = (redir);
 } else {
   location.href = "../";
 }

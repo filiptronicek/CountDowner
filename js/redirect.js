@@ -27,7 +27,7 @@ if (urlSearch !== "") {
       redir = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;
   }
-  location.href.replace(redir);
+  location.href = (redir);
 } else {
   location.href = "../";
 }

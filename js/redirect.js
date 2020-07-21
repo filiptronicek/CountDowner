@@ -10,7 +10,7 @@ if(urlParams.has("e")) eventName = urlParams.get("e");
 if(location.href.split("/")[3] == "e") eventName = location.href.split("/")[4];
 
 
-if (urlSearch !== "") {
+if (eventName !== "") {
   let redir;
   switch(eventName) {
     case "christmas-eve":

@@ -41,7 +41,8 @@ document.getElementById("time_to").onclick = function () {
 const urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("d") && urlParams.has("n")) {
-  const countDownDate = new Date(urlParams.get("d")).getTime();
+  const toCountDownDate = parseInt(urlParams.get("d")) || urlParams.get("d");
+  const countDownDate = new Date(toCountDownDate).getTime();
   const countDownName = urlParams.get("n");
   console.log(`Countdown date: ${countDownDate}`);
   console.log(`Countdown name: ${urlParams.get("n")}`);
@@ -157,15 +158,4 @@ const butInstall = document.getElementById("butInstall");
 /* Only register a service worker if it's supported */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/js/service-worker.js");
-}
-
-/**
- * Warn the page must be served over HTTPS
- * The `beforeinstallprompt` event won't fire if the page is served over HTTP.
- * Installability requires a service worker with a fetch event handler, and
- * if the page isn't served over HTTPS, the service worker won't load.
- */
-if (window.location.protocol === "http:") {
-  const link = requireHTTPS.querySelector("a");
-  link.href = window.location.href.replace("http://", "https://");
 }

@@ -18,7 +18,7 @@ if (eventName !== "") {
       break;
     case "christmas":
       location.href = `../?d=12/25/${year} 8:00&n=🎄 Christmas ${year} 🎄`
-      break
+      break;
     case "new-years":
       location.href = `../?d=1/1/${year + 1} 0:00&n= Year ${year + 1} `
       break;

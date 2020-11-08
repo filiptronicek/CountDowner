@@ -141,11 +141,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
   let redirString;
   switch(month + 1){
     case 12:
-      if(date.getDate() > 24) redirString = "nwyr"
-      else redirString = "christmas-eve"
+      if(date.getDate() > 24) redirString = "nwyr";
+      else redirString = "christmas-eve";
       break;
     default:
-      redirString = "nwyr"
+      redirString = "nwyr";
   }
   const encoded = encodeURI(`/e/${redirString}`);
   location.href = encoded;

@@ -11,21 +11,18 @@ if (month == 11) {
   });
 }
 
-var instance = M.Timepicker.getInstance(document.querySelectorAll(".timepicker").showView('hours'));
+const instance = M.Timepicker.getInstance(document.querySelectorAll(".timepicker"));
 
 document.addEventListener("DOMContentLoaded", function() {
   options = {
     format: "mm/dd/yyyy"
   };
-  var elems = document.querySelectorAll(".datepicker");
-  var instances = M.Datepicker.init(elems, options);
 });
 document.addEventListener("DOMContentLoaded", function() {
   options = {
     twelveHour: false
   };
   var elems = document.querySelectorAll(".timepicker");
-  var instances = M.Timepicker.init(elems, options);
 });
 var patt = /^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[1,3-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/g
 
@@ -41,6 +38,5 @@ function outPutInputs() {
       location.href = `/?d=${cntdDate +" "+cntdTime}&n=${cntdName}`;
     } else if (!patt.test(cntdDate)) {
       alert("Your date is in an incorrect format");
-    } else if (cntdTime == "") {
     }
 }

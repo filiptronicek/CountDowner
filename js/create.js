@@ -2,7 +2,7 @@ const date = new Date();
 const month = date.getMonth();
 
 if (month == 11) {
-    const sf = new Snowflakes({
+    new Snowflakes({
         count: 30,
         maxSize: 20,
         speed: 1.5,

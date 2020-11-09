@@ -49,7 +49,6 @@ document.getElementById("time_to").onclick = () => {
     } else if (currentState == "seconds") {
         currentState = "all";
     }
-    console.log("Layout: " + currentState);
 };
 
 const urlParams = new URLSearchParams(window.location.search);

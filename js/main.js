@@ -38,16 +38,22 @@ function format(text, value, total = false) {
 }
 
 document.getElementById("time_to").onclick = () => {
-    if (currentState == "all") {
-        currentState = "days";
-    } else if (currentState == "days") {
-        currentState = "hours";
-    } else if (currentState == "hours") {
-        currentState = "minutes";
-    } else if (currentState == "minutes") {
-        currentState = "seconds";
-    } else if (currentState == "seconds") {
-        currentState = "all";
+    switch (currentState) {
+        case "all":
+            currentState = "days";
+            break;
+        case "days":
+            currentState = "hours";
+            break;
+        case "hours":
+            currentState = "minutes";
+            break;
+        case "minutes":
+            currentState = "seconds";
+            break;
+        case "seconds":
+            currentState = "all";
+            break;
     }
 };
 

@@ -21,8 +21,17 @@ function getMonthsInBetween(start, end) {
     function daysInMonth(month, year) {
         return new Date(year, month, 0).getDate();
     }
-    
-    return ((end - start) / (1000 * 3600 * 24 * 30.4375)).toFixed(7);
+    const DAYS = () => {
+        const days = [];
+        const dateStart = dayjs();
+        const dateEnd = dayjs().add(30, 'days');
+        while (dateEnd.diff(dateStart, 'days') >= 0) {
+         days.push(dateStart.format('D'));
+         dateStart.add(1, 'days');
+        }
+        return days;
+       };
+    return DAYS();
 
 }
 
@@ -92,8 +101,8 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         const weeks = (totaldays - (totaldays % 7)) / 7;
-        const months = getMonthsInBetween(now, countDownDate);
-        console.log(months);
+        //const months = getMonthsInBetween(now, countDownDate);
+        //console.log(months);
 
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;

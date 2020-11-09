@@ -17,22 +17,8 @@ function writeOnOut(text) {
     document.getElementById("time_to").innerHTML = text;
 }
 
-function getMonthsInBetween(start, end) {
-    function daysInMonth(month, year) {
-        return new Date(year, month, 0).getDate();
-    }
-    const DAYS = () => {
-        const days = [];
-        const dateStart = dayjs();
-        const dateEnd = dayjs().add(30, 'days');
-        while (dateEnd.diff(dateStart, 'days') >= 0) {
-         days.push(dateStart.format('D'));
-         dateStart.add(1, 'days');
-        }
-        return days;
-       };
-    return DAYS();
-
+function getMonthsInBetween(now, then) {
+    return then.diff(now, "month");
 }
 
 function format(text, value, total = false) {
@@ -90,10 +76,16 @@ if (urlParams.has("d") && urlParams.has("n")) {
         // Get today's UNIX time
         const now = new Date().getTime();
 
-        // Find the difference between now and the countdown date
-        const distance = countDownDate - now;
-
         // Time calculations for days, hours, minutes and seconds
+        const months = getMonthsInBetween(dayjs(now), dayjs(countDownDate));
+
+        const daywithoutMdiff = dayjs(countDownDate).subtract(months, 'month');
+
+
+        // Find the difference between now and the countdown date
+        const distance = daywithoutMdiff - now;
+
+        console.log(daywithoutMdiff.format('DD/MM/YYYY'));
         const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
         const days = totaldays % 7;
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -101,8 +93,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         const weeks = (totaldays - (totaldays % 7)) / 7;
-        //const months = getMonthsInBetween(now, countDownDate);
-        //console.log(months);
 
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;
@@ -110,9 +100,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
 
         if (currentState == "all") {
-            if (weeks > 0) {
+            if (months > 0) {
                 writeOnOut(`${
-                    format("week", weeks)
+                    format("month", months)
+                } ${ 
+                    weeks > 0 ? format("week", weeks) : ""
                 } ${
                     format("day", days)
                 } ${

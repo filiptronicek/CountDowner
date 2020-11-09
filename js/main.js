@@ -81,13 +81,16 @@ if (urlParams.has("d") && urlParams.has("n")) {
         // Find the difference between now and the countdown date
         const distance = countDownDate - now;
 
+
+        const correctedToWithoutMonthDistance = Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24));
+
         const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const days =  Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) % 7;
+        const days =  correctedToWithoutMonthDistance % 7;
         const hours = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor(((daywithoutMdiff - now) % (1000 * 60)) / 1000);
 
-        const weeks = (Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) - (Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) % 7)) / 7;
+        const weeks = (correctedToWithoutMonthDistance - (correctedToWithoutMonthDistance % 7)) / 7;
 
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;

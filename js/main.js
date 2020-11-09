@@ -68,7 +68,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     document.getElementById("event_name").innerHTML = countDownName;
 
     // Update the count down every 100 miliseconds
-    let x = setInterval(() => { // Get todays date and time
+    const x = setInterval(() => { // Get todays date and time
         const now = new Date().getTime();
 
         // Find the distance between now and the count down date

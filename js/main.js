@@ -73,17 +73,17 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const distance = countDownDate - now;
 
         // Time calculations for days, hours, minutes and seconds
-        let totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let days = totaldays % 7;
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const days = totaldays % 7;
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        let weeks = (totaldays - (totaldays % 7)) / 7;
-        let totalHours = totaldays * 24 + hours;
-        let totalMinutes = totalHours * 60 + minutes;
-        let displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
-        let displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
+        const weeks = (totaldays - (totaldays % 7)) / 7;
+        const totalHours = totaldays * 24 + hours;
+        const totalMinutes = totalHours * 60 + minutes;
+        const displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
+        const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
 
         if (currentState == "all") {
             if (weeks > 0) {

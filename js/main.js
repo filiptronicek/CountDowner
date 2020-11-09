@@ -79,15 +79,15 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const daywithoutMdiff = dayjs(countDownDate).subtract(months, 'month');
 
         // Find the difference between now and the countdown date
-        const distance = daywithoutMdiff - now;
+        const distance = countDownDate - now;
 
         const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const days = totaldays % 7;
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days =  Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) % 7;
+        const hours = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor(((daywithoutMdiff - now) % (1000 * 60)) / 1000);
 
-        const weeks = (totaldays - (totaldays % 7)) / 7;
+        const weeks = (Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) - (Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24)) % 7)) / 7;
 
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;

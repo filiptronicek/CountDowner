@@ -17,6 +17,15 @@ function writeOnOut(text) {
     document.getElementById("time_to").innerHTML = text;
 }
 
+function getMonthsInBetween(start, end) {
+    function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+    
+    return ((end - start) / (1000 * 3600 * 24 * 30.4375)).toFixed(7);
+
+}
+
 function format(text, value, total = false) {
     if (value === 1) 
         return `${value} ${text}`;
@@ -68,10 +77,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
     document.getElementById("event_name").innerHTML = countDownName;
 
     // Update the count down every 100 miliseconds
-    const x = setInterval(() => { // Get todays date and time
+    const x = setInterval(() => { 
+        // Get today's UNIX time
         const now = new Date().getTime();
 
-        // Find the distance between now and the count down date
+        // Find the difference between now and the countdown date
         const distance = countDownDate - now;
 
         // Time calculations for days, hours, minutes and seconds
@@ -82,6 +92,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         const weeks = (totaldays - (totaldays % 7)) / 7;
+        const months = getMonthsInBetween(now, countDownDate);
+        console.log(months);
+
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;
         const displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;

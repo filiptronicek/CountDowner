@@ -68,29 +68,41 @@ if (urlParams.has("d") && urlParams.has("n")) {
     document.getElementById("event_name").innerHTML = countDownName;
 
     // Update the count down every 100 miliseconds
-    const x = setInterval(() => { // Get todays date and time
+    const x = setInterval(() => { 
+        // Get today's UNIX time
         const now = new Date().getTime();
 
-        // Find the distance between now and the count down date
+        // Time calculations for days, hours, minutes and seconds
+        const months = dayjs(countDownDate).diff(now, "month");
+        //const years = dayjs(countDownDate).diff(now, "year");
+
+        const daywithoutMdiff = dayjs(countDownDate).subtract(months, 'month');
+
+        // Find the difference between now and the countdown date
         const distance = countDownDate - now;
 
-        // Time calculations for days, hours, minutes and seconds
-        const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const days = totaldays % 7;
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const weeks = (totaldays - (totaldays % 7)) / 7;
+        const correctedToWithoutMonthDistance = Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24));
+
+        const totaldays = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const days =  correctedToWithoutMonthDistance % 7;
+        const hours = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor(((daywithoutMdiff - now) % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor(((daywithoutMdiff - now) % (1000 * 60)) / 1000);
+
+        const weeks = (correctedToWithoutMonthDistance - (correctedToWithoutMonthDistance % 7)) / 7;
+
         const totalHours = totaldays * 24 + hours;
         const totalMinutes = totalHours * 60 + minutes;
         const displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
         const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
 
         if (currentState == "all") {
-            if (weeks > 0) {
+            if (months > 0) {
                 writeOnOut(`${
-                    format("week", weeks)
+                    format("month", months)
+                } ${ 
+                    weeks > 0 ? format("week", weeks) : ""
                 } ${
                     format("day", days)
                 } ${

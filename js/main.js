@@ -65,7 +65,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
     const countDownDate = new Date(toCountDownDate).getTime();
     const countDownName = urlParams.get("n");
 
-    document.getElementById("event_name").innerHTML = countDownName;
+    document.title = `${countDownName} | CountDowner`;
+
+    document.getElementById("event_name").innerText = countDownName;
 
     // Update the count down every 100 miliseconds
     const x = setInterval(() => { 

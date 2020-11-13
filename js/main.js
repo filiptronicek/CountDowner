@@ -97,6 +97,17 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
         const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
 
+        const w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+
+        width = w.innerWidth||e.clientWidth||g.clientWidth,
+        height = w.innerHeight||e.clientHeight||g.clientHeight;
+
+        const confettiOptions = {"target":"confetti-holder","max":"200","size":"1.5","animate":true,"props":["circle","square","triangle","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"50","rotate":true,"width":width - width / 25,"height":height - height / 10,"start_from_edge":true,"respawn":false};
+        const confetti = new ConfettiGenerator(confettiOptions);
+        
         if (currentState == "all") {
             if (months > 0) {
                 writeOnOut(`${
@@ -186,6 +197,12 @@ if (urlParams.has("d") && urlParams.has("n")) {
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("time_to").innerHTML = "This countdown is over";
+            console.log(Math.abs(distance));
+            if (Math.abs(distance) < 60 * 1000) {
+            setTimeout(() => {
+                confetti.render();
+            }, 500);
+        }
         }
     }, 100);
 } else {

@@ -25,7 +25,7 @@ function outPutInputs() {
 
     const unixTo = cntdTime;
 
-    location.href = `/?d=${unixTo}&n=${cntdName}&confetti=${cntdEffect}`;
+    location.href = `/?d=${unixTo}&n=${cntdName}${cntdEffect ? "" : "confetti=false"}`;
     /*
     if (cntdTime != "" && cntdDate != "" && cntdName != "" && patt.test(cntdDate)) {
         location.href = `/?d=${cntdDate + " " + cntdTime}&n=${cntdName}`;

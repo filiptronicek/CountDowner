@@ -66,8 +66,10 @@ if (urlParams.has("d") && urlParams.has("n")) {
     const countDownName = urlParams.get("n");
 
     const confettiEf = urlParams.has("confetti") ? urlParams.get("confetti") === "true" ? true : false : true;
+  
+    document.title = `${countDownName} | CountDowner`;
 
-    document.getElementById("event_name").innerHTML = countDownName;
+    document.getElementById("event_name").innerText = countDownName;
 
     // Update the count down every 100 miliseconds
     const x = setInterval(() => { 

@@ -199,8 +199,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("time_to").innerHTML = "This countdown is over";
-            console.log(Math.abs(distance));
-            console.log(`Confetti: ${confettiEf}`);
             if (Math.abs(distance) < 60 * 1000 && confettiEf) {
             setTimeout(() => {
                 confetti.render();

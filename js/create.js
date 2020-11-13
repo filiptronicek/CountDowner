@@ -21,9 +21,11 @@ function outPutInputs() {
     const cntdTime = cntdDate.setHours(document.getElementById("time").value.split(":")[0] || 0, document.getElementById("time").value.split(":")[1] || 0);
     const cntdName = document.getElementById("name").value;
 
+    const cntdEffect = document.getElementById("confetti").checked;
+
     const unixTo = cntdTime;
 
-    location.href = `/?d=${unixTo}&n=${cntdName}`;
+    location.href = `/?d=${unixTo}&n=${cntdName}${cntdEffect ? "" : "confetti=false"}`;
     /*
     if (cntdTime != "" && cntdDate != "" && cntdName != "" && patt.test(cntdDate)) {
         location.href = `/?d=${cntdDate + " " + cntdTime}&n=${cntdName}`;

@@ -65,6 +65,8 @@ if (urlParams.has("d") && urlParams.has("n")) {
     const countDownDate = new Date(toCountDownDate).getTime();
     const countDownName = urlParams.get("n");
 
+    const confettiEf = urlParams.has("confetti") ? urlParams.get("confetti") === "true" ? true : false : true;
+  
     document.title = `${countDownName} | CountDowner`;
 
     document.getElementById("event_name").innerText = countDownName;
@@ -199,8 +201,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("time_to").innerHTML = "This countdown is over";
-            console.log(Math.abs(distance));
-            if (Math.abs(distance) < 60 * 1000) {
+            if (Math.abs(distance) < 60 * 1000 && confettiEf) {
             setTimeout(() => {
                 confetti.render();
             }, 500);

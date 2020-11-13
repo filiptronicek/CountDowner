@@ -40,6 +40,15 @@
         class="center offset-l5 offset-s3 timepicker col l2 s6 text-darken-2"
         onchange="if (!this.value.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]/)) this.value = '';" />
     </div>
+    <h2 class="center">
+      Confetti when you hit 0:
+    </h2>
+    <div class="row">
+      <label style="position: relative; margin-left: 30vw;">
+        <input type="checkbox" id="confetti" checked />
+        <span>Confetti</span>
+      </label>
+    </div>
     <div class="row">
       <a onclick="outPutInputs()" class=" btn-large waves-effect waves-light red col s4 offset-s4">Create countdown</a>
     </div>

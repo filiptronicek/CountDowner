@@ -91,4 +91,10 @@ li a:hover:not(.active) {
   font-size: 1em;
   padding: 0.75em;
 }
+
+#confetti-holder {
+  position: absolute;
+  left: 0;
+  top: 70px;
+}
 /*# sourceMappingURL=style.css.map */

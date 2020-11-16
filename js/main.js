@@ -1,15 +1,16 @@
 /* Window width and height constants */
 const w = window,
-d = document,
-e = d.documentElement,
-g = d.getElementsByTagName('body')[0],
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
 
-width = w.innerWidth||e.clientWidth||g.clientWidth,
-height = w.innerHeight||e.clientHeight||g.clientHeight;
+    width = w.innerWidth || e.clientWidth || g.clientWidth,
+    height = w.innerHeight || e.clientHeight || g.clientHeight;
 
 /* DOM */
 const divInstall = document.getElementById("installContainer");
 const butInstall = document.getElementById("butInstall");
+const timeTo = document.getElementById("time_to");
 
 
 let currentState = "all";
@@ -28,7 +29,7 @@ if (month == 11) {
 }
 
 function writeOnOut(text) {
-    document.getElementById("time_to").innerHTML = text;
+    timeTo.innerHTML = text;
 }
 
 function format(text, value, total = false) {
@@ -40,18 +41,32 @@ function format(text, value, total = false) {
         
      else 
         return `${
-            value.toLocaleString()
-        } ${text}s`;
+         value.toLocaleString()
+    }
+    $ {
+        text
+    }
+    s `;
      else if (! total) 
-        return `${value} ${text}`;
+        return ` $ {
+        value
+    }
+    $ {
+        text
+    }
+    `;
      else 
-        return `${
-            value.toLocaleString()
-        } ${text}`;
+        return ` $ {
+        value.toLocaleString()
+    }
+    $ {
+        text
+    }
+    `;
     
 }
 
-document.getElementById("time_to").onclick = () => {
+timeTo.onclick = () => {
     switch (currentState) {
         case "all":
             currentState = "days";
@@ -81,7 +96,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
 
     const confettiEf = urlParams.has("confetti") ? urlParams.get("confetti") === "true" ? true : false : true;
   
-    document.title = `${countDownName} | CountDowner`;
+    document.title = ` $ {
+        countDownName
+    } | CountDowner `;
 
     document.getElementById("event_name").innerText = countDownName;
 
@@ -120,51 +137,68 @@ if (urlParams.has("d") && urlParams.has("n")) {
         
         if (currentState == "all") {
             if (months > 0) {
-                writeOnOut(`${
-                    format("month", months)
-                } ${ 
-                    weeks > 0 ? format("week", weeks) : ""
-                } ${
-                    format("day", days)
-                } ${
-                    format("hour", hours)
-                } ${
-                    format("minute", minutes)
-                } ${
-                    format("second", seconds)
-                }`);
+                writeOnOut(` $ {
+        format("month", months)
+    }
+    $ {
+        weeks > 0 ? format("week", weeks) : ""
+    }
+    $ {
+        format("day", days)
+    }
+    $ {
+        format("hour", hours)
+    }
+    $ {
+        format("minute", minutes)
+    }
+    $ {
+        format("second", seconds)
+    }
+    `);
             } else {
                 if (days > 0) {
-                    writeOnOut(`${
-                        format("day", days)
-                    } ${
-                        format("hour", hours)
-                    } ${
-                        format("minute", minutes)
-                    } ${
-                        format("second", seconds)
-                    }`);
+                    writeOnOut(` $ {
+        format("day", days)
+    }
+    $ {
+        format("hour", hours)
+    }
+    $ {
+        format("minute", minutes)
+    }
+    $ {
+        format("second", seconds)
+    }
+    `);
                 } else {
                     if (hours > 0) {
-                        writeOnOut(`${
-                            format("hour", hours)
-                        } ${
-                            format("minute", minutes)
-                        } ${
-                            format("second", seconds)
-                        }`);
+                        writeOnOut(` $ {
+        format("hour", hours)
+    }
+    $ {
+        format("minute", minutes)
+    }
+    $ {
+        format("second", seconds)
+    }
+    `);
                     } else {
-                        writeOnOut(`${
-                            format("minute", minutes)
-                        } ${
-                            format("second", seconds)
-                        }`);
+                        writeOnOut(` $ {
+        format("minute", minutes)
+    }
+    $ {
+        format("second", seconds)
+    }
+    `);
                         if (minutes > 0) {
-                            writeOnOut(`${
-                                format("minute", minutes)
-                            } ${
-                                format("second", seconds)
-                            }`);
+                            writeOnOut(` $ {
+        format("minute", minutes)
+    }
+    $ {
+        format("second", seconds)
+    }
+    `);
                         } else if (minutes < 1 && seconds < 20) {
                             writeOnOut(seconds + "," + Math.floor((distance % 1000) / 100) + " seconds ");
                         } else {
@@ -177,30 +211,34 @@ if (urlParams.has("d") && urlParams.has("n")) {
             if (totaldays < 1) 
                 currentState = "hours";
              else 
-                writeOnOut(`${
-                    format("day", totaldays, true)
-                }`);
+                writeOnOut(` $ {
+        format("day", totaldays, true)
+    }
+    `);
             
         } else if (currentState == "hours") {
             if (totalHours < 1) 
                 currentState = "minutes";
              else 
-                writeOnOut(`${
-                    format("hour", totalHours, true)
-                }`);
+                writeOnOut(` $ {
+        format("hour", totalHours, true)
+    }
+    `);
             
         } else if (currentState == "minutes") {
             if (totalMinutes < 1) 
                 currentState = "seconds";
              else 
-                writeOnOut(`${
-                    format("minute", displayTotalMinutes, true)
-                }`);
+                writeOnOut(` $ {
+        format("minute", displayTotalMinutes, true)
+    }
+    `);
             
         } else if (currentState == "seconds") {
-            writeOnOut(`${
-                format("second", displayTotalSeconds, true)
-            }`);
+            writeOnOut(` $ {
+        format("second", displayTotalSeconds, true)
+    }
+    `);
         }
         // Output the result in an element with id="demo"
         // If the count down is over, write some text
@@ -226,7 +264,10 @@ if (urlParams.has("d") && urlParams.has("n")) {
             break;
         default: redirString = "nwyr";
     }
-    const encoded = encodeURI(`/e/${redirString}`);
+    const encoded = encodeURI(` / e / $ {
+        redirString
+    }
+    `);
     location.href = encoded;
 }
 

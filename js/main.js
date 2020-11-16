@@ -38,31 +38,12 @@ function format(text, value, total = false) {
      else if (value > 1 || value === 0) 
         if (! total) 
             return `${value} ${text}s`;
-        
      else 
-        return `${
-         value.toLocaleString()
-    }
-    $ {
-        text
-    }
-    s `;
+        return `${value.toLocaleString()} ${text}s `;
      else if (! total) 
-        return ` $ {
-        value
-    }
-    $ {
-        text
-    }
-    `;
+        return ` ${value}${text}`;
      else 
-        return ` $ {
-        value.toLocaleString()
-    }
-    $ {
-        text
-    }
-    `;
+        return `${value.toLocaleString()} ${text}`;
     
 }
 

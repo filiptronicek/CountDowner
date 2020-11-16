@@ -11,7 +11,7 @@ height = w.innerHeight||e.clientHeight||g.clientHeight;
 let currentState = "all";
 
 const date = new Date();
-const mon1th = date.getMonth();
+const month = date.getMonth();
 
 if (month == 11) {
     new Snowflakes({

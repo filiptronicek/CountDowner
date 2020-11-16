@@ -7,6 +7,10 @@ g = d.getElementsByTagName('body')[0],
 width = w.innerWidth||e.clientWidth||g.clientWidth,
 height = w.innerHeight||e.clientHeight||g.clientHeight;
 
+/* DOM */
+const divInstall = document.getElementById("installContainer");
+const butInstall = document.getElementById("butInstall");
+
 
 let currentState = "all";
 
@@ -202,7 +206,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
         // If the count down is over, write some text
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("time_to").innerHTML = "This countdown is over";
+            writeOnOut("This countdown is over");
             if (Math.abs(distance) < 60 * 1000 && confettiEf) {
             setTimeout(() => {
                 confetti.render();
@@ -225,8 +229,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
     const encoded = encodeURI(`/e/${redirString}`);
     location.href = encoded;
 }
-const divInstall = document.getElementById("installContainer");
-const butInstall = document.getElementById("butInstall");
 
 /* Only register a service worker if it's supported */
 if ("serviceWorker" in navigator) {

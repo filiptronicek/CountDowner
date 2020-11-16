@@ -11,7 +11,6 @@ if(location.href.split("/")[3] == "e") eventName = location.href.split("/")[4];
 
 
 if (eventName !== "") {
-  let redir;
   switch(eventName) {
     case "christmas-eve":
       const cdate = new Date(`12/24/${year} 19:00`).getTime();

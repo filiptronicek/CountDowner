@@ -1,7 +1,7 @@
 const date = new Date();
 const month = date.getMonth();
 
-if (month == 11) {
+if (month === 11) {
     new Snowflakes({
         count: 30,
         maxSize: 20,

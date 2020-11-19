@@ -203,7 +203,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
             }`);
         }
         // Output the result in an element with id="demo"
-        // If the count down is over, write some text
+        // If the count down is over, write some text, render some confetti
         if (distance < 0) {
             clearInterval(x);
             writeOnOut("This countdown is over");

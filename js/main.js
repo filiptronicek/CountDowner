@@ -119,9 +119,10 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const confetti = new ConfettiGenerator(confettiOptions);
         
         if (currentState == "all") {
-            if (months > 0) {
-                writeOnOut(`${
-                    format("month", months)
+            if (totaldays > 7) {
+                writeOnOut(`
+                ${
+                    months > 1 ? format("month", months) : ""
                 } ${ 
                     weeks > 0 ? format("week", weeks) : ""
                 } ${

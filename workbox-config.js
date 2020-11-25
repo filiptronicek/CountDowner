@@ -1,7 +1,7 @@
-export default {
-  "globDirectory": ".",
+module.exports = {
+  "globDirectory": "public/",
   "globPatterns": [
-    "**/*.{png,html,scss,css,ico,js,webmanifest,json,md}"
+    "**/*.{png,html,scss,css,ico,js,txt,webmanifest}"
   ],
-  "swDest": "sw.js"
+  "swDest": "public/sw.js"
 };

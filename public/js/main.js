@@ -8,16 +8,31 @@ import '/public/css/dark.scss';
 import 'magic-snowflakes';
 import confetti from 'canvas-confetti';
 import dayjs from 'dayjs';
+import { getTimeZones } from "@vvo/tzdb";
+const uniqby = require('lodash.uniqby');
 
+const timezones = getTimeZones();
+
+const minuteOffsets = [];
+
+for(const tz of timezones) {
+    console.log(tz.abbreviation, dayjs().add(tz.currentTimeOffsetInMinutes, 'minute').format("MM/DD/YYYY HH:MM"));
+    minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes });
+}
+console.log(minuteOffsets);
+console.log(uniqby(minuteOffsets, 'o'));
 
 /* Window width and height constants */
+/*
 const w = window,
 d = document,
 e = d.documentElement,
 g = d.getElementsByTagName('body')[0],
 
+
 width = w.innerWidth||e.clientWidth||g.clientWidth,
 height = w.innerHeight||e.clientHeight||g.clientHeight;
+*/
 
 /* DOM */
 const divInstall = document.getElementById("installContainer");

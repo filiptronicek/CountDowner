@@ -7,7 +7,8 @@ import '/public/css/dark.scss';
 /* JS */
 import 'magic-snowflakes';
 import ConfettiGenerator from 'confetti-js';
-import 'dayjs';
+import dayjs from 'dayjs';
+
 
 /* Window width and height constants */
 const w = window,

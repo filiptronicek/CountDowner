@@ -126,10 +126,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
         // Find the difference between now and the countdown date
         const distance = countDownDate - now;
         if (distance < 86400 * 1000 && output.innerHTML === "") {
+            //output.innerHTML += `Your countdown has been hit in:`;
             for (const offset of minuteOffsets) {
                 const offsetedDate = dayjs().add(offset.o, 'minute');
                 if (offsetedDate.format("MM/DD") === dayjs(countDownDate).format("MM/DD") && offsetedDate.format("hh:mm:ss") === dayjs(countDownDate).format("hh:mm:ss")) {
-                    output.innerHTML += `<li> Your countdown has been hit in ${offset.cities.join(", ")}! </li> <br>`;
+                    output.innerHTML += `<li>${offset.cities.join(", ")}</li> <br>`;
                 }
             }
         }

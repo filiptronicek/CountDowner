@@ -1,3 +1,7 @@
+/* Imports */
+import "/public/css/style.scss";
+import "/public/css/dark.scss";
+
 /* Window width and height constants */
 const w = window,
 d = document,

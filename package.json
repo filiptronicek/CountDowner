@@ -11,6 +11,8 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
+    "confetti-js": "^0.0.18",
+    "dayjs": "^1.9.6",
     "magic-snowflakes": "^4.1.5"
   }
 }

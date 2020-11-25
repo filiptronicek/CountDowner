@@ -1,6 +1,13 @@
 /* Imports */
-import "/public/css/style.scss";
-import "/public/css/dark.scss";
+
+/* CSS */
+import '/public/css/style.scss';
+import '/public/css/dark.scss';
+
+/* JS */
+import 'magic-snowflakes';
+import ConfettiGenerator from 'confetti-js';
+import 'dayjs';
 
 /* Window width and height constants */
 const w = window,

@@ -13,6 +13,7 @@
   "dependencies": {
     "confetti-js": "^0.0.18",
     "dayjs": "^1.9.6",
+    "js-datepicker": "^5.16.0",
     "magic-snowflakes": "^4.1.5"
   }
 }

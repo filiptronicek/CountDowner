@@ -52,7 +52,7 @@ function outPutInputs() {
 
 checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
-        const count = 200;
+        const count = 100;
         const defaults = {
             origin: {
                 y: 0.8

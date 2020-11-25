@@ -134,7 +134,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
             if (totaldays > 7) {
                 writeOnOut(`
                 ${
-                    months > 1 ? format("month", months) : ""
+                    months > 0 ? format("month", months) : ""
                 } ${ 
                     weeks > 0 ? format("week", weeks) : ""
                 } ${

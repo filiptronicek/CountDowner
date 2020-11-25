@@ -6,7 +6,7 @@ import '/public/css/dark.scss';
 
 /* JS */
 import 'magic-snowflakes';
-import ConfettiGenerator from 'confetti-js';
+import confetti from 'canvas-confetti';
 import dayjs from 'dayjs';
 
 
@@ -126,9 +126,6 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const totalMinutes = totalHours * 60 + minutes;
         const displayTotalSeconds = totaldays * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
         const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
-
-        const confettiOptions = {"target":"confetti-holder","max":"200","size":"1.5","animate":true,"props":["circle","square","triangle","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"50","rotate":true,"width":width - width / 25,"height":height - height / 10,"start_from_edge":true,"respawn":false};
-        const confetti = new ConfettiGenerator(confettiOptions);
         
         if (currentState == "all") {
             if (totaldays > 7) {
@@ -222,7 +219,31 @@ if (urlParams.has("d") && urlParams.has("n")) {
             writeOnOut("This countdown is over");
             if (Math.abs(distance) < 60 * 1000 && confettiEf) {
             setTimeout(() => {
-                confetti.render();
+                const endConfetti = Date.now() + (5 * 1000);
+
+                // go Buckeyes!
+                const colors = ['#ff0000', '#FCCA4D'];
+        
+                (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+        
+                if (Date.now() < endConfetti) {
+                    requestAnimationFrame(frame);
+                }
+                }());
             }, 500);
         }
         }

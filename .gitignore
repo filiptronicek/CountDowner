@@ -2,3 +2,4 @@
 .vscode/settings.json
 
 .vercel
+node_modules/

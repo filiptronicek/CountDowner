@@ -19,7 +19,7 @@ for(const tz of timezones) {
     minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes, cities: tz.mainCities });
 }
 
-const reducedOffsets = uniqby(minuteOffsets, 'o');
+const reducedOffsets = uniqby(minuteOffsets, 'name');
 
 /* Window width and height constants */
 /*
@@ -127,10 +127,11 @@ if (urlParams.has("d") && urlParams.has("n")) {
         const distance = countDownDate - now;
         if (distance < 86400 * 1000 && output.innerHTML === "") {
             //output.innerHTML += `Your countdown has been hit in:`;
-            for (const offset of minuteOffsets) {
+            for (const offset of reducedOffsets) {
                 const offsetedDate = dayjs().add(offset.o, 'minute');
                 if (offsetedDate.format("MM/DD") === dayjs(countDownDate).format("MM/DD") && offsetedDate.format("hh:mm:ss") === dayjs(countDownDate).format("hh:mm:ss")) {
-                    output.innerHTML += `<li>${offset.cities.join(", ")}</li> <br>`;
+                    output.innerHTML += `<li>${offset.name}</li> <br>`;
+                    setTimeout(() => { output.innerHTML = ""; }, 15000);
                 }
             }
         }

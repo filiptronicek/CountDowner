@@ -7,6 +7,9 @@ import '/public/css/dark.scss';
 /* JS */
 import datepicker from 'js-datepicker';
 import 'magic-snowflakes';
+import confetti from 'canvas-confetti';
+
+const checkbox = document.querySelector("#confetti");
 
 const date = new Date();
 const month = date.getMonth();
@@ -35,7 +38,9 @@ function outPutInputs() {
 
     const unixTo = cntdTime;
 
-    location.href = `/?d=${unixTo}&n=${cntdName}${cntdEffect ? "" : "confetti=false"}`;
+    location.href = `/?d=${unixTo}&n=${cntdName}${
+        cntdEffect ? "" : "confetti=false"
+    }`;
     /*
     if (cntdTime != "" && cntdDate != "" && cntdName != "" && patt.test(cntdDate)) {
         location.href = `/?d=${cntdDate + " " + cntdTime}&n=${cntdName}`;
@@ -45,4 +50,42 @@ function outPutInputs() {
     */
 }
 
-document.getElementById("create-countdown").addEventListener("click", outPutInputs); 
+checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+        const count = 200;
+        const defaults = {
+            origin: {
+                y: 0.8
+            }
+        };
+
+        function fire(particleRatio, opts) {
+            confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio)
+            }));
+        }
+
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55
+        });
+        fire(0.2, {spread: 60});
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45
+        });
+    }
+});
+
+document.getElementById("create-countdown").addEventListener("click", outPutInputs);

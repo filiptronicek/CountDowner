@@ -16,11 +16,10 @@ const timezones = getTimeZones();
 const minuteOffsets = [];
 
 for(const tz of timezones) {
-    console.log(tz.abbreviation, dayjs().add(tz.currentTimeOffsetInMinutes, 'minute').format("MM/DD/YYYY HH:MM"));
     minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes });
 }
-console.log(minuteOffsets);
-console.log(uniqby(minuteOffsets, 'o'));
+
+const reducedOffsets = uniqby(minuteOffsets, 'o');
 
 /* Window width and height constants */
 /*
@@ -125,7 +124,15 @@ if (urlParams.has("d") && urlParams.has("n")) {
 
         // Find the difference between now and the countdown date
         const distance = countDownDate - now;
-
+        if (distance < 86400 * 1000) {
+            console.log("trying to execute!");
+            for (const offset of reducedOffsets) {
+                const offsetedDate = dayjs().add(offset.o, 'minute');
+                if (offsetedDate.format("MM/DD") === dayjs(countDownDate).format("MM/DD") && offsetedDate.format("hh:mm:ss") === dayjs(countDownDate).format("hh:mm:ss")) {
+                    alert(`Your countdown has been hit in ${offset.name}!`);
+                }
+            }
+        }
 
         const correctedToWithoutMonthDistance = Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24));
 

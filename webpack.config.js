@@ -4,6 +4,7 @@ module.exports = {
     entry: {
         index: '/public/js/main.js',
         redirect: '/public/js/redirect.js',
+        create: '/public/js/create.js',
     },
     output: {
         //filename: 'main.js',

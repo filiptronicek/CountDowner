@@ -1,0 +1,1 @@
+11===(new Date).getMonth()&&new Snowflakes({count:30,maxSize:20,speed:1.5,wind:!1,maxOpacity:.3}),datepicker(".datepicker",{});

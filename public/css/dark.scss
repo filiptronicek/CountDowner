@@ -1,16 +1,18 @@
-html {
-    width: 100vw;
-    height: 100%;
-
-}
-
-body, .datepicker-calendar-container, .select-dropdown, .timepicker-analog-display, input {
-    background: #0f0e17;
-    color: #fffffe !important;
-}
-svg {
-    filter: invert(1);
-}
-#time_to {
-    background: #202020 !important;
+@media (prefers-color-scheme: dark) {
+    html {
+        width: 100vw;
+        height: 100%;
+    
+    }
+    
+    body, .datepicker-calendar-container, .select-dropdown, .timepicker-analog-display, input {
+        background: #0f0e17;
+        color: #fffffe !important;
+    }
+    svg {
+        filter: invert(1);
+    }
+    #time_to {
+        background: #202020 !important;
+    }
 }

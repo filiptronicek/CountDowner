@@ -7,20 +7,23 @@ import '/public/css/dark.scss';
 /* JS */
 import 'magic-snowflakes';
 import confetti from 'canvas-confetti';
+
 import dayjs from 'dayjs';
+const utc = require('dayjs/plugin/utc');
+
 import { getTimeZones } from "@vvo/tzdb";
 const uniqby = require('lodash.uniqby');
 
 const timezones = getTimeZones();
+dayjs.extend(utc);
 
 const minuteOffsets = [];
 
 for(const tz of timezones) {
-    console.log(tz.abbreviation, dayjs().add(tz.currentTimeOffsetInMinutes, 'minute').format("MM/DD/YYYY HH:MM"));
-    minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes });
+    minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes, cities: tz.mainCities });
 }
-console.log(minuteOffsets);
-console.log(uniqby(minuteOffsets, 'o'));
+
+const reducedOffsets = uniqby(minuteOffsets, 'name');
 
 /* Window width and height constants */
 /*
@@ -38,6 +41,8 @@ height = w.innerHeight||e.clientHeight||g.clientHeight;
 const divInstall = document.getElementById("installContainer");
 const butInstall = document.getElementById("butInstall");
 const timeTo = document.getElementById("time_to");
+const output = document.getElementById("output");
+const timezoneText = document.querySelector(".tzinfo");
 
 let currentState = "all";
 
@@ -125,7 +130,20 @@ if (urlParams.has("d") && urlParams.has("n")) {
 
         // Find the difference between now and the countdown date
         const distance = countDownDate - now;
+        if (distance < 86400 * 1000 && output.innerHTML === "") {
+            //output.innerHTML += `Your countdown has been hit in:`;
+            for (const offset of reducedOffsets) {
+                const offsetedDate = dayjs().add(offset.o, 'minute');
+                const desiredDate = dayjs(countDownDate).add(dayjs(countDownDate).utcOffset(), 'minute');
 
+                if (offsetedDate.format("MM/DD") === desiredDate.format("MM/DD") && offsetedDate.format("hh:mm:ss") === desiredDate.format("hh:mm:ss")) {
+                    timezoneText.innerHTML = "You just hit your countdown in these timezones:";
+                    output.style.display = "block";
+                    output.innerHTML += `<li>${offset.name}</li> <br>`;
+                    setTimeout(() => { output.innerHTML = ""; output.style.display = "none"; timezoneText.innerHTML = ""; }, 15000);
+                }
+            }
+        }
 
         const correctedToWithoutMonthDistance = Math.floor((daywithoutMdiff - now) / (1000 * 60 * 60 * 24));
 

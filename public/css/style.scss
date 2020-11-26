@@ -21,15 +21,18 @@ $breakpoint-tablet: 768px;
     cursor: pointer;
     @include disable-selection;
 }
+
 #event_name {
     margin-top: 10vh;
 }
+
 @media (max-width: $breakpoint-tablet) {
   #time_to {
     width: 100vw;
 
   }
 }
+
 #installContainer {
   position: absolute;
   bottom: 1em;
@@ -44,6 +47,39 @@ $breakpoint-tablet: 768px;
   color: white;
   font-size: 1em;
   padding: 0.75em;
+}
+
+#output li {
+  list-style: circle;
+  left:0;
+  right:0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  width: 40%;
+}
+
+div.tzinfo {
+  margin-top: 50px !important;
+}
+
+#output {
+  margin-bottom: 50px;
+
+  left:0;
+  right:0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 40%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background: #202020 !important;
+
+  display: none;
 }
 
 #confetti-holder {

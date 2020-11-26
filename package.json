@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server"
   },
   "devDependencies": {
     "css-loader": "^5.0.1",

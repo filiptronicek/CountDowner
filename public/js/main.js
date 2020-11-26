@@ -7,11 +7,15 @@ import '/public/css/dark.scss';
 /* JS */
 import 'magic-snowflakes';
 import confetti from 'canvas-confetti';
+
 import dayjs from 'dayjs';
+const utc = require('dayjs/plugin/utc');
+
 import { getTimeZones } from "@vvo/tzdb";
 const uniqby = require('lodash.uniqby');
 
 const timezones = getTimeZones();
+dayjs.extend(utc);
 
 const minuteOffsets = [];
 
@@ -129,7 +133,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
             //output.innerHTML += `Your countdown has been hit in:`;
             for (const offset of reducedOffsets) {
                 const offsetedDate = dayjs().add(offset.o, 'minute');
-                if (offsetedDate.format("MM/DD") === dayjs(countDownDate).format("MM/DD") && offsetedDate.format("hh:mm:ss") === dayjs(countDownDate).format("hh:mm:ss")) {
+                const desiredDate = dayjs(countDownDate).add(dayjs(countDownDate).utcOffset(), 'minute');
+
+                if (offsetedDate.format("MM/DD") === desiredDate.format("MM/DD") && offsetedDate.format("hh:mm:ss") === desiredDate.format("hh:mm:ss")) {
                     output.innerHTML += `<li>${offset.name}</li> <br>`;
                     setTimeout(() => { output.innerHTML = ""; }, 15000);
                 }

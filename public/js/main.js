@@ -138,6 +138,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
 
                 if (offsetedDate.format("MM/DD") === desiredDate.format("MM/DD") && offsetedDate.format("hh:mm:ss") === desiredDate.format("hh:mm:ss")) {
                     timezoneText.innerHTML = "You just hit your countdown in these timezones:";
+                    output.style.display = "block";
                     output.innerHTML += `<li>${offset.name}</li> <br>`;
                     setTimeout(() => { output.innerHTML = ""; output.style.display = "none"; timezoneText.innerHTML = ""; }, 15000);
                 }

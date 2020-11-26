@@ -42,6 +42,7 @@ const divInstall = document.getElementById("installContainer");
 const butInstall = document.getElementById("butInstall");
 const timeTo = document.getElementById("time_to");
 const output = document.getElementById("output");
+const timezoneText = document.querySelector(".tzinfo");
 
 let currentState = "all";
 
@@ -136,8 +137,9 @@ if (urlParams.has("d") && urlParams.has("n")) {
                 const desiredDate = dayjs(countDownDate).add(dayjs(countDownDate).utcOffset(), 'minute');
 
                 if (offsetedDate.format("MM/DD") === desiredDate.format("MM/DD") && offsetedDate.format("hh:mm:ss") === desiredDate.format("hh:mm:ss")) {
+                    timezoneText.innerHTML = "You just hit your countdown in these timezones:";
                     output.innerHTML += `<li>${offset.name}</li> <br>`;
-                    setTimeout(() => { output.innerHTML = ""; }, 15000);
+                    setTimeout(() => { output.innerHTML = ""; output.style.display = "none"; timezoneText.innerHTML = ""; }, 15000);
                 }
             }
         }

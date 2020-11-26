@@ -21,15 +21,18 @@ $breakpoint-tablet: 768px;
     cursor: pointer;
     @include disable-selection;
 }
+
 #event_name {
     margin-top: 10vh;
 }
+
 @media (max-width: $breakpoint-tablet) {
   #time_to {
     width: 100vw;
 
   }
 }
+
 #installContainer {
   position: absolute;
   bottom: 1em;
@@ -58,8 +61,11 @@ $breakpoint-tablet: 768px;
   width: 40%;
 }
 
+div.tzinfo {
+  margin-top: 50px !important;
+}
+
 #output {
-  margin-top: 50px;
   margin-bottom: 50px;
 
   left:0;
@@ -69,7 +75,7 @@ $breakpoint-tablet: 768px;
   margin-right: auto;
 
   width: 40%;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   padding-top: 20px;
   background: #202020 !important;
 }

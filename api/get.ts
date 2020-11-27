@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import fetch from "node-fetch";
-import { atob, btoa } from 'Base64';
+import { atob } from 'Base64';
 
 function decodeUnicode(str: string) {
   // Going backwards: from bytestream, to percent-encoding, to original string.

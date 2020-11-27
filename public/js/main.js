@@ -28,6 +28,19 @@ for(const tz of timezones) {
 
 const reducedOffsets = uniqby(minuteOffsets, 'name');
 
+function setClientOffset() {
+    const timestamp = Date.now();
+    fetch(`https://time.filiptronicek.workers.dev/?ts=${timestamp}`).then(f => f.json()).then(f => {
+      const nowstamp = Date.now();
+      const adjustedOffset = Math.round(f.result.ms - (nowstamp - timestamp) / 2);
+      localStorage.setItem('offset', adjustedOffset);
+      localStorage.setItem('offsetUpdate', nowstamp - adjustedOffset);
+    });
+}
+
+if (!localStorage.getItem('offsetUpdate') || (localStorage.getItem('offsetUpdate') && Math.abs(parseInt(localStorage.getItem('offsetUpdate') - Date.now())) > 1000 * 60 * 60 * 24)) {
+    setClientOffset();
+}
 
 /* DOM */
 const divInstall = document.getElementById("installContainer");

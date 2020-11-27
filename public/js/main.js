@@ -43,6 +43,7 @@ const butInstall = document.getElementById("butInstall");
 const timeTo = document.getElementById("time_to");
 const output = document.getElementById("output");
 const timezoneText = document.querySelector(".tzinfo");
+const link = document.getElementById("link");
 
 let currentState = "all";
 
@@ -296,6 +297,30 @@ if (urlParams.has("d") && urlParams.has("n")) {
     const encoded = encodeURI(`/e/${redirString}`);
     location.href = encoded;
 }
+
+function copyLink() {
+
+    function encodeUnicode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(_match, p1) {
+                return String.fromCharCode('0x' + p1);
+        }));
+    }
+
+    const docLoc = encodeUnicode(location.href.split("/").pop());
+    fetch(`/api/shorten?url=${docLoc}`).then(r => r.json()).then(res => {
+        navigator.clipboard.writeText(`https://cntd.now.sh/c/${res.result}`).then(() => {}, (err) => {
+            console.error('Async: Could not copy text: ', err);
+        });
+    });
+}
+
+
+link.addEventListener("click", copyLink); 
+
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {

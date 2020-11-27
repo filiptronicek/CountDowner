@@ -4,11 +4,13 @@ const date = new Date();
 const month = date.getMonth();
 const year = date.getFullYear();
 
-let eventName = "";
+let redirect, eventName = "";
 
-if(urlParams.has("e")) eventName = urlParams.get("e"); 
-if(location.href.split("/")[3] == "e") eventName = location.href.split("/")[4];
+if(location.href.split("/")[3] === "e") eventName = location.href.split("/")[4];
 
+if(location.href.split("/")[3] === "c") redirect = location.href.split("/")[4];
+
+console.log(redirect);
 
 if (eventName !== "") {
   switch(eventName) {
@@ -25,6 +27,8 @@ if (eventName !== "") {
       location.href = `../?d=${nwyrdate}&n= Year ${year + 1} `;
       break;
   }
+} else if (redirect !== "") {
+  fetch(`/api/get?code=${redirect}`, {}).then(r => r.json()).then(res => location.href = res.result);
 } else {
-  location.href = "../";
+  //location.href = "../";
 }

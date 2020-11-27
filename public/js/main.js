@@ -126,7 +126,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     // Update the count down every 100 miliseconds
     const x = setInterval(() => { 
         // Get today's UNIX time
-        const now = new Date().getTime();
+        const now = new Date().getTime() - localStorage.getItem("offset");
 
         // Time calculations for days, hours, minutes and seconds
         const months = dayjs(countDownDate).diff(now, "month");

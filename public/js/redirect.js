@@ -28,5 +28,5 @@ if (eventName !== "") {
 } else if (redirect !== "") {
   fetch(`/api/get?code=${redirect}`, {}).then(r => r.json()).then(res => location.href = res.result);
 } else {
-  //location.href = "../";
+  location.href = "../";
 }

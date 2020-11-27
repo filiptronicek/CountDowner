@@ -8,6 +8,9 @@ import '/public/css/dark.scss';
 import 'magic-snowflakes';
 import confetti from 'canvas-confetti';
 
+import ToastManager from 'js-notifications';
+const toastManager = new ToastManager({ seconds: 3, });
+
 import dayjs from 'dayjs';
 const utc = require('dayjs/plugin/utc');
 
@@ -312,7 +315,10 @@ function copyLink() {
 
     const docLoc = encodeUnicode(location.href.split("/").pop());
     fetch(`/api/shorten?url=${docLoc}`).then(r => r.json()).then(res => {
-        navigator.clipboard.writeText(`https://cntd.now.sh/c/${res.result}`).then(() => {}, (err) => {
+        navigator.clipboard.writeText(`https://cntd.now.sh/c/${res.result}`).then(() => {
+            toastManager.notify({className: 'toast', title: 'Copied to clipboard!', content: ''});
+            document.querySelector(".fa-window-close").classList.add("fa");
+        }, (err) => {
             console.error('Async: Could not copy text: ', err);
         });
     });
@@ -328,5 +334,4 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js');
     });
-  }
-  
+}

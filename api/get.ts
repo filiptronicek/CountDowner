@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import fetch from "node-fetch";
-import { atob, btoa } from 'Base64';
+import { atob } from 'Base64';
 
 function decodeUnicode(str: string) {
   // Going backwards: from bytestream, to percent-encoding, to original string.
@@ -13,10 +13,8 @@ export default (request: NowRequest, response: NowResponse) => {
   fetch(`https://link.mannoviny.cz/includes/get-api?code=${code}`, {})
     .then((r) => r.json())
     .then((rsp) => {
-      console.log(decodeUnicode("4pi6"));
       const URLparts = rsp.result.split("/");
       const constructedURL = `https://${URLparts[2]}/${atob(URLparts.pop())}`
-      console.log(constructedURL);
       response.status(200).send({ result: constructedURL });
     });
 };

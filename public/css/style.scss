@@ -87,3 +87,49 @@ div.tzinfo {
   left: 0;
   top: 70px;
 }
+
+.toast {
+  width: 400px;
+  margin: auto;
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px darkgrey;
+
+  &--success {
+    .toast__header {
+      background: green;
+    }
+  }
+
+  &--fail {
+    .toast__header {
+      background: red;
+    }
+  }
+
+  .toast__header {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .toast__close {
+      font-size: 18px;
+      cursor: pointer;
+      outline: none;
+      content: 'x';
+      margin-left: 21vh;
+    }
+  }
+
+  .toast__body {
+    padding: 15px;
+    font-size: 14px;
+    display: none;
+  }
+}

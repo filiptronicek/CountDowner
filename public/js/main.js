@@ -299,7 +299,18 @@ if (urlParams.has("d") && urlParams.has("n")) {
 }
 
 function copyLink() {
-    const docLoc = location.href.split("/").pop();
+
+    function encodeUnicode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(_match, p1) {
+                return String.fromCharCode('0x' + p1);
+        }));
+    }
+
+    const docLoc = encodeUnicode(location.href.split("/").pop());
     fetch(`/api/shorten?url=${docLoc}`).then(r => r.json()).then(res => {
         navigator.clipboard.writeText(`https://cntd.now.sh/c/${res.result}`).then(() => {}, (err) => {
             console.error('Async: Could not copy text: ', err);

@@ -34,11 +34,13 @@ function setClientOffset() {
       const nowstamp = Date.now();
       const adjustedOffset = Math.round(f.result.ms - (nowstamp - timestamp) / 2);
       localStorage.setItem('offset', adjustedOffset);
-      localStorage.setItem('offsetUpdate', nowstamp - adjustedOffset);
+      localStorage.setItem('offsetUpdate', f.result.unix);
     });
 }
 
-if (!localStorage.getItem('offsetUpdate') || (localStorage.getItem('offsetUpdate') && Math.abs(parseInt(localStorage.getItem('offsetUpdate') - Date.now())) > 1000 * 60 * 60 * 24)) {
+if (
+    !localStorage.getItem('offsetUpdate') ||
+    (localStorage.getItem('offsetUpdate') && Math.abs(parseInt(localStorage.getItem('offsetUpdate') - Date.now())) > 1000 * 60 * 60 * 24)) {
     setClientOffset();
 }
 

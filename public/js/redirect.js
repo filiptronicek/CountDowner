@@ -10,8 +10,6 @@ if(location.href.split("/")[3] === "e") eventName = location.href.split("/")[4];
 
 if(location.href.split("/")[3] === "c") redirect = location.href.split("/")[4];
 
-console.log(redirect);
-
 if (eventName !== "") {
   switch(eventName) {
     case "christmas-eve":

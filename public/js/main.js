@@ -5,7 +5,7 @@ import '/public/css/style.scss';
 import '/public/css/dark.scss';
 
 /* JS */
-import 'magic-snowflakes';
+const Snowflakes = require('magic-snowflakes');
 import confetti from 'canvas-confetti';
 
 import ToastManager from 'js-notifications';

@@ -35,6 +35,10 @@ function setClientOffset() {
       const adjustedOffset = Math.round(f.result.ms - (nowstamp - timestamp) / 2);
       localStorage.setItem('offset', adjustedOffset);
       localStorage.setItem('offsetUpdate', f.result.unix);
+    }).catch(err => {
+        console.error(err);
+        localStorage.setItem('offset', 0);
+        localStorage.setItem('offsetUpdate', timestamp);
     });
 }
 

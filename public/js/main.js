@@ -28,17 +28,25 @@ for(const tz of timezones) {
 
 const reducedOffsets = uniqby(minuteOffsets, 'name');
 
-/* Window width and height constants */
-/*
-const w = window,
-d = document,
-e = d.documentElement,
-g = d.getElementsByTagName('body')[0],
+function setClientOffset() {
+    const timestamp = Date.now();
+    fetch(`https://time.filiptronicek.workers.dev/?ts=${timestamp}`).then(f => f.json()).then(f => {
+      const nowstamp = Date.now();
+      const adjustedOffset = Math.round(f.result.ms - (nowstamp - timestamp) / 2);
+      localStorage.setItem('offset', adjustedOffset);
+      localStorage.setItem('offsetUpdate', f.result.unix);
+    }).catch(err => {
+        console.error(err);
+        localStorage.setItem('offset', 0);
+        localStorage.setItem('offsetUpdate', timestamp);
+    });
+}
 
-
-width = w.innerWidth||e.clientWidth||g.clientWidth,
-height = w.innerHeight||e.clientHeight||g.clientHeight;
-*/
+if (
+    !localStorage.getItem('offsetUpdate') ||
+    (localStorage.getItem('offsetUpdate') && Math.abs(parseInt(localStorage.getItem('offsetUpdate') - Date.now())) > 1000 * 60 * 60 * 24)) {
+    setClientOffset();
+}
 
 /* DOM */
 const divInstall = document.getElementById("installContainer");
@@ -124,7 +132,7 @@ if (urlParams.has("d") && urlParams.has("n")) {
     // Update the count down every 100 miliseconds
     const x = setInterval(() => { 
         // Get today's UNIX time
-        const now = new Date().getTime();
+        const now = new Date().getTime() - localStorage.getItem("offset");
 
         // Time calculations for days, hours, minutes and seconds
         const months = dayjs(countDownDate).diff(now, "month");

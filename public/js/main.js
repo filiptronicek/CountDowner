@@ -194,7 +194,7 @@ const x = setInterval(() => {
     const displayTotalMinutes = totaldays * 24 * 60 + hours * 60 + minutes;
     
     if (currentState == "all") {
-        if (totaldays > 7) {
+        if (totaldays >= 7) {
             writeOnOut(`
             ${
                 months > 0 ? format("month", months) : ""

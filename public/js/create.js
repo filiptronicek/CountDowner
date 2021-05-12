@@ -1,13 +1,13 @@
 /* Imports */
 
 /* CSS */
-import '/public/css/create.scss';
-import '/public/css/dark.scss';
+import "/public/css/create.scss";
+import "/public/css/dark.scss";
 
 /* JS */
-import datepicker from 'js-datepicker';
-import 'magic-snowflakes';
-import confetti from 'canvas-confetti';
+import datepicker from "js-datepicker";
+import "magic-snowflakes";
+import confetti from "canvas-confetti";
 
 const checkbox = document.querySelector("#confetti");
 
@@ -49,7 +49,7 @@ function outPutInputs() {
     */
 }
 
-checkbox.addEventListener('change', () => {
+checkbox.addEventListener("change", () => {
     if (checkbox.checked) {
         const count = 100;
         const defaults = {

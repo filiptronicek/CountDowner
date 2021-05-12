@@ -20,8 +20,7 @@ if (month === 11) {
         maxSize: 20,
         speed: 1.5,
         wind: false,
-        maxOpacity: 0.3
-
+        maxOpacity: 0.3,
     });
 }
 

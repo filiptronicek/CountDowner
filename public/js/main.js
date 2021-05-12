@@ -1,21 +1,21 @@
 /* Imports */
 
 /* CSS */
-import '/public/css/style.scss';
-import '/public/css/dark.scss';
+import "/public/css/style.scss";
+import "/public/css/dark.scss";
 
 /* JS */
-const Snowflakes = require('magic-snowflakes');
-import confetti from 'canvas-confetti';
+const Snowflakes = require("magic-snowflakes");
+import confetti from "canvas-confetti";
 
-import ToastManager from 'js-notifications';
+import ToastManager from "js-notifications";
 const toastManager = new ToastManager({ seconds: 3, });
 
-import dayjs from 'dayjs';
-const utc = require('dayjs/plugin/utc');
+import dayjs from "dayjs";
+const utc = require("dayjs/plugin/utc");
 
 import { getTimeZones } from "@vvo/tzdb";
-const uniqby = require('lodash.uniqby');
+const uniqby = require("lodash.uniqby");
 
 const timezones = getTimeZones();
 dayjs.extend(utc);
@@ -26,25 +26,25 @@ for(const tz of timezones) {
     minuteOffsets.push({name: tz.alternativeName , o: tz.currentTimeOffsetInMinutes, cities: tz.mainCities });
 }
 
-const reducedOffsets = uniqby(minuteOffsets, 'name');
+const reducedOffsets = uniqby(minuteOffsets, "name");
 
 function setClientOffset() {
     const timestamp = Date.now();
     fetch(`https://time.filiptronicek.workers.dev/?ts=${timestamp}`).then(f => f.json()).then(f => {
       const nowstamp = Date.now();
       const adjustedOffset = Math.round(f.result.ms - (nowstamp - timestamp) / 2);
-      localStorage.setItem('offset', adjustedOffset);
-      localStorage.setItem('offsetUpdate', f.result.unix);
+      localStorage.setItem("offset", adjustedOffset);
+      localStorage.setItem("offsetUpdate", f.result.unix);
     }).catch(err => {
         console.error(err);
-        localStorage.setItem('offset', 0);
-        localStorage.setItem('offsetUpdate', timestamp);
+        localStorage.setItem("offset", 0);
+        localStorage.setItem("offsetUpdate", timestamp);
     });
 }
 
 if (
-    !localStorage.getItem('offsetUpdate') ||
-    (localStorage.getItem('offsetUpdate') && Math.abs(parseInt(localStorage.getItem('offsetUpdate') - Date.now())) > 1000 * 60 * 60 * 24)) {
+    !localStorage.getItem("offsetUpdate") ||
+    (localStorage.getItem("offsetUpdate") && Math.abs(parseInt(localStorage.getItem("offsetUpdate") - Date.now())) > 1000 * 60 * 60 * 24)) {
     setClientOffset();
 }
 
@@ -159,15 +159,15 @@ const x = setInterval(() => {
     const months = dayjs(countDownDate).diff(now, "month");
     //const years = dayjs(countDownDate).diff(now, "year");
 
-    const daywithoutMdiff = dayjs(countDownDate).subtract(months, 'month');
+    const daywithoutMdiff = dayjs(countDownDate).subtract(months, "month");
 
     // Find the difference between now and the countdown date
     const distance = countDownDate - now;
     if (distance < 86400 * 1000 && output.innerHTML === "") {
         //output.innerHTML += `Your countdown has been hit in:`;
         for (const offset of reducedOffsets) {
-            const offsetedDate = dayjs().add(offset.o, 'minute');
-            const desiredDate = dayjs(countDownDate).add(dayjs(countDownDate).utcOffset(), 'minute');
+            const offsetedDate = dayjs().add(offset.o, "minute");
+            const desiredDate = dayjs(countDownDate).add(dayjs(countDownDate).utcOffset(), "minute");
 
             if (offsetedDate.format("MM/DD") === desiredDate.format("MM/DD") && offsetedDate.format("hh:mm:ss") === desiredDate.format("hh:mm:ss")) {
                 timezoneText.innerHTML = "You just hit your countdown in these timezones:";
@@ -286,9 +286,7 @@ const x = setInterval(() => {
         if (Math.abs(distance) < 60 * 1000 && confettiEf) {
         setTimeout(() => {
             const endConfetti = Date.now() + (5 * 1000);
-
-            // go Buckeyes!
-            const colors = ['#ff0000', '#FCCA4D'];
+            const colors = ["#ff0000", "#FCCA4D"];
     
             (function frame() {
             confetti({
@@ -324,17 +322,17 @@ function copyLink() {
         // can be fed into btoa.
         return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
             function toSolidBytes(_match, p1) {
-                return String.fromCharCode('0x' + p1);
+                return String.fromCharCode("0x" + p1);
         }));
     }
 
     const docLoc = encodeUnicode(location.href.split("/").pop());
     fetch(`/api/shorten?url=${docLoc}`).then(r => r.json()).then(res => {
         navigator.clipboard.writeText(`https://cntd.now.sh/c/${res.result}`).then(() => {
-            toastManager.notify({className: 'toast', title: 'Copied to clipboard!', content: ''});
+            toastManager.notify({className: "toast", title: "Copied to clipboard!", content: ""});
             document.querySelector(".fa-window-close").classList.add("fa");
         }, (err) => {
-            console.error('Async: Could not copy text: ', err);
+            console.error("Async: Could not copy text: ", err);
         });
     });
 }
@@ -344,9 +342,9 @@ link.addEventListener("click", copyLink);
 
 
 // Check that service workers are supported
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
     // Use the window load event to keep the page load performant
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js");
     });
 }

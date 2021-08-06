@@ -22,7 +22,7 @@
     "Base64": "^1.1.0",
     "canvas-confetti": "^1.3.2",
     "confetti-js": "^0.0.18",
-    "dayjs": "^1.9.6",
+    "dayjs": "^1.10.6",
     "js-datepicker": "^5.16.0",
     "js-notifications": "^1.2.0",
     "lodash.uniq": "^4.5.0",

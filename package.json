@@ -8,7 +8,7 @@
     "@types/lodash.uniqby": "^4.7.6",
     "@types/node-fetch": "^2.5.12",
     "@vercel/node": "^1.12.0",
-    "css-loader": "^5.0.1",
+    "css-loader": "^6.2.0",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
@@ -27,7 +27,7 @@
     "js-notifications": "^1.2.1",
     "lodash.uniq": "^4.5.0",
     "lodash.uniqby": "^4.7.0",
-    "magic-snowflakes": "^4.1.5",
+    "magic-snowflakes": "^4.2.0",
     "node-fetch": "^2.6.1"
   }
 }

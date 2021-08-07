@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Head from "next/head";
 
@@ -19,15 +19,22 @@ const reduceOverview = (
   dateTo: dayjs.Dayjs,
   diffs: Array<number>
 ) => {
-  const newDiffs = [];
+  const newDiffs: Array<number> = [];
+
+  let index = 0;
   for (const diff of diffs) {
-    const currentIndex = diffs.indexOf(diff);
-    const reducedDate = dateTo.subtract(
-      diffs[currentIndex === 0 ? currentIndex : currentIndex - 1],
-      parameters[currentIndex === 0 ? currentIndex : currentIndex - 1]
-    );
-    const newDiff = reducedDate.diff(dateFrom, parameters[currentIndex]);
-    newDiffs.push(newDiff);
+    if (index === 0) {
+      newDiffs.push(diff);
+    } else {
+      const reducedDate = dateTo.subtract(
+        diffs[index === 0 ? index : index - 1],
+        parameters[index === 0 ? index : index - 1]
+      );
+      const newDiff = reducedDate.diff(dateFrom, parameters[index]);
+      newDiffs.push(newDiff);
+    }
+
+    index++;
   }
 
   return newDiffs;
@@ -61,7 +68,7 @@ const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): Array<number> => {
 };
 
 export default function Home() {
-  const [date, setDate] = useState<Date>(new Date("August 24 2021"));
+  const [date, setDate] = useState<Date>(new Date("Dec 24 2023"));
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
 

@@ -1,74 +1,9 @@
 import React, { useState } from "react";
 
 import Head from "next/head";
-
 import dayjs from "dayjs";
-import sum from "lodash.sum";
 
-const parameters: Array<dayjs.UnitType> = [
-  "year",
-  "month",
-  "day",
-  "hour",
-  "minute",
-  "second",
-];
-
-const reduceOverview = (
-  dateFrom: dayjs.Dayjs,
-  dateTo: dayjs.Dayjs,
-  diffs: Array<number>
-): Array<number> => {
-  const newDiffs: Array<number> = [];
-
-  let index = 0;
-  for (const diff of diffs) {
-    if (index === 0) {
-      // For years, there is no "overflowing", so just keep the value
-      newDiffs.push(diff);
-    } else {
-      // For other units, use dayjs.subtract() to prevent overflowing values (13 months, 75 minutes, ..,)
-      const reducedDate = dateTo.subtract(
-        diffs[index === 0 ? index : index - 1],
-        parameters[index === 0 ? index : index - 1]
-      );
-      const newDiff = reducedDate.diff(dateFrom, parameters[index]);
-      newDiffs.push(newDiff);
-    }
-
-    index++;
-  }
-
-  return newDiffs;
-};
-
-const formatDiffs = (diffs: Array<number>): string => {
-  const outputValues = [];
-  const wentThrough = [];
-
-  let index = 0;
-  for (const unit of diffs) {
-    wentThrough.push(unit);
-    if ((unit !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
-      // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
-      outputValues.push(`${unit} ${parameters[index]}${unit === 1 ? "" : "s"}`);
-    }
-    index++;
-  }
-
-  return outputValues.join(" ");
-};
-
-const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): Array<number> => {
-  const diffs: Array<number> = [];
-
-  for (const param of parameters) {
-    const difference = to.diff(from, param);
-    diffs.push(difference);
-  }
-
-  return diffs;
-};
+import getFormattedDiffs from "../lib/dateManipulation";
 
 export default function Home() {
   const [date, setDate] = useState<Date>(new Date("Dec 24 2023"));
@@ -79,8 +14,7 @@ export default function Home() {
     setToday(dayjs());
   }, 1000);
 
-  const diffs = getDiffParams(today, parsed);
-  const diffParams = formatDiffs(reduceOverview(today, parsed, diffs));
+  const diffParams = getFormattedDiffs(today, parsed);
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">

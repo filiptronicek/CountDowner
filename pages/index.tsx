@@ -14,25 +14,43 @@ const parameters: Array<dayjs.UnitType> = [
   "second",
 ];
 
-const formatDiffs = (diffs: Array<Number>): string => {
+const reduceOverview = (
+  dateFrom: dayjs.Dayjs,
+  dateTo: dayjs.Dayjs,
+  diffs: Array<number>
+) => {
+  const newDiffs = [];
+  for (const diff of diffs) {
+    const currentIndex = diffs.indexOf(diff);
+    const reducedDate = dateTo.subtract(
+      diffs[currentIndex === 0 ? currentIndex : currentIndex - 1],
+      parameters[currentIndex === 0 ? currentIndex : currentIndex - 1]
+    );
+    const newDiff = reducedDate.diff(dateFrom, parameters[currentIndex]);
+    newDiffs.push(newDiff);
+  }
+
+  return newDiffs;
+};
+
+const formatDiffs = (diffs: Array<number>): string => {
   const outputValues = [];
   const wentThrough = [];
 
+  let index = 0;
   for (const unit of diffs) {
-    const currentIndex = diffs.indexOf(unit);
     wentThrough.push(unit);
     if ((unit !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
-      outputValues.push(
-        `${unit} ${parameters[currentIndex]}${unit === 1 ? "" : "s"}`
-      );
+      outputValues.push(`${unit} ${parameters[index]}${unit === 1 ? "" : "s"}`);
     }
+    index++;
   }
 
   return outputValues.join(" ");
 };
 
-const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): Array<Number> => {
-  const diffs: Array<Number> = [];
+const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): Array<number> => {
+  const diffs: Array<number> = [];
 
   for (const param of parameters) {
     const difference = to.diff(from, param);
@@ -52,7 +70,7 @@ export default function Home() {
   }, 1000);
 
   const diffs = getDiffParams(today, parsed);
-  const diffParams = formatDiffs(diffs);
+  const diffParams = formatDiffs(reduceOverview(today, parsed, diffs));
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">

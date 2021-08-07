@@ -173,6 +173,18 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
+"@types/lodash.sum@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.sum/-/lodash.sum-4.0.6.tgz#acae9c8b24390a974667565acf17288e98dcdb8e"
+  integrity sha512-mqfBmDFruS3JFSAI/kPCEdFdOZvL4MJnakntlgPBUIYEwSTqxTZsENyWOgs1EMHq7+lU+jgs3yEtrljaUvvALQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.172"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.172.tgz#aad774c28e7bfd7a67de25408e03ee5a8c3d028a"
+  integrity sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==
+
 "@types/node@*":
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.13.tgz#7dfd9c14661edc65cccd43a29eb454174642370d"
@@ -2112,6 +2124,11 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
+
+lodash.sum@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.sum/-/lodash.sum-4.0.2.tgz#ad90e397965d803d4f1ff7aa5b2d0197f3b4637b"
+  integrity sha1-rZDjl5ZdgD1PH/eqWy0Bl/O0Y3s=
 
 lodash.toarray@^4.4.0:
   version "4.4.0"

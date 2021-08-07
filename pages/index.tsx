@@ -1,23 +1,42 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
 
 import Head from "next/head";
 
-const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs) => {
-  const diffs: any = [];
-  const parameters = [
-    "year",
-    "month",
-    "week",
-    "day",
-    "hour",
-    "minute",
-    "second",
-  ];
+import dayjs from "dayjs";
+import sum from "lodash.sum";
+
+const parameters: Array<dayjs.UnitType> = [
+  "year",
+  "month",
+  "day",
+  "hour",
+  "minute",
+  "second",
+];
+
+const formatDiffs = (diffs: Array<Number>): string => {
+  const outputValues = [];
+  const wentThrough = [];
+
+  for (const unit of diffs) {
+    const currentIndex = diffs.indexOf(unit);
+    wentThrough.push(unit);
+    if ((unit !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
+      outputValues.push(
+        `${unit} ${parameters[currentIndex]}${unit === 1 ? "" : "s"}`
+      );
+    }
+  }
+
+  return outputValues.join(" ");
+};
+
+const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): Array<Number> => {
+  const diffs: Array<Number> = [];
 
   for (const param of parameters) {
     const difference = to.diff(from, param);
-    diffs.push(`${difference} ${param}${difference === 1 ? "" : "s"}`);
+    diffs.push(difference);
   }
 
   return diffs;
@@ -32,7 +51,8 @@ export default function Home() {
     setToday(dayjs());
   }, 1000);
 
-  const diffParams = getDiffParams(today, parsed);
+  const diffs = getDiffParams(today, parsed);
+  const diffParams = formatDiffs(diffs);
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">
@@ -62,7 +82,7 @@ export default function Home() {
             Counting down to {parsed.format("D/M/YYYY")}
           </div>
           <div id="countdown-area" className="mt-5 text-4xl">
-            {diffParams.join(" ")}
+            {diffParams}
           </div>
         </div>
       </main>

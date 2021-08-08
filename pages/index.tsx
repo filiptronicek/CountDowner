@@ -20,11 +20,19 @@ export default function Home() {
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
 
-  const countDown = setInterval(() => {
-    setToday(dayjs());
-  }, 1000);
+  const { query }: any = useRouter();
 
-  const { query } : any = useRouter();
+  useEffect(() => {
+    if (parsed.isAfter(today)) {
+      const countDown = setInterval(() => {
+        setToday(dayjs());
+      }, 250);
+
+      return () => {
+        clearInterval(countDown);
+      };
+    }
+  });
 
   useEffect(() => {
     if (query.name && query.date) {
@@ -44,7 +52,7 @@ export default function Home() {
     addQueryParam("name", encodeURIComponent(eventName));
   }, [date, eventName]);
 
-  const diffParams = getFormattedDiffs(today, parsed, countDown);
+  const diffParams = getFormattedDiffs(today, parsed);
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">

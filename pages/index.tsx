@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-
-import Head from "next/head";
 import dayjs from "dayjs";
-
+import Head from "next/head";
+import React, { useState } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
 export default function Home() {

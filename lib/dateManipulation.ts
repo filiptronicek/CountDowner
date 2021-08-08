@@ -66,10 +66,17 @@ const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): number[] => {
   return diffs;
 };
 
-const getFormattedDiffs = (today: dayjs.Dayjs, parsed: dayjs.Dayjs) => {
+const getFormattedDiffs = (today: dayjs.Dayjs, parsed: dayjs.Dayjs, interval: NodeJS.Timer) => {
   const diffs = getDiffParams(today, parsed);
-  const reducedDiffs = reduceOverview(today, parsed, diffs);
-  return formatDiffs(reducedDiffs);
+
+  if (sum(diffs) > 0) {
+    const reducedDiffs = reduceOverview(today, parsed, diffs);
+    return formatDiffs(reducedDiffs);
+  } else {
+    clearInterval(interval);
+    return "Expired";
+  }
+
 };
 
 export default getFormattedDiffs;

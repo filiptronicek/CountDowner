@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
 export default function Home() {
-  const [date, setDate] = useState<Date>(new Date("Dec 24 2023"));
+  const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
 
-  setInterval(() => {
+  const countDown = setInterval(() => {
     setToday(dayjs());
   }, 1000);
 
-  const diffParams = getFormattedDiffs(today, parsed);
+  const diffParams = getFormattedDiffs(today, parsed, countDown);
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">
@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       <header>
-        <nav className="w-screen text-xm gap-10 bg-[#262A2B] py-4 cursor-pointer">
+        <nav className="w-screen text-xm gap-10 bg-[#262A2B] text-white py-4 cursor-pointer">
           <span>Create countdown</span>
           <a
             href="https://github.com/filiptronicek/CountDowner"

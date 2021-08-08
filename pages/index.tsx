@@ -66,6 +66,10 @@ export default function Home() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
+              onBlur={() => {
+                setEditingTitle(false);
+              }}
+              autoFocus
             />
           ) : (
             <div
@@ -74,7 +78,7 @@ export default function Home() {
                 setEditingTitle(true);
               }}
             >
-              Christmas 2021
+              {eventName}
             </div>
           )}
           <div className="text-3xl flex justify-center items-center">

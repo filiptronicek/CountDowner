@@ -3,6 +3,10 @@ import Head from "next/head";
 import React, { useState } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
+// Day.js customizations
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+
 export default function Home() {
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const parsed = dayjs(date);
@@ -41,9 +45,15 @@ export default function Home() {
           <div className="text-3xl">
             Counting down to {parsed.format("D/M/YYYY")}
           </div>
-          <div id="countdown-area" className="mt-5 text-4xl">
-            {diffParams}
-          </div>
+          {parsed.isAfter(today) ? (
+            <div id="countdown-area" className="mt-5 text-4xl">
+              {diffParams}
+            </div>
+          ) : (
+            <div className="mt-5 text-4xl">
+              This countdown has passed {today.to(parsed)}
+            </div>
+          )}
         </div>
       </main>
 

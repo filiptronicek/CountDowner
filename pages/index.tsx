@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
+import _toast, { Toaster } from "react-hot-toast";
 
 // Datepicker
 import DatePicker from "react-datepicker";
@@ -76,6 +77,7 @@ export default function Home() {
       </header>
 
       <main className="text-center">
+        <Toaster />
         <div>
           {editingTitle ? (
             <input
@@ -87,11 +89,20 @@ export default function Home() {
               onBlur={() => {
                 setEditingTitle(false);
               }}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  setEditingTitle(false);
+                }
+              }}
               autoFocus
             />
           ) : (
             <div
               className="text-7xl"
+              tabIndex={0}
+              onFocus={() => {
+                setEditingTitle(true);
+              }}
               onClick={() => {
                 setEditingTitle(true);
               }}
@@ -107,7 +118,9 @@ export default function Home() {
               showTimeSelect
               timeIntervals={15}
               minDate={new Date()}
-              onChange={(val: Date) => setDate(val)}
+              onChange={(val: Date) => {
+                setDate(val);
+              }}
             />
           </div>
           {parsed.isAfter(today) ? (

@@ -8,7 +8,7 @@ const EventName = (props: { eventName: any; setName: any; date: any; setDate: an
     <>
       {editingTitle ? (
         <input
-          className="text-7xl text-center"
+          className="text-7xl text-center mb-4"
           value={eventName}
           onChange={(e) => {
             setName(e.target.value);
@@ -25,7 +25,7 @@ const EventName = (props: { eventName: any; setName: any; date: any; setDate: an
         />
       ) : (
         <div
-          className="text-7xl"
+          className="text-7xl mb-4"
           tabIndex={0}
           onFocus={() => {
             setEditingTitle(true);

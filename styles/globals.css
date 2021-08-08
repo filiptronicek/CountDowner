@@ -15,6 +15,15 @@ nav > *:hover {
   background: #181818;
 }
 
+.react-datepicker-wrapper {
+  width: unset !important;
+  margin-left: 0.4rem;
+}
+
+.react-datepicker-wrapper input {
+  width: 10rem;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background: #0c0b12;

@@ -3,6 +3,9 @@ import Head from "next/head";
 import React, { useState } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -42,8 +45,9 @@ export default function Home() {
       <main className="text-center">
         <div>
           <div className="text-7xl">Christmas 2021</div>
-          <div className="text-3xl">
-            Counting down to {parsed.format("D/M/YYYY")}
+          <div className="text-3xl flex justify-center items-center">
+            Counting down to{" "}
+            <DatePicker       dateFormat="dd/MM/yyyy" selected={date} onChange={(val) => setDate(val)} />
           </div>
           {parsed.isAfter(today) ? (
             <div id="countdown-area" className="mt-5 text-4xl">

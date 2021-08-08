@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
+// Datepicker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -12,12 +13,26 @@ dayjs.extend(relativeTime);
 
 export default function Home() {
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
+  const [eventName, setName] = useState<string>("Christmas 2021");
+  const [editingTitle, setEditingTitle] = useState<boolean>(false);
+
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
 
   const countDown = setInterval(() => {
     setToday(dayjs());
   }, 1000);
+
+  const addQueryParam = (key: string, value: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value);
+    window.history.pushState({}, "", url.toString());
+  };
+
+  useEffect(() => {
+    addQueryParam("date", (date.getTime() / 1000).toString());
+    addQueryParam("name", encodeURIComponent(eventName));
+  }, [date, eventName]);
 
   const diffParams = getFormattedDiffs(today, parsed, countDown);
 
@@ -44,7 +59,24 @@ export default function Home() {
 
       <main className="text-center">
         <div>
-          <div className="text-7xl">Christmas 2021</div>
+          {editingTitle ? (
+            <input
+              className="text-7xl text-center"
+              value={eventName}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          ) : (
+            <div
+              className="text-7xl"
+              onClick={() => {
+                setEditingTitle(true);
+              }}
+            >
+              Christmas 2021
+            </div>
+          )}
           <div className="text-3xl flex justify-center items-center">
             Counting down to{" "}
             <DatePicker

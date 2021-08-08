@@ -2,11 +2,12 @@ import dayjs from "dayjs";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import getFormattedDiffs from "../lib/dateManipulation";
 import _toast, { Toaster } from "react-hot-toast";
 
+import getFormattedDiffs from "../lib/dateManipulation";
+import EventName from "../components/EventName";
+
 // Datepicker
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 // Day.js customizations
@@ -16,7 +17,6 @@ dayjs.extend(relativeTime);
 export default function Home() {
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const [eventName, setName] = useState<string>("Christmas 2021");
-  const [editingTitle, setEditingTitle] = useState<boolean>(false);
 
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
@@ -34,6 +34,16 @@ export default function Home() {
       };
     }
   });
+
+  const userLocale = () => {
+    try {
+      navigator.language ||
+        navigator.browserLanguage ||
+        (navigator.languages || ["en"])[0];
+    } catch (e) {
+      return "en-US";
+    }
+  };
 
   useEffect(() => {
     if (query.name && query.date) {
@@ -78,51 +88,14 @@ export default function Home() {
 
       <main className="text-center">
         <Toaster />
+        <EventName
+          eventName={eventName}
+          setName={setName}
+          date={date}
+          setDate={setDate}
+          userLocale={userLocale()}
+        />
         <div>
-          {editingTitle ? (
-            <input
-              className="text-7xl text-center"
-              value={eventName}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              onBlur={() => {
-                setEditingTitle(false);
-              }}
-              onKeyUp={(e) => {
-                if (e.key === "Enter") {
-                  setEditingTitle(false);
-                }
-              }}
-              autoFocus
-            />
-          ) : (
-            <div
-              className="text-7xl"
-              tabIndex={0}
-              onFocus={() => {
-                setEditingTitle(true);
-              }}
-              onClick={() => {
-                setEditingTitle(true);
-              }}
-            >
-              {eventName}
-            </div>
-          )}
-          <div className="text-3xl flex justify-center items-center">
-            Counting down to{" "}
-            <DatePicker
-              dateFormat="dd/MM/yyyy"
-              selected={date}
-              showTimeSelect
-              timeIntervals={15}
-              minDate={new Date()}
-              onChange={(val: Date) => {
-                setDate(val);
-              }}
-            />
-          </div>
           {parsed.isAfter(today) ? (
             <div id="countdown-area" className="mt-5 text-4xl">
               {diffParams}

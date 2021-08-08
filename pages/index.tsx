@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import getFormattedDiffs from "../lib/dateManipulation";
 
@@ -22,6 +23,15 @@ export default function Home() {
   const countDown = setInterval(() => {
     setToday(dayjs());
   }, 1000);
+
+  const { query } : any = useRouter();
+
+  useEffect(() => {
+    if (query.name && query.date) {
+      setName(decodeURIComponent(query.name));
+      setDate(new Date(parseInt(query.date) * 1000));
+    }
+  }, [query]);
 
   const addQueryParam = (key: string, value: string) => {
     const url = new URL(window.location.href);

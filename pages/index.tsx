@@ -47,7 +47,11 @@ export default function Home() {
           <div className="text-7xl">Christmas 2021</div>
           <div className="text-3xl flex justify-center items-center">
             Counting down to{" "}
-            <DatePicker       dateFormat="dd/MM/yyyy" selected={date} onChange={(val) => setDate(val)} />
+            <DatePicker
+              dateFormat="dd/MM/yyyy"
+              selected={date}
+              onChange={(val: Date) => setDate(val)}
+            />
           </div>
           {parsed.isAfter(today) ? (
             <div id="countdown-area" className="mt-5 text-4xl">

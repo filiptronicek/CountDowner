@@ -1,4 +1,4 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import fetch from "node-fetch";
 import { atob } from 'Base64';
 
@@ -8,9 +8,9 @@ function decodeUnicode(str: string) {
   return decodeURIComponent(atob(str).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
 }
 
-export default (request: NowRequest, response: NowResponse) => {
+export default (request: VercelRequest, response: VercelResponse) => {
   const { code = "" } = request.query;
-  fetch(`https://link.mannoviny.cz/includes/get-api?code=${code}`, {})
+  fetch(`https://interclip.app/includes/get-api?code=${code}`, {})
     .then((r) => r.json())
     .then((rsp) => {
       const URLparts = rsp.result.split("/");

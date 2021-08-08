@@ -1,7 +1,7 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import fetch from "node-fetch";
 
-export default (request: NowRequest, response: NowResponse) => {
+const shorten = (request: VercelRequest, response: VercelResponse) => {
   const { url = "/e/nwyr" } = request.query;
   const fullURL: string = `https://cntd.now.sh/${url}`;
 
@@ -11,3 +11,5 @@ export default (request: NowRequest, response: NowResponse) => {
       response.status(200).send({ result: rsp.result })
     );
 };
+
+export default shorten;

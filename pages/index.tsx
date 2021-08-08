@@ -50,6 +50,9 @@ export default function Home() {
             <DatePicker
               dateFormat="dd/MM/yyyy"
               selected={date}
+              showTimeSelect
+              timeIntervals={15}
+              minDate={new Date()}
               onChange={(val: Date) => setDate(val)}
             />
           </div>

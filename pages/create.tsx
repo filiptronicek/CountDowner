@@ -48,6 +48,7 @@ export default function Home() {
           date.getMinutes(),
         ],
         duration: { minutes: 60 },
+        url: `https://countdowner.now.sh/?date=${date.getTime()}&name=${eventName}`
       },
       (error, value) => {
         if (error) {

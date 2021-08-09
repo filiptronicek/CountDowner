@@ -44,7 +44,6 @@ const EventName = (props: { eventName: any; setName: any; date: any; setDate: an
           selected={date}
           showTimeSelect
           timeIntervals={15}
-          locale={userLocale}
           minDate={new Date()}
           onChange={(val: Date) => {
             setDate(val);

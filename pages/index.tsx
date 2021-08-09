@@ -35,16 +35,6 @@ export default function Home() {
     }
   });
 
-  const userLocale = () => {
-    try {
-      navigator.language ||
-        navigator.browserLanguage ||
-        (navigator.languages || ["en"])[0];
-    } catch (e) {
-      return "en-US";
-    }
-  };
-
   useEffect(() => {
     if (query.name && query.date) {
       setName(decodeURIComponent(query.name));
@@ -93,7 +83,6 @@ export default function Home() {
           setName={setName}
           date={date}
           setDate={setDate}
-          userLocale={userLocale()}
         />
         <div>
           {parsed.isAfter(today) ? (

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-const EventName = (props: { eventName: any; setName: any; date: any; setDate: any; userLocale: any; }) => {
+const EventName = (props: { eventName: any; setName: any; date: any; setDate: any; }) => {
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
-  const { eventName, setName, date, setDate, userLocale } = props;
+  const { eventName, setName, date, setDate } = props;
   return (
     <>
       {editingTitle ? (

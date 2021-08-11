@@ -24,7 +24,7 @@
     "unidecode": "^0.1.8"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@types/lodash.sum": "^4.0.6",
     "@types/node-fetch": "^2.5.12",
     "@types/react": "17.0.16",

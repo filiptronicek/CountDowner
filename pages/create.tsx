@@ -9,6 +9,7 @@ import { createEvent } from "ics";
 
 import Head from "../components/Head";
 import Menu from "../components/Menu";
+import Button from "../components/Button";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,21 +17,6 @@ import "react-datepicker/dist/react-datepicker.css";
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
-
-const Button = (props: {
-  onClick: React.MouseEventHandler<HTMLSpanElement>;
-  children: JSX.Element;
-}) => {
-  const { onClick, children } = props;
-  return (
-    <span
-      className="bg-[#262A2B] text-white p-5 rounded-xl mb-8 cursor-pointer"
-      onClick={onClick}
-    >
-      {children}
-    </span>
-  );
-};
 
 export default function Home() {
   const [date, setDate] = useState<Date>(new Date());

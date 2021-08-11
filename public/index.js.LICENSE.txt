@@ -1,1 +1,0 @@
-/*! Snowflakes | © 2019 Denis Seleznev | MIT License | https://github.com/hcodes/snowflakes/ */

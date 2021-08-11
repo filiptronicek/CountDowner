@@ -116,7 +116,7 @@ export default function Home() {
                   setQrCode(!qrCode);
                 }}
               >
-                {qrCode ? "Hide" : "Show"} QR code
+                <>{qrCode ? "Hide" : "Show"} QR code</>
               </Button>
               <Button
                 onClick={() => {
@@ -124,7 +124,7 @@ export default function Home() {
                   downloadIcal();
                 }}
               >
-                Download .ics
+                <>Download .ics</>
               </Button>
             </div>
             {qrCode && (

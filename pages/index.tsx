@@ -62,7 +62,7 @@ export default function Home(): JSX.Element {
       <Head />
 
       <Menu />
-      <main className="text-center shadow-custom p-6 rounded-2xl border-2 border-white bg-white text-black">
+      <main className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white">
         <Toaster />
         <EventName
           eventName={eventName}
@@ -72,11 +72,11 @@ export default function Home(): JSX.Element {
         />
         <div >
           {parsed.isAfter(today) ? (
-            <div id="countdown-area" className="mt-5 text-4xl text-black bg-white">
+            <div id="countdown-area" className="mt-5 text-4xl   text-black dark:text-white">
               {diffParams}
             </div>
           ) : (
-            <div className="mt-5 text-4xl text-black bg-white">
+            <div className="mt-5 text-4xl   text-black dark:text-white">
               This countdown has passed {today.to(parsed)}
             </div>
           )}

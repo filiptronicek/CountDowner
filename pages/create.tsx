@@ -113,11 +113,11 @@ export default function Home() {
               onClick={() => {
                 setTicketZoom(true);
               }}
-              className="p-4 rounded-2xl border-2 border-white mb-8 flex text-black bg-white shadow-custom"
+              className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom"
             >
               <div className="mr-6">
                 <h2 className="text-4xl mb-2">{eventName}</h2>
-                <h3 className="text-2xl text-gray-700">
+                <h3 className="text-2xl text-gray-400">
                   {dayjs(date).format("dddd, D MMMM YYYY (HH:mm)")}
                 </h3>
               </div>

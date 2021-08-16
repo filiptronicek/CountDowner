@@ -25,6 +25,9 @@ export default function Home() {
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCode, setQrCode] = useState<boolean>(false);
 
+  const reducedDate = Math.floor(date.getTime() / 1000);
+  const eventURL = `https://countdowner.now.sh/?date=${date.getTime()}&name=${eventName}`;
+
   const downloadIcal = () => {
     createEvent(
       {
@@ -98,6 +101,23 @@ export default function Home() {
             </h3>
             <div id="actions" className="flex gap-5">
               <Button
+                onClick={async () => {
+                  // Copy the URL to clipboard
+                  if (!navigator.clipboard) {
+                    // Clipboard API not available
+                    return;
+                  }
+                  try {
+                    await navigator.clipboard.writeText(eventURL);
+                    toast.success("Copied to clipboard");
+                  } catch (err: string) {
+                    toast.error("Failed to copy!", err);
+                  }
+                }}
+              >
+                <>Copy link</>
+              </Button>
+              <Button
                 onClick={() => {
                   setQrCode(!qrCode);
                 }}
@@ -113,11 +133,7 @@ export default function Home() {
                 <>Download .ics</>
               </Button>
             </div>
-            {qrCode && (
-              <QRCode
-                value={`https://countdowner.now.sh/?date=${date.getTime()}&name=${eventName}`}
-              />
-            )}
+            {qrCode && <QRCode value={eventURL} />}
           </div>
         ) : (
           <span> Please fill in the name and date of your event </span>

@@ -3,7 +3,7 @@ import React from "react";
 const Button = (props: {
   onClick: React.MouseEventHandler<HTMLSpanElement>;
   children: JSX.Element;
-}) => {
+}): JSX.Element => {
   const { onClick, children } = props;
   return (
     <span

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Menu = () => {
+const Menu = (): JSX.Element => {
   return (
     <header>
       <nav className="w-screen text-xm gap-10 bg-[#262A2B] text-white py-4 cursor-pointer">

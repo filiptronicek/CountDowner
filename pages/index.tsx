@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const [eventName, setName] = useState<string>("Christmas 2021");
 

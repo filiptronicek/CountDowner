@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-const EventName = (props: { eventName: any; setName: any; date: any; setDate: any; }) => {
+const EventName = (props: {
+  eventName: any;
+  setName: any;
+  date: any;
+  setDate: any;
+}): JSX.Element => {
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
   const { eventName, setName, date, setDate } = props;
   return (
@@ -38,9 +43,7 @@ const EventName = (props: { eventName: any; setName: any; date: any; setDate: an
         </div>
       )}
       <div className="text-3xl flex justify-center items-center flex-wrap">
-        <span>
-          Counting down to
-        </span>
+        <span>Counting down to</span>
         <DatePicker
           dateFormat="dd/MM/yyyy"
           selected={date}

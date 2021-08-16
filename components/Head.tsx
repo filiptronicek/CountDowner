@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const PageHead = () => {
+const PageHead = (): JSX.Element => {
   return (
     <Head>
       <title>CountDowner</title>

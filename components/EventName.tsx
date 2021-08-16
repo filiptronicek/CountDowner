@@ -37,8 +37,10 @@ const EventName = (props: { eventName: any; setName: any; date: any; setDate: an
           {eventName}
         </div>
       )}
-      <div className="text-3xl flex justify-center items-center">
-        Counting down to{" "}
+      <div className="text-3xl flex justify-center items-center flex-wrap">
+        <span>
+          Counting down to
+        </span>
         <DatePicker
           dateFormat="dd/MM/yyyy"
           selected={date}

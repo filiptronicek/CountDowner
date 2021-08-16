@@ -27,7 +27,7 @@
     "@types/jest": "^27.0.1",
     "@types/lodash.sum": "^4.0.6",
     "@types/node-fetch": "^2.5.12",
-    "@types/react": "17.0.17",
+    "@types/react": "17.0.18",
     "@types/react-datepicker": "^4.1.4",
     "@types/unidecode": "^0.1.1",
     "@vercel/node": "^1.12.1",

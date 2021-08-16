@@ -9,10 +9,9 @@ import { createEvent } from "ics";
 
 import Head from "../components/Head";
 import Menu from "../components/Menu";
+import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { QRCode as QRIcon } from "../components/create/icons";
-
-import Link from "next/link";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -105,16 +104,7 @@ export default function Home() {
           />
         </label>
         {qrCodeZoom && (
-          <div
-            className="absolute top-0 left-0 w-screen h-screen z-200 backdrop-filter backdrop-blur-sm flex items-center"
-            onClick={() => {
-              setQrCodeZoom(false);
-            }}
-          >
-            <div className="m-auto bg-white p-4 rounded-2xl">
-              <QRCode value={eventURL} size={480} level="M" />
-            </div>
-          </div>
+          <QrModal eventURL={eventURL} setQrCodeZoom={setQrCodeZoom} />
         )}
 
         {defaultEventName !== eventName ? (
@@ -123,7 +113,7 @@ export default function Home() {
               onClick={() => {
                 setTicketZoom(true);
               }}
-              className="p-4 rounded-2xl border-2 border-white mb-8 flex text-black bg-white"
+              className="p-4 rounded-2xl border-2 border-white mb-8 flex text-black bg-white shadow-custom"
             >
               <div className="mr-6">
                 <h2 className="text-4xl mb-2">{eventName}</h2>
@@ -131,11 +121,11 @@ export default function Home() {
                   {dayjs(date).format("dddd, D MMMM YYYY (HH:mm)")}
                 </h3>
               </div>
-                <QRIcon
-                  onClick={() => {
-                    setQrCodeZoom(true);
-                  }}
-                />
+              <QRIcon
+                onClick={() => {
+                  setQrCodeZoom(true);
+                }}
+              />
             </div>
             <div id="actions" className="flex gap-5">
               <Button
@@ -170,11 +160,26 @@ export default function Home() {
         )}
       </main>
 
-      <footer>
-        <Link href="https://github.com/filiptronicek">
-          By @filiptronicek with 💖
-        </Link>
-      </footer>
+      <Footer />
     </div>
   );
 }
+
+const QrModal = (props: {
+  eventURL: string;
+  setQrCodeZoom: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const { eventURL, setQrCodeZoom } = props;
+  return (
+    <div
+      className="absolute top-0 left-0 w-screen h-screen z-200 backdrop-filter backdrop-blur-sm flex items-center"
+      onClick={() => {
+        setQrCodeZoom(false);
+      }}
+    >
+      <div className="m-auto bg-white p-4 rounded-2xl shadow-custom">
+        <QRCode value={eventURL} size={480} level="M" />
+      </div>
+    </div>
+  );
+};

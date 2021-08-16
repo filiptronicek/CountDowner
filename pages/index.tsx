@@ -7,6 +7,7 @@ import getFormattedDiffs from "../lib/dateManipulation";
 import EventName from "../components/EventName";
 import Head from "../components/Head";
 import Menu from "../components/Menu";
+import Footer from "../components/Footer";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -57,11 +58,11 @@ export default function Home(): JSX.Element {
   const diffParams = getFormattedDiffs(today, parsed);
 
   return (
-    <div className="flex flex-col items-center justify-between h-screen">
+    <div className="flex flex-col items-center justify-between h-screen ">
       <Head />
 
       <Menu />
-      <main className="text-center">
+      <main className="text-center shadow-custom p-6 rounded-2xl border-2 border-white bg-white text-black">
         <Toaster />
         <EventName
           eventName={eventName}
@@ -69,20 +70,21 @@ export default function Home(): JSX.Element {
           date={date}
           setDate={setDate}
         />
-        <div>
+        <div >
           {parsed.isAfter(today) ? (
-            <div id="countdown-area" className="mt-5 text-4xl">
+            <div id="countdown-area" className="mt-5 text-4xl text-black bg-white">
               {diffParams}
             </div>
           ) : (
-            <div className="mt-5 text-4xl">
+            <div className="mt-5 text-4xl text-black bg-white">
               This countdown has passed {today.to(parsed)}
             </div>
           )}
         </div>
       </main>
 
-      <footer>By @filiptronicek with 💖</footer>
+      <Footer />
+    
     </div>
   );
 }

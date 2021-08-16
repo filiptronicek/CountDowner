@@ -110,7 +110,7 @@ export default function Home() {
                   try {
                     await navigator.clipboard.writeText(eventURL);
                     toast.success("Copied to clipboard");
-                  } catch (err: string) {
+                  } catch (err: any) {
                     toast.error("Failed to copy!", err);
                   }
                 }}

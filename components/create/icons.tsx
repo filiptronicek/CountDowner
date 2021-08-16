@@ -1,7 +1,11 @@
-const QRCode = ({ onClick }): JSX.Element => {
+import React from "react";
+
+const QRCode = (props: {
+  onClick: React.MouseEventHandler<SVGElement>;
+}): JSX.Element => {
   return (
     <svg
-      onClick={onClick}
+      onClick={props.onClick}
       xmlns="http://www.w3.org/2000/svg"
       className="cursor-pointer w-24 h-full"
       enable-background="new 0 0 24 24"

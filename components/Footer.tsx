@@ -12,13 +12,13 @@ const Footer = (): JSX.Element => {
         {contributors.map((contributor) => {
           const index = contributors.indexOf(contributor);
           return (
-            <Link href={`https://github.com/${contributor}`}>
-              <span>
+            <Link href={`https://github.com/${contributor}`} passHref>
+              <a>
                 @
                 {`${contributor}${
                   index !== contributors.length - 1 ? ", " : ""
                 }`}
-              </span>
+              </a>
             </Link>
           );
         })}{" "}

@@ -23,6 +23,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export default function Home() {
+
   const { t, i18n } = useTranslation();
 
   const [date, setDate] = useState<Date>(new Date());
@@ -180,6 +181,7 @@ export default function Home() {
       </div>
     </>
   );
+
 }
 
 const QrModal = (props: {

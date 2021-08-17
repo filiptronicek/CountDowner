@@ -1,9 +1,20 @@
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import fetch from "node-fetch";
 
 const Footer = (): JSX.Element => {
   const { t, i18n } = useTranslation();
-  const contributors = ["filiptronicek", "krystofex"];
+  const [contributors, setContributors] = useState(["filiptronicek"]);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/filiptronicek/CountDowner/contributors").then((res) => res.json()).then((data) => {
+      const userContributors = data.filter((contributor: { type: string; }) => {
+        return contributor.type !== "Bot";
+      });
+      setContributors(userContributors.map((contributor: { login: any; }) => contributor.login))
+    })
+  });
 
   return (
     <footer>
@@ -12,7 +23,7 @@ const Footer = (): JSX.Element => {
         {contributors.map((contributor) => {
           const index = contributors.indexOf(contributor);
           return (
-            <Link href={`https://github.com/${contributor}`} passHref>
+            <Link key={index} href={`https://github.com/${contributor}`} passHref>
               <a>
                 @
                 {`${contributor}${

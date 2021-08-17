@@ -74,8 +74,8 @@ export default function Home() {
 
 	return (
 		<>
-			<Menu />
-			<div className="flex flex-col items-center justify-between h-screen mt-8">
+			<div className="flex flex-col items-center justify-between h-screen">
+				<Menu />
 				<Head />
 				<main className="text-center">
 					<Toaster />

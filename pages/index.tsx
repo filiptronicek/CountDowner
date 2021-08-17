@@ -4,21 +4,24 @@ import React, { useState, useEffect } from "react";
 import _toast, { Toaster } from "react-hot-toast";
 
 import getFormattedDiffs from "../lib/dateManipulation";
-import EventName from "../components/EventName";
-import Head from "../components/Head";
-import Menu from "../components/Menu";
-import Footer from "../components/Footer";
+import EventName from "@components/EventName";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import Footer from "@components/Footer";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useTranslation } from "react-i18next";
 dayjs.extend(relativeTime);
 
 export default function Home(): JSX.Element {
+  const { t, i18n } = useTranslation();
+
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
-  const [eventName, setName] = useState<string>("Christmas 2021");
+  const [eventName, setName] = useState<string>(`${t("Christmas")} 2021`);
 
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());

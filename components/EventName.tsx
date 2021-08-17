@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import { useTranslation } from "react-i18next";
 
 const EventName = (props: {
   eventName: any;
@@ -7,13 +8,15 @@ const EventName = (props: {
   date: any;
   setDate: any;
 }): JSX.Element => {
+  const { t, i18n } = useTranslation();
+
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
   const { eventName, setName, date, setDate } = props;
   return (
     <>
       {editingTitle ? (
         <input
-          className="text-7xl text-center mb-4 text-black bg-white border-2 border-gray-200 rounded-xl "
+          className="text-7xl text-center mb-4 bg-white dark:bg-[#262A2B] text-black dark:text-white border-gray-200 dark:border-gray-600 rounded-xl "
           value={eventName}
           onChange={(e) => {
             setName(e.target.value);
@@ -30,7 +33,7 @@ const EventName = (props: {
         />
       ) : (
         <div
-          className="text-7xl mb-4 bg-white border-2 border-gray-200 rounded-xl p-4 "
+          className="text-7xl mb-4 bg-white dark:bg-[#262A2B] text-black dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 "
           tabIndex={0}
           onFocus={() => {
             setEditingTitle(true);
@@ -43,9 +46,9 @@ const EventName = (props: {
         </div>
       )}
       <div className="text-3xl flex justify-center items-center flex-wrap">
-        <span>Counting down to</span>
+        <span>{t("Counting down to")}</span>
         <DatePicker
-          className="text-black  bg-white border-2 border-gray-200 rounded-xl p-2"
+          className="bg-white dark:bg-[#262A2B] text-black dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-xl p-2"
           dateFormat="dd/MM/yyyy"
           selected={date}
           showTimeSelect

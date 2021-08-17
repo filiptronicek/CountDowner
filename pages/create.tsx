@@ -12,6 +12,7 @@ import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { QRCode as QRIcon } from "../components/create/icons";
+import { useTranslation } from "react-i18next";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,6 +22,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
+
   const [date, setDate] = useState<Date>(new Date());
 
   const defaultEventName = "";
@@ -76,9 +79,9 @@ export default function Home() {
       <Menu />
       <main className="text-center">
         <Toaster />
-        <h1 className="text-3xl">Create a new countdown</h1>
+        <h1 className="text-3xl">{t("Create a new countdown")}</h1>
 
-        <label htmlFor="name">Event name: </label>
+        <label htmlFor="name">{t("Event name")}: </label>
         <input
           id="name"
           type="text"
@@ -90,7 +93,7 @@ export default function Home() {
         />
         <br />
         <label>
-          Event date &amp; time:
+          {t("Event date & time")}:
           <DatePicker
             dateFormat="dd/MM/yyyy"
             className={inputStyle}
@@ -113,11 +116,11 @@ export default function Home() {
               onClick={() => {
                 setTicketZoom(true);
               }}
-              className="p-4 rounded-2xl border-2 border-white mb-8 flex text-black bg-white shadow-custom"
+              className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom"
             >
               <div className="mr-6">
                 <h2 className="text-4xl mb-2">{eventName}</h2>
-                <h3 className="text-2xl text-gray-700">
+                <h3 className="text-2xl text-gray-400">
                   {dayjs(date).format("dddd, D MMMM YYYY (HH:mm)")}
                 </h3>
               </div>
@@ -143,7 +146,7 @@ export default function Home() {
                   }
                 }}
               >
-                <>Copy link</>
+                <>{t("Copy link")}</>
               </Button>
               <Button
                 onClick={() => {
@@ -151,12 +154,12 @@ export default function Home() {
                   downloadIcal();
                 }}
               >
-                <>Download .ics</>
+                <> {t("Download")} .ics</>
               </Button>
             </div>
           </div>
         ) : (
-          <span> Please fill in the name and date of your event </span>
+          <span> {t("Please fill in the name and date of your event")} </span>
         )}
       </main>
 

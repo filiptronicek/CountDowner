@@ -4,21 +4,24 @@ import React, { useState, useEffect } from "react";
 import _toast, { Toaster } from "react-hot-toast";
 
 import getFormattedDiffs from "../lib/dateManipulation";
-import EventName from "../components/EventName";
-import Head from "../components/Head";
-import Menu from "../components/Menu";
-import Footer from "../components/Footer";
+import EventName from "@components/EventName";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import Footer from "@components/Footer";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useTranslation } from "react-i18next";
 dayjs.extend(relativeTime);
 
 export default function Home(): JSX.Element {
+  const { t, i18n } = useTranslation();
+
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
-  const [eventName, setName] = useState<string>("Christmas 2021");
+  const [eventName, setName] = useState<string>(`${t("Christmas")} 2021`);
 
   const parsed = dayjs(date);
   const [today, setToday] = useState(dayjs());
@@ -62,7 +65,7 @@ export default function Home(): JSX.Element {
       <Head />
 
       <Menu />
-      <main className="text-center shadow-custom p-6 rounded-2xl border-2 border-white bg-white text-black">
+      <main className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white">
         <Toaster />
         <EventName
           eventName={eventName}
@@ -72,11 +75,11 @@ export default function Home(): JSX.Element {
         />
         <div >
           {parsed.isAfter(today) ? (
-            <div id="countdown-area" className="mt-5 text-4xl text-black bg-white">
+            <div id="countdown-area" className="mt-5 text-4xl   text-black dark:text-white">
               {diffParams}
             </div>
           ) : (
-            <div className="mt-5 text-4xl text-black bg-white">
+            <div className="mt-5 text-4xl   text-black dark:text-white">
               This countdown has passed {today.to(parsed)}
             </div>
           )}

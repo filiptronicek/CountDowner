@@ -1,10 +1,12 @@
+import { motion } from "framer-motion";
 import React from "react";
 
 const QRCode = (props: {
   onClick: React.MouseEventHandler<SVGElement>;
 }): JSX.Element => {
   return (
-    <svg
+    <motion.svg
+      whileTap={{ scale: 0.95, x: 2, y: 2 }}
       onClick={props.onClick}
       xmlns="http://www.w3.org/2000/svg"
       className="cursor-pointer w-24 h-full fill-current text-black dark:text-white"
@@ -12,7 +14,6 @@ const QRCode = (props: {
       height="24px"
       viewBox="0 0 24 24"
       width="24px"
-      
     >
       <g>
         <rect fill="none" height="24" width="24" />
@@ -32,7 +33,7 @@ const QRCode = (props: {
           <rect height="2" width="2" x="19" y="15" />
         </g>
       </g>
-    </svg>
+    </motion.svg>
   );
 };
 

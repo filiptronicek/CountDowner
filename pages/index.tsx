@@ -15,6 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 // Day.js customizations
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 dayjs.extend(relativeTime)
 
 export default function Home(): JSX.Element {
@@ -66,7 +67,10 @@ export default function Home(): JSX.Element {
 				<Menu />
 				<Head />
 
-				<main className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white">
+				<motion.main className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1}}
+				>
 					<Toaster />
 					<EventName
 						eventName={eventName}
@@ -88,7 +92,7 @@ export default function Home(): JSX.Element {
 							</div>
 						)}
 					</div>
-				</main>
+				</motion.main>
 
 				<Footer />
 			</div>

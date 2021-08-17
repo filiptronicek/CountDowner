@@ -9,26 +9,25 @@ const Navbar = (): JSX.Element => {
 
   return (
     <header>
-      <nav className="flex w-screen text-xm gap-10 bg-[#262A2B] text-white py-4 cursor-pointer ">
- 
-          <Link href="/" passHref>
-            <a>{t("Home")}</a>
-          </Link>
-          <Link href="/create" passHref>
-            <a>{t("Create countdown")}</a>
-          </Link>
-          <Link href="https://github.com/filiptronicek/CountDowner" passHref>
-            <a target="_blank" rel="noreferrer noopener">
-              {t("Source code")}
-            </a>
-          </Link>
-       
-        <a className="absolute top-2 right-4 float-right">
+      <nav className="flex w-screen text-xm gap-10 bg-[#262A2B] text-white cursor-pointer ">
+        <Link href="/" passHref>
+          <a>{t("Home")}</a>
+        </Link>
+        <Link href="/create" passHref>
+          <a>{t("Create countdown")}</a>
+        </Link>
+        <Link href="https://github.com/filiptronicek/CountDowner" passHref>
+          <a target="_blank" rel="noreferrer noopener">
+            {t("Source code")}
+          </a>
+        </Link>
+
+        <span className="cursor-pointer ml-auto">
           <Menu>
             <Menu.Button>
               <FaLanguage size={38} />
             </Menu.Button>
-            <Menu.Items className="shadow-custom absolute bg-white text-blue-500 rounded-xl px-4 py-2 right-8 top-18 mt-2 display-flex flex-col">
+            <Menu.Items className="shadow-custom absolute bg-white text-blue-500 rounded-xl px-4 py-4 right-8 top-18 flex flex-col">
               {Object.keys(i18n.services.resourceStore.data).map((language) => {
                 return (
                   <Menu.Item
@@ -45,7 +44,7 @@ const Navbar = (): JSX.Element => {
               })}
             </Menu.Items>
           </Menu>
-        </a>
+        </span>
       </nav>
     </header>
   );

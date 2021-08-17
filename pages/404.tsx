@@ -1,12 +1,12 @@
+import { useTranslation } from "react-i18next";
 import Head from "@components/Head";
 import Link from "next/link";
 
 import Menu from "@components/Menu";
 import Footer from "@components/Footer";
-import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col items-center justify-between h-screen">

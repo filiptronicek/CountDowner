@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 
 const Button = (props: {
@@ -6,12 +7,14 @@ const Button = (props: {
 }): JSX.Element => {
   const { onClick, children } = props;
   return (
-    <span
+    <motion.span
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       className="bg-[#262A2B] text-white p-5 rounded-xl mb-8 cursor-pointer"
       onClick={onClick}
     >
       {children}
-    </span>
+    </motion.span>
   );
 };
 

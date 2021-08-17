@@ -62,8 +62,8 @@ export default function Home(): JSX.Element {
 
 	return (
 		<>
-			<Menu />
-			<div className="flex flex-col items-center justify-between h-screen mt-8">
+			<div className="flex flex-col items-center justify-between min-h-screen">
+				<Menu />
 				<Head />
 
 				<main className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white">

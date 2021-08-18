@@ -8,13 +8,21 @@ const Footer = (): JSX.Element => {
   const [contributors, setContributors] = useState(["filiptronicek"]);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/filiptronicek/CountDowner/contributors").then((res) => res.json()).then((data) => {
-      const userContributors = data.filter((contributor: { type: string; }) => {
-        return contributor.type !== "Bot";
+    fetch("https://api.github.com/repos/filiptronicek/CountDowner/contributors")
+      .then((res) => res.json())
+      .then((data) => {
+        const userContributors = data.filter(
+          (contributor: { type: string }) => {
+            return contributor.type !== "Bot";
+          }
+        );
+        setContributors(
+          userContributors.map(
+            (contributor: { login: any }) => contributor.login
+          )
+        );
       });
-      setContributors(userContributors.map((contributor: { login: any; }) => contributor.login))
-    })
-  });
+  }, []);
 
   return (
     <footer>
@@ -23,7 +31,11 @@ const Footer = (): JSX.Element => {
         {contributors.map((contributor) => {
           const index = contributors.indexOf(contributor);
           return (
-            <Link key={index} href={`https://github.com/${contributor}`} passHref>
+            <Link
+              key={index}
+              href={`https://github.com/${contributor}`}
+              passHref
+            >
               <a>
                 @
                 {`${contributor}${

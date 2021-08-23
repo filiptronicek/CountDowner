@@ -24,7 +24,7 @@
     "react-hot-toast": "^2.1.0",
     "react-i18next": "^11.11.4",
     "react-icons": "^4.2.0",
-    "react-qr-code": "^2.0.1",
+    "react-qr-code": "^2.0.2",
     "sass": "^1.38.0",
     "unidecode": "^0.1.8"
   },

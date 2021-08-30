@@ -36,14 +36,14 @@
     "@types/react-datepicker": "^4.1.4",
     "@types/unidecode": "^0.1.1",
     "@vercel/node": "^1.12.1",
-    "autoprefixer": "^10.3.2",
+    "autoprefixer": "^10.3.3",
     "dayjs": "^1.10.6",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
     "jest": "^27.1.0",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.7",
+    "tailwindcss": "^2.2.8",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
   }

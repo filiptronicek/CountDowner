@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@headlessui/react": "^1.4.0",
+    "@headlessui/react": "^1.4.1",
     "framer-motion": "^4.1.17",
     "i18next": "^20.4.0",
     "ics": "^2.31.0",

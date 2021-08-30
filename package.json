@@ -33,7 +33,7 @@
     "@types/lodash.sum": "^4.0.6",
     "@types/node-fetch": "^2.5.12",
     "@types/react": "17.0.19",
-    "@types/react-datepicker": "^4.1.4",
+    "@types/react-datepicker": "^4.1.5",
     "@types/unidecode": "^0.1.1",
     "@vercel/node": "^1.12.1",
     "autoprefixer": "^10.3.3",

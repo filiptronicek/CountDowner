@@ -32,7 +32,7 @@ export default function Home() {
   const eventURL = `https://countdowner.now.sh/?date=${reducedDate}&name=${eventName}`;
 
   const downloadIcal = async () => {
-    const createEvent = (await import('ics')).createEvent;
+    const createEvent = (await import("ics")).createEvent;
 
     createEvent(
       {
@@ -58,7 +58,7 @@ export default function Home() {
         const a = document.createElement("a");
         a.href = url;
 
-        const unidecode = (await import('unidecode')).default;
+        const unidecode = (await import("unidecode")).default;
 
         const fileName = `${unidecode(eventName)}.ics`
           .toLowerCase()
@@ -125,9 +125,7 @@ export default function Home() {
                 id="output"
                 className="flex flex-col items-center mt-4 w-full"
               >
-                <div
-                  className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom"
-                >
+                <div className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom">
                   <div className="mr-6">
                     <h2 className="text-4xl mb-2">{eventName}</h2>
                     <h3 className="text-2xl text-gray-400">

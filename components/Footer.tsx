@@ -44,7 +44,7 @@ const Footer = (): JSX.Element => {
           `There was an error fetching the contributors. Please try again later.`
         );
       });
-  }, []);
+  }, [t]);
 
   return (
     <footer>

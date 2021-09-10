@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import QRCode from "react-qr-code";
@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { QRCode as QRIcon } from "../components/create/icons";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
@@ -20,14 +20,13 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 export default function Home() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [date, setDate] = useState<Date>(new Date());
 
   const defaultEventName = "";
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
-  const [ticketZoom, setTicketZoom] = useState<boolean>(false);
 
   const reducedDate = Math.floor(date.getTime() / 1000);
   const eventURL = `https://countdowner.now.sh/?date=${reducedDate}&name=${eventName}`;
@@ -127,9 +126,6 @@ export default function Home() {
                 className="flex flex-col items-center mt-4 w-full"
               >
                 <div
-                  onClick={() => {
-                    setTicketZoom(true);
-                  }}
                   className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom"
                 >
                   <div className="mr-6">

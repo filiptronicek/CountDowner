@@ -1,35 +1,54 @@
 import React, { useState, useEffect } from "react";
+import _toast, { toast, Toaster } from "react-hot-toast";
+
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import fetch from "node-fetch";
 
+
+type contributorType = {
+  login: string;
+  type: "Bot" | "User" | "Organization";
+  avatar_url: string;
+  html_url: string;
+};
+
 const Footer = (): JSX.Element => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [contributors, setContributors] = useState(["filiptronicek"]);
 
   useEffect(() => {
     fetch("https://api.github.com/repos/filiptronicek/CountDowner/contributors")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+      .then((response: any) => {
+        // Check for errors
+        if (!response.ok) {
+          toast.error(
+            `${t("error.contributors")}: (${response.status})`
+          );
+          return [{ login: "filiptronicek", type: "User" }];
         }
+        return response.json();
       })
-      .then((data: any) => {
-        const userContributors = data.filter(
-          (contributor: { type: string }) => {
-            return contributor.type !== "Bot";
-          }
-        );
-        setContributors(
-          userContributors.map(
-            (contributor: { login: any }) => contributor.login
-          )
+      .then((responseJson: any) => {
+        console.log(responseJson);
+        const exemptUsers = ["ImgBotApp"];
+        const contributorLogins = responseJson.filter(
+          (contributor: contributorType) =>
+            contributor.type !== "Bot" &&
+            !exemptUsers.includes(contributor.login)
+        ).map((contributor: contributorType) => contributor.login);
+        setContributors(contributorLogins);
+      })
+      .catch((_error: string) => {
+        toast.error(
+          `There was an error fetching the contributors. Please try again later.`
         );
       });
   }, []);
 
   return (
     <footer>
+      <Toaster />
       <span>
         {`${t("By")}`}{" "}
         {contributors.map((contributor) => {

@@ -13,5 +13,6 @@
   "Source code": "Zdrojový kód",
   "By": "Vytvořeno",
   "Oooof404": "Jaj, odpočet se nám nepodařilo najít",
-  "Back to main page": "Zpět na hlavní stránku"
+  "Back to main page": "Zpět na hlavní stránku",
+  "error.contributors": "Přispěvatele se nepodařilo načíst"
 }

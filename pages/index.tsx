@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
-import getFormattedDiffs from "../lib/dateManipulation";
-import timeSync from "../lib/timeSync";
+import getFormattedDiffs from "@utils/dateManipulation";
+import timeSync from "@utils/timeSync";
 
 import EventName from "@components/EventName";
 import Head from "@components/Head";

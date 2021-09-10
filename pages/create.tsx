@@ -4,11 +4,12 @@ import _toast, { toast, Toaster } from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import QRCode from "react-qr-code";
 
-import Head from "../components/Head";
-import Menu from "../components/Menu";
-import Footer from "../components/Footer";
-import Button from "../components/Button";
-import { QRCode as QRIcon } from "../components/create/icons";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import Footer from "@components/Footer";
+import Button from "@components/Button";
+import { QRCode as QRIcon } from "@components/create/icons";
+
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 

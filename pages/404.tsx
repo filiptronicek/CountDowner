@@ -17,11 +17,13 @@ const NotFound = () => {
         <h1 className="text-3xl mb-12">{t("Oooof404")}</h1>
         <Link href="/" passHref>
           <span className="bg-[#262A2B] text-white p-5 mr-2 rounded-xl mb-8 cursor-pointer">
-            {t("Back to main page")}</span>
+            {t("Back to main page")}
+          </span>
         </Link>{" "}
         <Link href="/create" passHref>
           <span className="bg-[#262A2B] text-white p-5 ml-2 rounded-xl mb-8 cursor-pointer">
-            {t("Create countdown")}</span>
+            {t("Create countdown")}
+          </span>
         </Link>
       </main>
       <Footer />

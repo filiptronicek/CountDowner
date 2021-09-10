@@ -66,10 +66,7 @@ const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): number[] => {
   return diffs;
 };
 
-const getFormattedDiffs = (
-  today: dayjs.Dayjs,
-  parsed: dayjs.Dayjs,
-): string => {
+const getFormattedDiffs = (today: dayjs.Dayjs, parsed: dayjs.Dayjs): string => {
   const diffs = getDiffParams(today, parsed);
 
   if (sum(diffs) > 0) {

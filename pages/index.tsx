@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 dayjs.extend(relativeTime);
 
 export default function Home(): JSX.Element {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const [eventName, setName] = useState<string>(`${t("Christmas")} 2021`);

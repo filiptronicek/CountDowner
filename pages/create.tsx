@@ -4,9 +4,6 @@ import _toast, { toast, Toaster } from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import QRCode from "react-qr-code";
 
-import unidecode from "unidecode";
-import { createEvent } from "ics";
-
 import Head from "../components/Head";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
@@ -35,7 +32,9 @@ export default function Home() {
   const reducedDate = Math.floor(date.getTime() / 1000);
   const eventURL = `https://countdowner.now.sh/?date=${reducedDate}&name=${eventName}`;
 
-  const downloadIcal = () => {
+  const downloadIcal = async () => {
+    const createEvent = (await import('ics')).createEvent;
+
     createEvent(
       {
         title: eventName,
@@ -50,7 +49,7 @@ export default function Home() {
         duration: { minutes: 60 },
         url: `https://countdowner.now.sh/?date=${date.getTime()}&name=${eventName}`,
       },
-      (error, value) => {
+      async (error, value) => {
         if (error) {
           console.log(error);
         }
@@ -59,6 +58,8 @@ export default function Home() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
+
+        const unidecode = (await import('unidecode')).default;
 
         const fileName = `${unidecode(eventName)}.ics`
           .toLowerCase()

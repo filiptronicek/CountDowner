@@ -1,9 +1,11 @@
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
-import _toast, { Toaster } from 'react-hot-toast'
+import _toast, { toast, Toaster } from 'react-hot-toast'
 
 import getFormattedDiffs from '../lib/dateManipulation'
+import timeSync from '../lib/timeSync'
+
 import EventName from '@components/EventName'
 import Head from '@components/Head'
 import Menu from '@components/Menu'
@@ -26,8 +28,21 @@ export default function Home(): JSX.Element {
 
 	const parsed = dayjs(date)
 	const [today, setToday] = useState(dayjs())
+	const [offset, setOffset] = useState(0);
 
 	const { query }: any = useRouter()
+
+	// Sync the date
+	useEffect(() => {
+		const sync = async () => {
+			const diff = await timeSync();
+			if (Math.abs(diff) > 1000) {
+				toast.success(`${diff > 0 ? "Added" : "Removed"} ${Math.abs(diff / 1000).toFixed(1)}s ${diff > 0 ? "to" : "from"} the time`);
+				setOffset(diff);
+			}
+		}
+		sync()
+	}, []);
 
 	useEffect(() => {
 		if (parsed.isAfter(today)) {
@@ -39,7 +54,7 @@ export default function Home(): JSX.Element {
 				clearInterval(countDown)
 			}
 		}
-	})
+	}, [parsed, today])
 
 	useEffect(() => {
 		if (query.name && query.date) {
@@ -59,7 +74,7 @@ export default function Home(): JSX.Element {
 		addQueryParam('name', encodeURIComponent(eventName))
 	}, [date, eventName])
 
-	const diffParams = getFormattedDiffs(today, parsed)
+	const diffParams = getFormattedDiffs(today.add(offset, "ms"), parsed)
 
 	return (
 		<>
@@ -88,7 +103,7 @@ export default function Home(): JSX.Element {
 							</div>
 						) : (
 							<div className="mt-5 text-4xl   text-black dark:text-white">
-								This countdown has passed {today.to(parsed)}
+								This countdown has passed {today.add(offset, "ms").to(parsed)}
 							</div>
 						)}
 					</div>

@@ -30,7 +30,6 @@ const Footer = (): JSX.Element => {
         return response.json();
       })
       .then((responseJson: any) => {
-        console.log(responseJson);
         const exemptUsers = ["ImgBotApp"];
         const contributorLogins = responseJson.filter(
           (contributor: contributorType) =>

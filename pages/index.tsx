@@ -41,7 +41,7 @@ export default function Home(): JSX.Element {
   const [today, setToday] = useState(dayjs());
   const [offset, setOffset] = useState(0);
 
-  const { query }: any = useRouter();
+  const { query } = useRouter();
 
   // Sync the date
   useEffect(() => {

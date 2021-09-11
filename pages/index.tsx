@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
 import getFormattedDiffs from "@utils/dateManipulation";
 import timeSync from "@utils/timeSync";
 
-import EventName from "@components/EventName";
 import Head from "@components/Head";
 import Menu from "@components/Menu";
 import Footer from "@components/Footer";
@@ -14,11 +14,17 @@ import Footer from "@components/Footer";
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-// Day.js customizations
-import relativeTime from "dayjs/plugin/relativeTime";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+
+// Day.js customizations
+import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
+
+const EventName = dynamic(() => import("@components/EventName"), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 export default function Home(): JSX.Element {
   const { t } = useTranslation();

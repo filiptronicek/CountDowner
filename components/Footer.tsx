@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import fetch from "node-fetch";
 
-
 type contributorType = {
   login: string;
   type: "Bot" | "User" | "Organization";
@@ -29,7 +28,7 @@ const Footer = (): JSX.Element => {
         }
         return response.json();
       })
-      .then((responseJson: any) => {
+      .then((responseJson: contributorType[]) => {
         const exemptUsers = ["ImgBotApp"];
         const contributorLogins = responseJson.filter(
           (contributor: contributorType) =>

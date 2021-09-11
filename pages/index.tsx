@@ -26,13 +26,18 @@ const EventName = dynamic(() => import("@components/EventName"), {
   loading: () => <p>Loading...</p>,
 });
 
+const TimeRemaining = dynamic(() => import("@components/TimeRemaining"), {
+  ssr: false,
+  loading: () => <p>...</p>,
+});
+
 export default function Home(): JSX.Element {
   const { t } = useTranslation();
 
   const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
   const [eventName, setName] = useState<string>(`${t("Christmas")} 2021`);
 
-  const parsed = dayjs(date);
+  const parsedDate = dayjs(date);
   const [today, setToday] = useState(dayjs());
   const [offset, setOffset] = useState(0);
 
@@ -55,7 +60,7 @@ export default function Home(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (parsed.isAfter(today)) {
+    if (parsedDate.isAfter(today)) {
       const countDown = setInterval(() => {
         setToday(dayjs());
       }, 250);
@@ -64,7 +69,7 @@ export default function Home(): JSX.Element {
         clearInterval(countDown);
       };
     }
-  }, [parsed, today]);
+  }, [parsedDate, today]);
 
   useEffect(() => {
     if (query.name && query.date) {
@@ -84,7 +89,7 @@ export default function Home(): JSX.Element {
     addQueryParam("name", encodeURIComponent(eventName));
   }, [date, eventName]);
 
-  const diffParams = getFormattedDiffs(today.add(offset, "ms"), parsed);
+  const diffParams = getFormattedDiffs(today.add(offset, "ms"), parsedDate);
 
   return (
     <>
@@ -104,20 +109,12 @@ export default function Home(): JSX.Element {
             date={date}
             setDate={setDate}
           />
-          <div>
-            {parsed.isAfter(today) ? (
-              <div
-                id="countdown-area"
-                className="mt-5 text-4xl   text-black dark:text-white"
-              >
-                {diffParams}
-              </div>
-            ) : (
-              <div className="mt-5 text-4xl   text-black dark:text-white">
-                This countdown has passed {today.add(offset, "ms").to(parsed)}
-              </div>
-            )}
-          </div>
+          <TimeRemaining
+            countingTo={parsedDate}
+            countingFrom={today}
+            formattedDiff={diffParams}
+            timeOffset={offset}
+          />
         </motion.main>
 
         <Footer />

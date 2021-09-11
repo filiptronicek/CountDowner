@@ -1,5 +1,4 @@
-// Sync time with the server and return the difference in milliseconds
-
+// Check the internet time and return the difference between it and the client in milliseconds
 const timeSync = async (): Promise<number> => {
   const currentTime = new Date().getTime();
   const syncRequest = await fetch(`https://trnck.dev/time?ts=${currentTime}`);

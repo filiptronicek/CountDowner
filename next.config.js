@@ -1,4 +1,4 @@
 module.exports = {
   reactStrictMode: true,
-  experimental: { esmExternals: true }
+  experimental: { esmExternals: true },
 };

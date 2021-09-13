@@ -821,10 +821,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-datepicker@^4.1.6":
-  version "4.1.6"
-  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.1.6.tgz#be051309254519e5e7762655ba63242ea6d4eaa3"
-  integrity sha512-OCm1d2qJuClev4yBrbMiPhKRrT65RbzngFdMwDfzmSWco4SNXBFuH7eVOh871ccBHLHhhyg7nrfn+/VAFE+hYQ==
+"@types/react-datepicker@^4.1.7":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.1.7.tgz#2df051ddf6d2694700ccd1c57b60855d62215454"
+  integrity sha512-8FZt62redGDsO/Dptb8/kdu/JZsAD17lsU3E8OwJqxhtNk4EsdVT0v2ArP8efDGkmtonIKVF2usoPzF6ZeL8zw==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/react" "*"

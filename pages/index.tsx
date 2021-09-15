@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
-import getFormattedDiffs from "@utils/dateManipulation";
 import formatSeconds from "@utils/formatSeconds";
 import timeSync from "@utils/timeSync";
 
@@ -91,8 +90,6 @@ export default function Home(): JSX.Element {
     addQueryParam("name", encodeURIComponent(eventName));
   }, [date, eventName]);
 
-  const diffParams = getFormattedDiffs(today.add(offset, "ms"), parsedDate);
-
   return (
     <>
       <div className="flex flex-col items-center justify-between min-h-screen">
@@ -114,7 +111,6 @@ export default function Home(): JSX.Element {
           <TimeRemaining
             countingTo={parsedDate}
             countingFrom={today}
-            formattedDiff={diffParams}
             timeOffset={offset}
           />
         </motion.main>

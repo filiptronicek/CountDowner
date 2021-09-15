@@ -12,10 +12,12 @@ const parameters: Array<dayjs.UnitType> = [
   "second",
 ];
 
+// A function that makes sure no number overflows happen (13 months, 75 minutes, ..,)
 const reduceOverview = (
   dateFrom: dayjs.Dayjs,
   dateTo: dayjs.Dayjs,
-  diffs: number[]
+  diffs: number[],
+  units: Array<dayjs.UnitType> = parameters
 ): number[] => {
   const newDiffs: number[] = [];
 
@@ -25,12 +27,12 @@ const reduceOverview = (
       // For years, there is no "overflowing", so just keep the value
       newDiffs.push(diff);
     } else {
-      // For other units, use dayjs.subtract() to prevent overflowing values (13 months, 75 minutes, ..,)
+      // For other units, use dayjs.subtract() to prevent overflowing values
       const reducedDate = dateTo.subtract(
         diffs[index === 0 ? index : index - 1],
-        parameters[index === 0 ? index : index - 1]
+        units[index === 0 ? index : index - 1]
       );
-      const newDiff = reducedDate.diff(dateFrom, parameters[index]);
+      const newDiff = reducedDate.diff(dateFrom, units[index]);
       newDiffs.push(newDiff);
     }
 
@@ -40,14 +42,17 @@ const reduceOverview = (
   return newDiffs;
 };
 
-const formatDiffs = (diffs: number[]): string => {
+const formatDiffs = (
+  diffs: number[],
+  units: Array<dayjs.UnitType> = parameters
+): string => {
   const outputValues = [];
   const wentThrough = [];
 
   let index = 0;
   for (const unitValue of diffs) {
     wentThrough.push(unitValue);
-    const unit = parameters[index];
+    const unit = units[index];
     if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
       outputValues.push(`${unitValue} ${plural(unit, unitValue)}`);
@@ -58,23 +63,31 @@ const formatDiffs = (diffs: number[]): string => {
   return outputValues.join(" ");
 };
 
-const getDiffParams = (from: dayjs.Dayjs, to: dayjs.Dayjs): number[] => {
+const getDiffParams = (
+  from: dayjs.Dayjs,
+  to: dayjs.Dayjs,
+  units: Array<dayjs.UnitType> = parameters
+): number[] => {
   const diffs: number[] = [];
 
-  for (const param of parameters) {
-    const difference = to.diff(from, param);
+  for (const unit of units) {
+    const difference = to.diff(from, unit);
     diffs.push(difference);
   }
 
   return diffs;
 };
 
-const getFormattedDiffs = (today: dayjs.Dayjs, parsed: dayjs.Dayjs): string => {
-  const diffs = getDiffParams(today, parsed);
+const getFormattedDiffs = (
+  today: dayjs.Dayjs,
+  parsed: dayjs.Dayjs,
+  customParameters: Array<dayjs.UnitType> = parameters
+): string => {
+  const diffs = getDiffParams(today, parsed, customParameters);
 
   if (sum(diffs) > 0) {
-    const reducedDiffs = reduceOverview(today, parsed, diffs);
-    return formatDiffs(reducedDiffs);
+    const reducedDiffs = reduceOverview(today, parsed, diffs, customParameters);
+    return formatDiffs(reducedDiffs, customParameters);
   } else {
     return "Expired";
   }

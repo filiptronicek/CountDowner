@@ -57,7 +57,7 @@ const TimeRemaining = (props: {
       {countingTo.isAfter(countingFrom) ? (
         <div
           id="countdown-area"
-          className="mt-5 text-4xl text-black dark:text-white"
+          className="mt-5 text-4xl text-black dark:text-white cursor-pointer"
           onClick={() => {
             handleNextState();
           }}

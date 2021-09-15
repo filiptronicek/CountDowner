@@ -1,8 +1,29 @@
+import React, { useState } from "react";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 import getFormattedDiffs from "@utils/dateManipulation";
+
+const parameters: Array<dayjs.UnitType> = [
+  "year",
+  "month",
+  "day",
+  "hour",
+  "minute",
+  "second",
+];
+
+const possibleStates = [
+  parameters,
+  [parameters[0]],
+  [parameters[1]],
+  [parameters[2]],
+  [parameters[3]],
+  [parameters[4]],
+  [parameters[5]],
+];
 
 const TimeRemaining = (props: {
   countingFrom: dayjs.Dayjs;
@@ -10,7 +31,26 @@ const TimeRemaining = (props: {
   timeOffset: number;
 }): JSX.Element => {
   const { countingFrom, countingTo, timeOffset } = props;
-  const formattedDiff = getFormattedDiffs(countingFrom.add(timeOffset, "ms"), countingTo);
+  const [state, setState] = useState(possibleStates[0]);
+  const currentStateIndex = possibleStates.indexOf(state);
+
+  const formattedDiff = getFormattedDiffs(
+    countingFrom.add(timeOffset, "ms"),
+    countingTo,
+    state
+  );
+
+  const handleNextState = (): void => {
+    if (currentStateIndex === possibleStates.length - 1) {
+      setState(possibleStates[0]);
+    } else {
+      setState(possibleStates[currentStateIndex + 1]);
+    }
+  };
+
+  if (formattedDiff === "Expired") {
+    handleNextState();
+  }
 
   return (
     <div>
@@ -19,7 +59,7 @@ const TimeRemaining = (props: {
           id="countdown-area"
           className="mt-5 text-4xl text-black dark:text-white"
           onClick={() => {
-            alert("Clicked");
+            handleNextState();
           }}
         >
           {formattedDiff}

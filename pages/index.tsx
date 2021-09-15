@@ -4,8 +4,9 @@ import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
-import getFormattedDiffs from "@utils/dateManipulation";
+import formatSeconds from "@utils/formatSeconds";
 import timeSync from "@utils/timeSync";
+import getFormattedDiffs from "@utils/dateManipulation";
 
 import Head from "@components/Head";
 import Menu from "@components/Menu";
@@ -41,17 +42,21 @@ export default function Home(): JSX.Element {
   const [today, setToday] = useState(dayjs());
   const [offset, setOffset] = useState(0);
 
+  const [shortTime, setShortTime] = useState("");
+  const pageTitle = `${shortTime} until ${eventName}`;
+
   const { query }: any = useRouter();
 
   // Sync the date
   useEffect(() => {
     const sync = async () => {
       const diff = await timeSync();
+      const secondsOffset = Math.abs(diff / 1000);
       if (Math.abs(diff) > 1000) {
         toast.success(
-          `${diff > 0 ? "Added" : "Removed"} ${Math.abs(diff / 1000).toFixed(
-            1
-          )}s ${diff > 0 ? "to" : "from"} the time`
+          `${diff > 0 ? "Added" : "Removed"} ${formatSeconds(secondsOffset)} ${
+            diff > 0 ? "to" : "from"
+          } the time`
         );
         setOffset(diff);
       }
@@ -63,6 +68,7 @@ export default function Home(): JSX.Element {
     if (parsedDate.isAfter(today)) {
       const countDown = setInterval(() => {
         setToday(dayjs());
+        setShortTime(getFormattedDiffs(today, parsedDate, true));
       }, 250);
 
       return () => {
@@ -89,13 +95,11 @@ export default function Home(): JSX.Element {
     addQueryParam("name", encodeURIComponent(eventName));
   }, [date, eventName]);
 
-  const diffParams = getFormattedDiffs(today.add(offset, "ms"), parsedDate);
-
   return (
     <>
       <div className="flex flex-col items-center justify-between min-h-screen">
         <Menu />
-        <Head />
+        <Head titlePrefix={pageTitle} />
 
         <motion.main
           className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white"
@@ -112,7 +116,6 @@ export default function Home(): JSX.Element {
           <TimeRemaining
             countingTo={parsedDate}
             countingFrom={today}
-            formattedDiff={diffParams}
             timeOffset={offset}
           />
         </motion.main>

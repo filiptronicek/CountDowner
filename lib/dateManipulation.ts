@@ -55,7 +55,7 @@ const formatDiffs = (
     const unit = units[index];
     if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
-      outputValues.push(`${unitValue} ${plural(unit, unitValue)}`);
+      outputValues.push(`${unitValue.toLocaleString()} ${plural(unit, unitValue)}`);
     }
     index++;
   }

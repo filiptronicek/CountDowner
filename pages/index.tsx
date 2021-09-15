@@ -6,6 +6,7 @@ import _toast, { toast, Toaster } from "react-hot-toast";
 
 import formatSeconds from "@utils/formatSeconds";
 import timeSync from "@utils/timeSync";
+import getFormattedDiffs from "@utils/dateManipulation";
 
 import Head from "@components/Head";
 import Menu from "@components/Menu";
@@ -41,6 +42,9 @@ export default function Home(): JSX.Element {
   const [today, setToday] = useState(dayjs());
   const [offset, setOffset] = useState(0);
 
+  const [shortTime, setShortTime] = useState("");
+  const pageTitle = `${shortTime} until ${eventName}`;
+
   const { query }: any = useRouter();
 
   // Sync the date
@@ -64,6 +68,7 @@ export default function Home(): JSX.Element {
     if (parsedDate.isAfter(today)) {
       const countDown = setInterval(() => {
         setToday(dayjs());
+        setShortTime(getFormattedDiffs(today, parsedDate, true));
       }, 250);
 
       return () => {
@@ -94,7 +99,7 @@ export default function Home(): JSX.Element {
     <>
       <div className="flex flex-col items-center justify-between min-h-screen">
         <Menu />
-        <Head />
+        <Head titlePrefix={pageTitle} />
 
         <motion.main
           className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white"

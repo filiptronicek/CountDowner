@@ -44,6 +44,7 @@ const reduceOverview = (
 
 const formatDiffs = (
   diffs: number[],
+  short: boolean = false,
   units: Array<dayjs.UnitType> = parameters
 ): string => {
   const outputValues = [];
@@ -55,12 +56,24 @@ const formatDiffs = (
     const unit = units[index];
     if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
-      outputValues.push(`${unitValue.toLocaleString()} ${plural(unit, unitValue)}`);
+      if (short) {
+        if (["year", "month", "day"].includes(unit)) {
+          outputValues.push(`${unitValue} ${plural(unit, unitValue)}`);
+          break;
+        } else {
+          // If the unit is an hour, minute or a second, format the time in HH:mm:ss
+          outputValues.push(`${unitValue.toString().padStart(2, "0")}`);
+        }
+      } else {
+        outputValues.push(
+          `${unitValue.toLocaleString()} ${plural(unit, unitValue)}`
+        );
+      }
     }
     index++;
   }
 
-  return outputValues.join(" ");
+  return short ? outputValues.join(":") : outputValues.join(" ");
 };
 
 const getDiffParams = (
@@ -81,13 +94,14 @@ const getDiffParams = (
 const getFormattedDiffs = (
   today: dayjs.Dayjs,
   parsed: dayjs.Dayjs,
+  short: boolean = false,
   customParameters: Array<dayjs.UnitType> = parameters
 ): string => {
   const diffs = getDiffParams(today, parsed, customParameters);
 
   if (sum(diffs) > 0) {
     const reducedDiffs = reduceOverview(today, parsed, diffs, customParameters);
-    return formatDiffs(reducedDiffs, customParameters);
+    return formatDiffs(reducedDiffs, short, customParameters);
   } else {
     return "Expired";
   }

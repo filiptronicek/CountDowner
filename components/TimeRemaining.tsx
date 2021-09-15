@@ -37,6 +37,7 @@ const TimeRemaining = (props: {
   const formattedDiff = getFormattedDiffs(
     countingFrom.add(timeOffset, "ms"),
     countingTo,
+    false,
     state
   );
 

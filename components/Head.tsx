@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 const PageHead = (props: {
-  titlePrefix: string,
+  titlePrefix?: string,
 }): JSX.Element => {
   const { titlePrefix } = props;
   return (

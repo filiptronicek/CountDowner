@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import sum from "lodash.sum";
 
+import plural from "./plural";
+
 const parameters: Array<dayjs.UnitType> = [
   "year",
   "month",
@@ -43,11 +45,12 @@ const formatDiffs = (diffs: number[]): string => {
   const wentThrough = [];
 
   let index = 0;
-  for (const unit of diffs) {
-    wentThrough.push(unit);
-    if ((unit !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
+  for (const unitValue of diffs) {
+    wentThrough.push(unitValue);
+    const unit = parameters[index];
+    if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
-      outputValues.push(`${unit} ${parameters[index]}${unit === 1 ? "" : "s"}`);
+      outputValues.push(`${unitValue} ${plural(unit, unitValue)}`);
     }
     index++;
   }

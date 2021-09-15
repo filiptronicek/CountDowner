@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
 import getFormattedDiffs from "@utils/dateManipulation";
+import formatSeconds from "@utils/formatSeconds";
 import timeSync from "@utils/timeSync";
 
 import Head from "@components/Head";
@@ -47,11 +48,12 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     const sync = async () => {
       const diff = await timeSync();
+      const secondsOffset = Math.abs(diff / 1000);
       if (Math.abs(diff) > 1000) {
         toast.success(
-          `${diff > 0 ? "Added" : "Removed"} ${Math.abs(diff / 1000).toFixed(
-            1
-          )}s ${diff > 0 ? "to" : "from"} the time`
+          `${diff > 0 ? "Added" : "Removed"} ${formatSeconds(secondsOffset)} ${
+            diff > 0 ? "to" : "from"
+          } the time`
         );
         setOffset(diff);
       }

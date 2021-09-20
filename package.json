@@ -13,7 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "framer-motion": "^4.1.17",
-    "i18next": "^20.6.1",
+    "i18next": "^21.0.0",
     "ics": "^2.31.0",
     "js-base64": "^3.7.1",
     "lodash.sum": "^4.0.2",

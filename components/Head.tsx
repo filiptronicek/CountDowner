@@ -1,9 +1,12 @@
 import Head from "next/head";
 
-const PageHead = (): JSX.Element => {
+const PageHead = (props: {
+  titlePrefix?: string,
+}): JSX.Element => {
+  const { titlePrefix } = props;
   return (
     <Head>
-      <title>CountDowner</title>
+      <title>{titlePrefix && `${titlePrefix} |`} CountDowner</title>
       <meta name="description" content="An app for generating countdowns" />
       <link rel="icon" href="/favicon.ico" />
       <link

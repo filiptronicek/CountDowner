@@ -7,6 +7,7 @@ import _toast, { toast, Toaster } from "react-hot-toast";
 import formatSeconds from "@utils/formatSeconds";
 import timeSync from "@utils/timeSync";
 import getFormattedDiffs from "@utils/dateManipulation";
+import getNextDefaultEvent from "@utils/getNextDefaultEvent";
 
 import Head from "@components/Head";
 import Menu from "@components/Menu";
@@ -33,10 +34,12 @@ const TimeRemaining = dynamic(() => import("@components/TimeRemaining"), {
 });
 
 export default function Home(): JSX.Element {
-  const { t } = useTranslation();
+  //const { t } = useTranslation();
 
-  const [date, setDate] = useState<Date>(new Date("Dec 24 2021"));
-  const [eventName, setName] = useState<string>(`${t("Christmas")} 2021`);
+  const [defaultName, defaultDate] = getNextDefaultEvent(new Date());
+
+  const [date, setDate] = useState<Date>(defaultDate);
+  const [eventName, setName] = useState<string>(defaultName);
 
   const parsedDate = dayjs(date);
   const [today, setToday] = useState(dayjs());

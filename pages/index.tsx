@@ -140,6 +140,6 @@ export default function Home(props: {
 }
 
 // Render the metatags for the page
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: { query: any }) {
   return { props: query };
 }

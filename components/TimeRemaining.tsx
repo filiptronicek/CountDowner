@@ -49,7 +49,7 @@ const TimeRemaining = (props: {
     }
   };
 
-  if (formattedDiff === "Expired") {
+  if (countingTo.isAfter(countingFrom) && formattedDiff === "Expired") {
     handleNextState();
   }
 

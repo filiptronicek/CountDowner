@@ -27,6 +27,16 @@ const PageHead = (props: {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest"></link>
+      
+      <title>CountDowner</title>
+      <meta name="description" content="An app for generating countdowns" />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="CountDowner" />
+      <meta property="og:description" content="An app for generating countdowns" />
+
+      <meta name="twitter:title" content="CountDowner" />
+      <meta name="twitter:description" content="An app for generating countdowns" />            
     </Head>
   );
 };

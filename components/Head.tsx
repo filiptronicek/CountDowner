@@ -1,13 +1,19 @@
 import Head from "next/head";
 
 const PageHead = (props: {
-  titlePrefix?: string,
+  titlePrefix?: string;
+  name?: string;
+  date?: string;
 }): JSX.Element => {
-  const { titlePrefix } = props;
+  const { titlePrefix, name, date } = props;
   return (
     <Head>
       <title>{titlePrefix && `${titlePrefix} |`} CountDowner</title>
-      <meta name="description" content="An app for generating countdowns" />
+      {name ? (
+        <meta name="description" content={`A countdown to ${date}`} />
+      ) : (
+        <meta name="description" content="An app for generating countdowns" />
+      )}
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
@@ -27,16 +33,46 @@ const PageHead = (props: {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest"></link>
-      
+
       <title>CountDowner</title>
       <meta name="description" content="An app for generating countdowns" />
 
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="CountDowner" />
-      <meta property="og:description" content="An app for generating countdowns" />
+      {name ? (
+        <>
+          <meta
+            property="og:title"
+            content={`CountDown to ${name} | CountDowner`}
+          />
+          <meta property="og:description" content={`A countdown to ${date}`} />
+        </>
+      ) : (
+        <>
+          <meta property="og:title" content="CountDowner" />
+          <meta
+            property="og:description"
+            content="An app for generating countdowns"
+          />
+        </>
+      )}
 
-      <meta name="twitter:title" content="CountDowner" />
-      <meta name="twitter:description" content="An app for generating countdowns" />            
+      {name ? (
+        <>
+          <meta
+            property="twitter:title"
+            content={`CountDown to ${name} | CountDowner`}
+          />
+          <meta name="twitter:description" content={`A countdown to ${date}`} />
+        </>
+      ) : (
+        <>
+          <meta property="twitter:title" content="CountDowner" />
+          <meta
+            name="twitter:description"
+            content="An app for generating countdowns"
+          />
+        </>
+      )}
     </Head>
   );
 };

@@ -107,7 +107,7 @@ export default function Home(props: {
         <Menu />
         <Head
           titlePrefix={pageTitle}
-          name={props.name}
+          name={props.name && decodeURIComponent(props.name)}
           date={
             props.date &&
             dayjs(parseInt(props.date) * 1000).format("MM/DD/YYYY")

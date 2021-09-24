@@ -236,7 +236,7 @@ export default function Home(): JSX.Element {
 const QRModal = (props: {
   eventURL: string;
   setQrCodeZoom: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}): JSX.Element => {
   const [width, height] = useWindowSize();
 
   const { eventURL, setQrCodeZoom } = props;

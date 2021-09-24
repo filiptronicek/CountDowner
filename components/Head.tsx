@@ -6,6 +6,8 @@ const PageHead = (props: {
   date?: string;
 }): JSX.Element => {
   const { titlePrefix, name, date } = props;
+  const imageText = name && `Countdown to **${name}**`
+  const imageURL = name && date && `https://countdowner-og.vercel.app/${encodeURIComponent(imageText)}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fraw.githubusercontent.com%2Ffiliptronicek%2FCountDowner%2Fmain%2Fpublic%2Fapple-touch-icon.png`
   return (
     <Head>
       <title>{titlePrefix && `${titlePrefix} |`} CountDowner</title>
@@ -43,6 +45,7 @@ const PageHead = (props: {
             property="og:title"
             content={`CountDown to ${name} | CountDowner`}
           />
+          <meta property="og:image" content={imageURL} />
           <meta property="og:description" content={`A countdown to ${date}`} />
         </>
       ) : (
@@ -61,6 +64,8 @@ const PageHead = (props: {
             property="twitter:title"
             content={`CountDown to ${name} | CountDowner`}
           />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content={imageURL} />
           <meta name="twitter:description" content={`A countdown to ${date}`} />
         </>
       ) : (

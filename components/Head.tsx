@@ -6,7 +6,7 @@ const PageHead = (props: {
   date?: string;
 }): JSX.Element => {
   const { titlePrefix, name, date } = props;
-  const imageText = name && `Countdown to **${name}**`
+  const imageText = `Countdown to **${name}**`
   const imageURL = name && date && `https://countdowner-og.vercel.app/${encodeURIComponent(imageText)}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fraw.githubusercontent.com%2Ffiliptronicek%2FCountDowner%2Fmain%2Fpublic%2Fapple-touch-icon.png`
   return (
     <Head>

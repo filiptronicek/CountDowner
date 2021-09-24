@@ -26,6 +26,7 @@ import {
   dateAddSeconds,
   getTimeZoneCode,
 } from "@utils/timeZones";
+import { useWindowSize } from "../lib/helpers/useWindowSize";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -165,7 +166,7 @@ export default function Home(): JSX.Element {
           </label>
           <AnimatePresence>
             {qrCodeZoom && (
-              <QrModal eventURL={eventURL} setQrCodeZoom={setQrCodeZoom} />
+              <QRModal eventURL={eventURL} setQrCodeZoom={setQrCodeZoom} />
             )}
 
             {defaultEventName !== eventName && (
@@ -230,11 +231,15 @@ export default function Home(): JSX.Element {
   );
 }
 
-const QrModal = (props: {
+
+const QRModal = (props: {
   eventURL: string;
   setQrCodeZoom: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [width, height] = useWindowSize();
+
   const { eventURL, setQrCodeZoom } = props;
+  const size = Math.min(520, width - (width * 0.17), height - (height * 0.17));
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
@@ -248,7 +253,7 @@ const QrModal = (props: {
       }}
     >
       <div className="m-auto bg-white p-4 rounded-2xl shadow-custom">
-        <QRCode value={eventURL} size={520} level="M" />
+        <QRCode value={eventURL} size={size} level="M" />
       </div>
     </motion.div>
   );

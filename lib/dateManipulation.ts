@@ -49,6 +49,13 @@ const reduceOverview = (
   return newDiffs;
 };
 
+/**
+ * Returns a string from an array of date differences.
+ * @param diffs an array of differences betweeen the two dates
+ * @param short a boolean indicating whether to create a short version of the time (used to fit in smaller spaces) or a full one containing all units for maximum percision.
+ * @param units an array of day.js unit types (year, month, ...,)
+ * @returns a string formatted from the values
+ */
 const formatDiffs = (
   diffs: number[],
   short: boolean = false,

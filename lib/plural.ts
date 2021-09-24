@@ -1,7 +1,4 @@
-const plural = (
-  word: string,
-  count: number,
-) => {
+const plural = (word: string, count: number) => {
   if (count === 1) {
     return word;
   }

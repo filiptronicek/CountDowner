@@ -1,4 +1,4 @@
-import { tz } from 'moment-timezone';
+import { tz } from "moment-timezone";
 
 /**
  * Returns the difference between UTC and the provided time zone.
@@ -23,9 +23,9 @@ export function getTimezoneOffset(timeZone: string): number {
  * @returns an abbreviation of the provided timezone
  */
 export const getTimeZoneCode = (timeZoneName?: string) => {
-    const zone = timeZoneName || tz.guess();
-    const momentZone = tz.zone(zone)!;
-    return momentZone.abbr(new Date().getTime());
+  const zone = timeZoneName || tz.guess();
+  const momentZone = tz.zone(zone)!;
+  return momentZone.abbr(new Date().getTime());
 };
 
 /**

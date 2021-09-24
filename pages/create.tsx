@@ -78,7 +78,7 @@ export default function Home() {
     <>
       <div className="flex flex-col items-center justify-between h-screen">
         <Menu />
-        <Head />
+        <Head titlePrefix="Create countdown" />
         <motion.main
           className="text-center"
           initial={{ opacity: 0 }}

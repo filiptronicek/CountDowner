@@ -1,3 +1,5 @@
+import { tz } from 'moment-timezone';
+
 /**
  * Returns the difference between UTC and the provided time zone.
  * @param timeZone a name of the timezone you want to compare to (e.g. `America/Los_Angeles`)
@@ -20,13 +22,10 @@ export function getTimezoneOffset(timeZone: string): number {
  * @param timeZoneName a name of the timezone you want the abbreviation from (e.g. `America/Los_Angeles`)
  * @returns an abbreviation of the provided timezone
  */
-export const getTimeZoneCode = (timeZoneName: string): string => {
-  return new Date()
-    .toLocaleTimeString("en-us", {
-      timeZone: timeZoneName,
-      timeZoneName: "short",
-    })
-    .split(" ")[2];
+export const getTimeZoneCode = (timeZoneName?: string) => {
+    const zone = timeZoneName || tz.guess();
+    const momentZone = tz.zone(zone)!;
+    return momentZone.abbr(new Date().getTime());
 };
 
 /**

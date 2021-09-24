@@ -156,7 +156,7 @@ export default function Home(): JSX.Element {
               {timeZonesNames.map((name) => {
                 return (
                   <option key={name} value={name}>
-                    {name}
+                    {name} ({getTimeZoneCode(name)})
                   </option>
                 );
               })}

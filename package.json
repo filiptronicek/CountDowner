@@ -14,7 +14,7 @@
     "@headlessui/react": "^1.4.1",
     "@vvo/tzdb": "^6.11.0",
     "framer-motion": "^4.1.17",
-    "i18next": "^21.0.1",
+    "i18next": "^21.1.0",
     "ics": "^2.31.0",
     "js-base64": "^3.7.2",
     "lodash.sum": "^4.0.2",

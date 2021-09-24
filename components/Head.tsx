@@ -34,7 +34,6 @@ const PageHead = (props: {
       />
       <link rel="manifest" href="/site.webmanifest"></link>
 
-      <title>CountDowner</title>
       <meta name="description" content="An app for generating countdowns" />
 
       <meta property="og:type" content="website" />

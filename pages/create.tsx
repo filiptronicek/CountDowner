@@ -123,7 +123,9 @@ export default function Home(): JSX.Element {
               timeIntervals={15}
               minDate={new Date()}
               onChange={(val: Date) => {
-                const selectedTimeOffset = getTimezoneOffset(Intl.DateTimeFormat().resolvedOptions().timeZone);
+                const selectedTimeOffset = getTimezoneOffset(
+                  Intl.DateTimeFormat().resolvedOptions().timeZone
+                );
                 const newTimeZoneOffset = getTimezoneOffset(currentTimeZone);
                 setDate(
                   dateAddSeconds(
@@ -231,7 +233,6 @@ export default function Home(): JSX.Element {
   );
 }
 
-
 const QRModal = (props: {
   eventURL: string;
   setQrCodeZoom: React.Dispatch<React.SetStateAction<boolean>>;
@@ -239,7 +240,7 @@ const QRModal = (props: {
   const [width, height] = useWindowSize();
 
   const { eventURL, setQrCodeZoom } = props;
-  const size = Math.min(520, width - (width * 0.17), height - (height * 0.17));
+  const size = Math.min(520, width - width * 0.17, height - height * 0.17);
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}

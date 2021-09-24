@@ -18,12 +18,26 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { timeZonesNames } from "@vvo/tzdb";
+import {
+  getTimezoneOffset,
+  dateAddSeconds,
+  getTimeZoneCode,
+} from "@utils/timeZones";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.extend(relativeTime);
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const { t } = useTranslation();
 
   const [date, setDate] = useState<Date>(new Date());
+  const [currentTimeZone, setSelectedTimeZone] = useState(
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  );
 
   const defaultEventName = "";
   const [eventName, setName] = useState<string>(defaultEventName);
@@ -72,7 +86,7 @@ export default function Home() {
   };
 
   const inputStyle =
-    "w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500";
+    "w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]";
 
   return (
     <>
@@ -108,9 +122,46 @@ export default function Home() {
               timeIntervals={15}
               minDate={new Date()}
               onChange={(val: Date) => {
-                setDate(val);
+                const selectedTimeOffset = getTimezoneOffset(Intl.DateTimeFormat().resolvedOptions().timeZone);
+                const newTimeZoneOffset = getTimezoneOffset(currentTimeZone);
+                setDate(
+                  dateAddSeconds(
+                    val,
+                    (selectedTimeOffset - newTimeZoneOffset) * 3600
+                  )
+                );
               }}
             />
+          </label>
+          <br />
+          <label>
+            Time zone:
+            <select
+              name="tz"
+              id="tz"
+              className={inputStyle}
+              onChange={(val) => {
+                const selectedTimeOffset = getTimezoneOffset(currentTimeZone);
+                const newTimeZoneOffset = getTimezoneOffset(val.target.value);
+                setSelectedTimeZone(val.target.value);
+                setDate(
+                  dateAddSeconds(
+                    date,
+                    (selectedTimeOffset - newTimeZoneOffset) * 3600
+                  )
+                );
+              }}
+              defaultValue={currentTimeZone}
+            >
+              {timeZonesNames.map((name) => {
+                return (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                );
+              })}
+              ;
+            </select>
           </label>
           <AnimatePresence>
             {qrCodeZoom && (
@@ -130,7 +181,8 @@ export default function Home() {
                   <div className="mr-6">
                     <h2 className="text-4xl mb-2">{eventName}</h2>
                     <h3 className="text-2xl text-gray-400">
-                      {dayjs(date).format("dddd, D MMMM YYYY (HH:mm)")}
+                      {dayjs(date).format("dddd, D MMMM YYYY HH:mm")} (
+                      {getTimeZoneCode(currentTimeZone)})
                     </h3>
                   </div>
                   <QRIcon

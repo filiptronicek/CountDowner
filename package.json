@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
+    "@vvo/tzdb": "^6.11.0",
     "framer-motion": "^4.1.17",
     "i18next": "^21.0.1",
     "ics": "^2.31.0",

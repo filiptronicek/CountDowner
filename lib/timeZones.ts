@@ -2,6 +2,8 @@
  * Returns the difference between UTC and the provided time zone.
  * @param timeZone a name of the timezone you want to compare to (e.g. `America/Los_Angeles`)
  * @returns a number in hours representing the time difference between `timeZone` and UTC
+ * @lisense CC BY-SA 4.0 (changes made)
+ * @author @oswaldofreitas
  */
 export function getTimezoneOffset(timeZone: string): number {
   const now = new Date();

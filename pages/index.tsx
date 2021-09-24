@@ -16,7 +16,7 @@ import Footer from "@components/Footer";
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-//import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
 // Day.js customizations
@@ -37,7 +37,7 @@ export default function Home(props: {
   name: string | undefined;
   date: string | undefined;
 }): JSX.Element {
-  //const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const [defaultName, defaultDate] = getNextDefaultEvent(new Date());
 
@@ -49,7 +49,7 @@ export default function Home(props: {
   const [offset, setOffset] = useState(0);
 
   const [shortTime, setShortTime] = useState("");
-  const pageTitle = `${shortTime} until ${eventName}`;
+  const pageTitle = `${shortTime} ${t("until")} ${eventName}`;
 
   const { query }: any = useRouter();
 

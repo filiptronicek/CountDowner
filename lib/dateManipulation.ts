@@ -12,7 +12,14 @@ const parameters: Array<dayjs.UnitType> = [
   "second",
 ];
 
-// A function that makes sure no number overflows happen (13 months, 75 minutes, ..,)
+/**
+ * Returns an array of date differences that have been made sure have no overflow. This for example takes in 65 seconds and returns just 5 (works like modulo).
+ * @param dateFrom a day.js Date object that you want to be your starting date
+ * @param dateTo a day.js Date object that you want to be your ending date
+ * @param diffs an array of differences betweeen the two dates
+ * @param units an array of day.js unit types (year, month, ...,)
+ * @returns an updated `diffs` array containing values with no unit overflow
+ */
 const reduceOverview = (
   dateFrom: dayjs.Dayjs,
   dateTo: dayjs.Dayjs,

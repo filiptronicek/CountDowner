@@ -49,7 +49,9 @@ export default function Home(props: {
   const [offset, setOffset] = useState(0);
 
   const [shortTime, setShortTime] = useState("");
-  const pageTitle = `${shortTime} ${t("until")} ${eventName}`;
+  const pageTitle = parsedDate.isAfter(today)
+    ? `${shortTime} ${t("until")} ${eventName}`
+    : undefined;
 
   const { query }: any = useRouter();
 
@@ -74,14 +76,16 @@ export default function Home(props: {
     if (parsedDate.isAfter(today)) {
       const countDown = setInterval(() => {
         setToday(dayjs());
-        setShortTime(getFormattedDiffs(today, parsedDate, true));
+        setShortTime(
+          getFormattedDiffs(today.add(offset, "milisecond"), parsedDate, true)
+        );
       }, 250);
 
       return () => {
         clearInterval(countDown);
       };
     }
-  }, [parsedDate, today]);
+  }, [parsedDate, today, offset]);
 
   useEffect(() => {
     if (query.name && query.date) {

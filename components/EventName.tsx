@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useTranslation } from "react-i18next";
 
+/**
+ * The component in which the user can change the date, time and name of the event. 
+ * @param props -
+ * @param props.eventName - the name of the event to count down to.
+ * @param props.setName - the React setState for `props.eventName`.
+ * @param props.date - the date of the event to count down to.
+ * @param props.setDate - the React setState for `props.date`.
+ * @returns a component with the event's name and a date time picker.
+ */
 const EventName = (props: {
-  eventName: any;
-  setName: any;
-  date: any;
-  setDate: any;
+  eventName: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  date: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
 }): JSX.Element => {
   const { t, i18n } = useTranslation();
 

@@ -1,7 +1,12 @@
 import plural from "./plural";
 
-// Formats seconds into the biggest possible unit (days, hours, minutes, seconds)
-const formatSeconds = (seconds: number): string => {
+/**
+ * Returns a string which denotes an amount of seconds in a more human readable format (days, hours, minutes, seconds)
+ * @param seconds the amount of seconds to format
+ * @returns a formatted string
+ * @author @filiptronicek
+ */
+const formatTime = (seconds: number): string => {
   const days = Math.floor(seconds / 86400);
   const hours = Math.floor((seconds % 86400) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -19,4 +24,4 @@ const formatSeconds = (seconds: number): string => {
   return `${secondsLeft.toFixed(2)} ${plural("second", secondsLeft)}`;
 };
 
-export default formatSeconds;
+export default formatTime;

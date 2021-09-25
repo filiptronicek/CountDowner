@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
 import _toast, { toast, Toaster } from "react-hot-toast";
 
-import formatSeconds from "@utils/formatSeconds";
+import formatTime from "@utils/formatTime";
 import timeSync from "@utils/timeSync";
 import getFormattedDiffs from "@utils/dateManipulation";
 import getNextDefaultEvent from "@utils/getNextDefaultEvent";
@@ -62,7 +62,7 @@ export default function Home(props: {
       const secondsOffset = Math.abs(diff / 1000);
       if (Math.abs(diff) > 1000) {
         toast.success(
-          `${diff > 0 ? "Added" : "Removed"} ${formatSeconds(secondsOffset)} ${
+          `${diff > 0 ? "Added" : "Removed"} ${formatTime(secondsOffset)} ${
             diff > 0 ? "to" : "from"
           } the time`
         );

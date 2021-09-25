@@ -45,10 +45,10 @@ export default function Home(props: {
   const [eventName, setName] = useState<string>(defaultName);
 
   const parsedDate = dayjs(date);
-  const [today, setToday] = useState(dayjs());
-  const [offset, setOffset] = useState(0);
+  const [today, setToday] = useState<dayjs.Dayjs>(dayjs());
+  const [offset, setOffset] = useState<number>(0);
 
-  const [shortTime, setShortTime] = useState("");
+  const [shortTime, setShortTime] = useState<string>("");
   const pageTitle = parsedDate.isAfter(today)
     ? `${shortTime} ${t("until")} ${eventName}`
     : undefined;

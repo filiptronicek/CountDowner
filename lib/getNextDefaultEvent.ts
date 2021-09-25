@@ -1,3 +1,9 @@
+/**
+ * Returns an event nearest to occur from `now`.
+ * @param now the date the event is calculated from
+ * @returns a tuple of the event name and it's Date object
+ * @author @filiptronicek
+ */
 const getNextDefaultEvent = (now: Date): [string, Date] => {
   const year = now.getFullYear();
   const month = now.getMonth();

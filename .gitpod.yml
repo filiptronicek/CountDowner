@@ -14,7 +14,6 @@ tasks:
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio
   - name: Dev Server
-    before: redis-server &
     init: gp sync-await setup
     command: yarn dev
 
@@ -25,8 +24,6 @@ ports:
   - port: 5555 # Prisma Studio
     onOpen: notify
     visibility: public
-  - port: 6379 # Redis
-    onOpen: ignore
   - port: 3306 # MySQL
     onOpen: ignore
 

@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn generate && next dev",
+    "build": "yarn generate && next build",
+    "generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --preview-feature",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",

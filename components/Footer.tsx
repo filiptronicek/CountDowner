@@ -3,7 +3,7 @@ import _toast, { toast, Toaster } from "react-hot-toast";
 
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import fetch from "node-fetch";
+import fetch, { Response } from "node-fetch";
 
 type contributorType = {
   login: string;
@@ -15,7 +15,7 @@ type contributorType = {
 /**
  * A Footer component for the page.
  * It dynamically loads the project's contributors from the GitHub API and displays them.
- * @returns the site's footer 
+ * @returns the site's footer
  */
 const Footer = (): JSX.Element => {
   const { t } = useTranslation();
@@ -23,23 +23,23 @@ const Footer = (): JSX.Element => {
 
   useEffect(() => {
     fetch("https://api.github.com/repos/filiptronicek/CountDowner/contributors")
-      .then((response: any) => {
+      .then((response: Response) => {
         // Check for errors
         if (!response.ok) {
-          toast.error(
-            `${t("error.contributors")}: (${response.status})`
-          );
+          toast.error(`${t("error.contributors")}: (${response.status})`);
           return [{ login: "filiptronicek", type: "User" }];
         }
         return response.json();
       })
       .then((responseJson: contributorType[]) => {
         const exemptUsers = ["ImgBotApp"];
-        const contributorLogins = responseJson.filter(
-          (contributor: contributorType) =>
-            contributor.type !== "Bot" &&
-            !exemptUsers.includes(contributor.login)
-        ).map((contributor: contributorType) => contributor.login);
+        const contributorLogins = responseJson
+          .filter(
+            (contributor: contributorType) =>
+              contributor.type !== "Bot" &&
+              !exemptUsers.includes(contributor.login)
+          )
+          .map((contributor: contributorType) => contributor.login);
         setContributors(contributorLogins);
       })
       .catch((_error: string) => {

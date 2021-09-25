@@ -119,7 +119,7 @@ export default function Home(props: {
         />
 
         <motion.main
-          className="text-center shadow-custom p-6 rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white"
+          className="text-center shadow-custom rounded-2xl bg-white dark:bg-[#262A2B] text-black dark:text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >

@@ -12,6 +12,11 @@ type contributorType = {
   html_url: string;
 };
 
+/**
+ * A Footer component for the page.
+ * It dynamically loads the project's contributors from the GitHub API and displays them.
+ * @returns the site's footer 
+ */
 const Footer = (): JSX.Element => {
   const { t } = useTranslation();
   const [contributors, setContributors] = useState(["filiptronicek"]);

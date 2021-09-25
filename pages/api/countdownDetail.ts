@@ -11,10 +11,12 @@ export default async function fetchCountDownInfo(
   switch (method) {
     case "GET":
       try {
-        const posts = await prisma.countDown.findUnique({
+        const countDowns = await prisma.countDown.findUnique({
           where: { slug: slug.toString() },
         });
-        res.status(200).json(posts);
+        res
+          .status(200)
+          .json(countDowns || { error: "No countdowns match your search" });
       } catch (e) {
         console.error("Request error", e);
         res.status(500).json({ error: "Error fetching countdown" });

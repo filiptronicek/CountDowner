@@ -8,7 +8,6 @@ tasks:
       cp .env.example .env;
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
       yarn prisma:migrate;
-      yarn prepare;
       gp sync-done setup;
     command: yarn codegen:graphql --watch
   - name: Prisma Studio

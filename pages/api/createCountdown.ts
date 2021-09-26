@@ -7,10 +7,17 @@ const createCountDownLink = async (
   date: number,
   timezone: string
 ) => {
-  const link = await prisma.countDown.create({
-    data: { slug: countdownID(7), timestamp: date, timezone, name },
+  const duplicate = await prisma.countDown.findFirst({
+    where: { timestamp: date, timezone, name },
   });
-  return link;
+  if (!duplicate) {
+    const link = await prisma.countDown.create({
+      data: { slug: countdownID(7), timestamp: date, timezone, name },
+    });
+    return link;
+  } else {
+    return duplicate;
+  }
 };
 
 const requestHandler = async (req: VercelRequest, res: VercelResponse) => {

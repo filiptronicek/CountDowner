@@ -1,26 +1,22 @@
-import dayjs from "dayjs";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
-import _toast, { toast, Toaster } from "react-hot-toast";
-
-import formatTime from "@utils/formatTime";
-import timeSync from "@utils/timeSync";
-import getFormattedDiffs from "@utils/dateManipulation";
-import getNextDefaultEvent from "@utils/getNextDefaultEvent";
-
-import Head from "@components/Head";
-import Menu from "@components/Menu";
-import Footer from "@components/Footer";
-
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-
+import Footer from "@components/Footer";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import getFormattedDiffs from "@utils/dateManipulation";
+import formatTime from "@utils/formatTime";
+import getNextDefaultEvent from "@utils/getNextDefaultEvent";
+import timeSync from "@utils/timeSync";
+import dayjs from "dayjs";
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 dayjs.extend(relativeTime);
 
 const EventName = dynamic(() => import("@components/EventName"), {

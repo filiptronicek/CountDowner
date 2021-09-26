@@ -1,32 +1,26 @@
-import dayjs from "dayjs";
-import React, { useState } from "react";
-import _toast, { toast, Toaster } from "react-hot-toast";
-import DatePicker from "react-datepicker";
-import QRCode from "react-qr-code";
-
-import Head from "@components/Head";
-import Menu from "@components/Menu";
-import Footer from "@components/Footer";
-import Button from "@components/Button";
-import { QRCode as QRIcon } from "@components/create/icons";
-
-import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion } from "framer-motion";
-
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-import { DateTime } from "luxon";
-
+import Button from "@components/Button";
+import { QRCode as QRIcon } from "@components/create/icons";
+import Footer from "@components/Footer";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import { useWindowSize } from "@utils/helpers/useWindowSize";
+import { getTimeZoneCode } from "@utils/timeZones";
+import { timeZonesNames } from "@vvo/tzdb";
+import dayjs from "dayjs";
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
-import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { timeZonesNames } from "@vvo/tzdb";
-import {
-  getTimeZoneCode,
-} from "@utils/timeZones";
-import { useWindowSize } from "@utils/helpers/useWindowSize";
+import utc from "dayjs/plugin/utc";
+import { AnimatePresence, motion } from "framer-motion";
+import { DateTime } from "luxon";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import { toast, Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import QRCode from "react-qr-code";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -177,8 +171,8 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                   <div className="mr-6">
                     <h2 className="text-4xl mb-2">{eventName}</h2>
                     <h3 className="text-2xl text-gray-400">
-                      {date.toFormat("D MMMM HH:mm")}{" "}
-                      ({getTimeZoneCode(currentTimeZone)})
+                      {date.toFormat("D MMMM HH:mm")} (
+                      {getTimeZoneCode(currentTimeZone)})
                     </h3>
                   </div>
                   <QRIcon

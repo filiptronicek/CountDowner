@@ -122,4 +122,4 @@ const getFormattedDiffs = (
 };
 
 export default getFormattedDiffs;
-export { parameters, reduceOverview, formatDiffs, getDiffParams };
+export { formatDiffs, getDiffParams, parameters, reduceOverview };

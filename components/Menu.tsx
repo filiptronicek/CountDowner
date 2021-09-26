@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { useTranslation } from "react-i18next";
 import { Menu, Transition } from "@headlessui/react";
+import Link from "next/link";
 import React, { Fragment } from "react";
-import { FaLanguage } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
+import { FaLanguage } from "react-icons/fa";
 
 const Navbar = (): JSX.Element => {
   const { t, i18n } = useTranslation();

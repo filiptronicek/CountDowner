@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-import { VercelRequest, VercelResponse } from "@vercel/node";
+import { PrismaClient } from "@prisma/client";
 
 // @ts-ignore
 const prisma: PrismaClient = global.prisma || new PrismaClient();

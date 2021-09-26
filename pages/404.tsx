@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import Head from "@components/Head";
-import Link from "next/link";
-
-import Menu from "@components/Menu";
 import Footer from "@components/Footer";
+import Head from "@components/Head";
+import Menu from "@components/Menu";
+import Link from "next/link";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
   const { t } = useTranslation();

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import _toast, { toast, Toaster } from "react-hot-toast";
-
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
 import fetch, { Response } from "node-fetch";
+import React, { useEffect, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 type contributorType = {
   login: string;

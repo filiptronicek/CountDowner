@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import React, { useState } from "react";
 dayjs.extend(relativeTime);
 
 import getFormattedDiffs from "@utils/dateManipulation";

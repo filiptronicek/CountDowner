@@ -26,7 +26,7 @@ import {
   dateAddSeconds,
   getTimeZoneCode,
 } from "@utils/timeZones";
-import { useWindowSize } from "../lib/helpers/useWindowSize";
+import { useWindowSize } from "@utils/helpers/useWindowSize";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

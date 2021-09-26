@@ -1,4 +1,4 @@
-import prisma from "../../lib/prisma";
+import prisma from "@utils/prisma";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
 export const getCountdown = async (slug: string) => {

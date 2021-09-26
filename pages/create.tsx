@@ -52,7 +52,9 @@ export default function Create(props: { baseURL: string }): JSX.Element {
 
   const createLink = async (copy?: boolean) => {
     const req = await fetch(
-      `/api/createCountdown?date=${reducedDate}&name=${encodeURIComponent(eventName)}`
+      `/api/createCountdown?date=${reducedDate}&name=${encodeURIComponent(
+        eventName
+      )}`
     );
     const data = await req.json();
     setLink(data.slug);
@@ -77,7 +79,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           date.getMinutes(),
         ],
         duration: { minutes: 60 },
-        url: `https://countdowner.now.sh/?date=${date.getTime()}&name=${eventName}`,
+        url: eventURL,
       },
       async (error, value) => {
         if (error) {
@@ -215,6 +217,9 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                       // Copy the URL to clipboard
                       if (!navigator.clipboard) {
                         // Clipboard API not available
+                        toast.error(
+                          "Failed to copy! Your browser doesn't support the Clipboard API."
+                        );
                         return;
                       }
                       try {

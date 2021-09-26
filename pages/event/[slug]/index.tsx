@@ -17,9 +17,12 @@ export async function getServerSideProps({ query }: { query: any }) {
       notFound: true,
     };
   }
+
   return {
     redirect: {
-      destination: `/?name=${event.name}&date=${event.timestamp}`,
+      destination: `/?name=${encodeURIComponent(event.name!)}&date=${
+        event.timestamp
+      }`,
       permanent: false,
     },
   };

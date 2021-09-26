@@ -2,10 +2,17 @@ import countdownID from "@utils/createCountdownID";
 import prisma from "@utils/prisma";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
+/**
+ * Creates an event in the database
+ * @param name - a name for the event to be created
+ * @param date - the date of the event
+ * @param timezone - the timezone of the event (optional)
+ * @returns information about the event
+ */
 const createCountDownLink = async (
   name: string,
   date: number,
-  timezone: string
+  timezone?: string
 ) => {
   const duplicate = await prisma.countDown.findFirst({
     where: { timestamp: date, timezone, name },

@@ -55,7 +55,6 @@ export default function Create(props: { baseURL: string }): JSX.Element {
       `/api/createCountdown?date=${reducedDate}&name=${eventName}`
     );
     const data = await req.json();
-    console.log(data);
     setLink(data.slug);
     if (copy) {
       await navigator.clipboard.writeText(`${baseURL}/event/${data.slug}`);

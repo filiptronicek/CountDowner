@@ -24,8 +24,12 @@ export function getTimezoneOffset(timeZone: string): number {
  */
 export const getTimeZoneCode = (timeZoneName?: string) => {
   const zone = timeZoneName || tz.guess();
-  const momentZone = tz.zone(zone)!;
-  return momentZone.abbr(new Date().getTime());
+  const momentZone = tz.zone(zone);
+  if (momentZone) {
+    return momentZone.abbr(new Date().getTime());
+  } else {
+    return momentZone;
+  }
 };
 
 /**
@@ -35,5 +39,5 @@ export const getTimeZoneCode = (timeZoneName?: string) => {
  * @returns a new Date object with `seconds` added.
  */
 export function dateAddSeconds(date: Date, seconds: number): Date {
-  return new Date(Date.parse(date.toString()) + seconds * 1000);
+  return new Date(date.getTime() + seconds * 1000);
 }

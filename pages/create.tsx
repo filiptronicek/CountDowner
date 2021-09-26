@@ -52,7 +52,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
 
   const createLink = async (copy?: boolean) => {
     const req = await fetch(
-      `/api/createCountdown?date=${reducedDate}&name=${eventName}`
+      `/api/createCountdown?date=${reducedDate}&name=${encodeURIComponent(eventName)}`
     );
     const data = await req.json();
     setLink(data.slug);

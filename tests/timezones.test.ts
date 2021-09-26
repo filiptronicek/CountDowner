@@ -8,10 +8,10 @@ test("Date additions are calculated correctly", () => {
 
 test("Timezones are abbreviated correctly", () => {
   const tzs = ["Europe/Prague", "Europe/London", "Asia/Kolkata"];
-const computedAbbrs = [];
-    for (const t of tzs) {
-        computedAbbrs.push(timezone.getTimeZoneCode(t));
-    }
+  const computedAbbrs = [];
+  for (const t of tzs) {
+    computedAbbrs.push(timezone.getTimeZoneCode(t));
+  }
 
   expect(computedAbbrs).toEqual(["CEST", "BST", "IST"]);
 });

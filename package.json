@@ -23,6 +23,7 @@
     "ics": "^2.31.0",
     "js-base64": "^3.7.2",
     "lodash.sum": "^4.0.2",
+    "luxon": "^2.0.2",
     "moment-timezone": "^0.5.33",
     "next": "11.1.2",
     "node-fetch": "^2.6.2",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/lodash.sum": "^4.0.6",
+    "@types/luxon": "^2.0.4",
     "@types/node-fetch": "^2.5.12",
     "@types/react": "17.0.24",
     "@types/react-datepicker": "^4.1.7",

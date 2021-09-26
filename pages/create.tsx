@@ -16,6 +16,8 @@ import { AnimatePresence, motion } from "framer-motion";
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
+import luxon, { DateTime } from "luxon";
+
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
@@ -34,17 +36,15 @@ dayjs.extend(relativeTime);
 
 export default function Create(props: { baseURL: string }): JSX.Element {
   const { t } = useTranslation();
-  const [date, setDate] = useState<Date>(new Date());
-  const [currentTimeZone, setSelectedTimeZone] = useState(
-    Intl.DateTimeFormat().resolvedOptions().timeZone
-  );
+  const [date, setDate] = useState<DateTime>(DateTime.now());
+  const currentTimeZone = date.zoneName;
   const [link, setLink] = useState<string>("");
 
   const defaultEventName = "";
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
 
-  const reducedDate = Math.floor(date.getTime() / 1000);
+  const reducedDate = Math.floor(date.toMillis() / 1000);
   const { baseURL } = props;
   const eventURL = link
     ? `${baseURL}/event/${link}`
@@ -71,13 +71,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
       {
         title: eventName,
         busyStatus: "FREE",
-        start: [
-          date.getFullYear(),
-          date.getMonth() + 1,
-          date.getDate(),
-          date.getHours(),
-          date.getMinutes(),
-        ],
+        start: [date.year, date.month, date.day, date.hour, date.minute],
         duration: { minutes: 60 },
         url: eventURL,
       },
@@ -135,21 +129,12 @@ export default function Create(props: { baseURL: string }): JSX.Element {
             <DatePicker
               dateFormat="dd/MM/yyyy"
               className={inputStyle}
-              selected={date}
+              selected={date.toJSDate()}
               showTimeSelect
               timeIntervals={15}
               minDate={new Date()}
-              onChange={(val: Date) => {
-                const selectedTimeOffset = getTimezoneOffset(
-                  Intl.DateTimeFormat().resolvedOptions().timeZone
-                );
-                const newTimeZoneOffset = getTimezoneOffset(currentTimeZone);
-                setDate(
-                  dateAddSeconds(
-                    val,
-                    (selectedTimeOffset - newTimeZoneOffset) * 3600
-                  )
-                );
+              onChange={(selectedDate: Date) => {
+                setDate(DateTime.fromMillis(selectedDate.getTime()));
               }}
             />
           </label>
@@ -161,15 +146,8 @@ export default function Create(props: { baseURL: string }): JSX.Element {
               id="tz"
               className={inputStyle}
               onChange={(val) => {
-                const selectedTimeOffset = getTimezoneOffset(currentTimeZone);
-                const newTimeZoneOffset = getTimezoneOffset(val.target.value);
-                setSelectedTimeZone(val.target.value);
-                setDate(
-                  dateAddSeconds(
-                    date,
-                    (selectedTimeOffset - newTimeZoneOffset) * 3600
-                  )
-                );
+                const tz = val.target.value;
+                setDate(date.setZone(tz, { keepLocalTime: true }));
               }}
               defaultValue={currentTimeZone}
             >
@@ -201,8 +179,8 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                   <div className="mr-6">
                     <h2 className="text-4xl mb-2">{eventName}</h2>
                     <h3 className="text-2xl text-gray-400">
-                      {dayjs(date).format("dddd, D MMMM YYYY HH:mm")} (
-                      {getTimeZoneCode(currentTimeZone)})
+                      {date.toFormat("D MMMM HH:mm")}{" "}
+                      ({getTimeZoneCode(currentTimeZone)})
                     </h3>
                   </div>
                   <QRIcon

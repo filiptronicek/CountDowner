@@ -9,7 +9,7 @@ tasks:
       echo "BASE_URL=\"$(gp url 3000)\"" >> .env;
       yarn prisma:migrate;
       gp sync-done setup;
-    command: yarn codegen:graphql --watch
+    command: echo "Welcome!"
   - name: Prisma Studio
     init: gp sync-await setup
     command: BROWSER=none yarn prisma studio

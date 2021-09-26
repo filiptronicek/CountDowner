@@ -16,7 +16,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-import luxon, { DateTime } from "luxon";
+import { DateTime } from "luxon";
 
 // Day.js customizations
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -24,8 +24,6 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { timeZonesNames } from "@vvo/tzdb";
 import {
-  getTimezoneOffset,
-  dateAddSeconds,
   getTimeZoneCode,
 } from "@utils/timeZones";
 import { useWindowSize } from "@utils/helpers/useWindowSize";

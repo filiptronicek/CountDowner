@@ -32,20 +32,36 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
 
-export default function Home(): JSX.Element {
+export default function Create(props: { baseURL: string }): JSX.Element {
   const { t } = useTranslation();
-
   const [date, setDate] = useState<Date>(new Date());
   const [currentTimeZone, setSelectedTimeZone] = useState(
     Intl.DateTimeFormat().resolvedOptions().timeZone
   );
+  const [link, setLink] = useState<string>("");
 
   const defaultEventName = "";
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
 
   const reducedDate = Math.floor(date.getTime() / 1000);
-  const eventURL = `https://countdowner.now.sh/?date=${reducedDate}&name=${eventName}`;
+  const { baseURL } = props;
+  const eventURL = link
+    ? `${baseURL}/event/${link}`
+    : `${baseURL}/?date=${reducedDate}&name=${eventName}`;
+
+  const createLink = async (copy?: boolean) => {
+    const req = await fetch(
+      `/api/createCountdown?date=${reducedDate}&name=${eventName}`
+    );
+    const data = await req.json();
+    console.log(data);
+    setLink(data.slug);
+    if (copy) {
+      await navigator.clipboard.writeText(`${baseURL}/event/${data.slug}`);
+    }
+    return data.slug;
+  };
 
   const downloadIcal = async () => {
     const createEvent = (await import("ics")).createEvent;
@@ -203,7 +219,7 @@ export default function Home(): JSX.Element {
                         return;
                       }
                       try {
-                        await navigator.clipboard.writeText(eventURL);
+                        await createLink(true);
                         toast.success("Copied to clipboard");
                       } catch (err: any) {
                         toast.error("Failed to copy!", err);
@@ -259,3 +275,7 @@ const QRModal = (props: {
     </motion.div>
   );
 };
+
+export async function getServerSideProps() {
+  return { props: { baseURL: process.env.VERCEL_URL || process.env.BASE_URL } };
+}

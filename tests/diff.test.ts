@@ -1,4 +1,4 @@
-import { getDiffParams } from "@utils/dateManipulation";
+import { getDiffParams } from "../lib/dateManipulation";
 import dayjs from "dayjs";
 
 test("The difference in seconds is computed correctly", () => {

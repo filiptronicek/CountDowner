@@ -1,4 +1,4 @@
-import getFormattedDiffs from "@utils/dateManipulation";
+import getFormattedDiffs from "../lib/dateManipulation";
 import dayjs from "dayjs";
 
 test("Expired countdowns terminate with an output", () => {

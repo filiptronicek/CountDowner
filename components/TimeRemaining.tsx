@@ -1,17 +1,17 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import React, { useState } from "react";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import React, { useState } from 'react';
 dayjs.extend(relativeTime);
 
-import getFormattedDiffs from "@utils/dateManipulation";
+import getFormattedDiffs from '@utils/dateManipulation';
 
 const parameters: Array<dayjs.UnitType> = [
-  "year",
-  "month",
-  "day",
-  "hour",
-  "minute",
-  "second",
+  'year',
+  'month',
+  'day',
+  'hour',
+  'minute',
+  'second',
 ];
 
 const possibleStates = [
@@ -34,10 +34,10 @@ const TimeRemaining = (props: {
   const currentStateIndex = possibleStates.indexOf(state);
 
   const formattedDiff = getFormattedDiffs(
-    countingFrom.add(timeOffset, "ms"),
+    countingFrom.add(timeOffset, 'ms'),
     countingTo,
     false,
-    state
+    state,
   );
 
   const handleNextState = (): void => {
@@ -48,7 +48,7 @@ const TimeRemaining = (props: {
     }
   };
 
-  if (countingTo.isAfter(countingFrom) && formattedDiff === "Expired") {
+  if (countingTo.isAfter(countingFrom) && formattedDiff === 'Expired') {
     handleNextState();
   }
 
@@ -66,8 +66,8 @@ const TimeRemaining = (props: {
         </div>
       ) : (
         <div className="mt-5 text-4xl text-black dark:text-white">
-          This countdown has passed{" "}
-          {countingFrom.add(timeOffset, "ms").to(countingTo)}
+          This countdown has passed{' '}
+          {countingFrom.add(timeOffset, 'ms').to(countingTo)}
         </div>
       )}
     </div>

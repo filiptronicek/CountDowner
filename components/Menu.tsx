@@ -1,10 +1,10 @@
-import { Menu, Transition } from "@headlessui/react";
-import Link from "next/link";
-import React, { Fragment } from "react";
-import { useTranslation } from "react-i18next";
-import { AiOutlineMenu } from "react-icons/ai";
-import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
-import { FaLanguage } from "react-icons/fa";
+import { Menu, Transition } from '@headlessui/react';
+import Link from 'next/link';
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
+import { FaLanguage } from 'react-icons/fa';
 
 const Navbar = (): JSX.Element => {
   const { t, i18n } = useTranslation();
@@ -14,11 +14,11 @@ const Navbar = (): JSX.Element => {
       {/* PC navbar */}
       <div className="hidden sm:block w-full text-xm bg-[#262A2B] text-white cursor-pointer h-14">
         <Link href="/" passHref>
-          <a className="float-left p-4 hover:bg-[#181818]">{t("Home")}</a>
+          <a className="float-left p-4 hover:bg-[#181818]">{t('Home')}</a>
         </Link>
         <Link href="/create" passHref>
           <a className="float-left p-4 hover:bg-[#181818]">
-            {t("Create countdown")}
+            {t('Create countdown')}
           </a>
         </Link>
         <Link href="https://github.com/filiptronicek/CountDowner" passHref>
@@ -27,7 +27,7 @@ const Navbar = (): JSX.Element => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            {t("Source code")}
+            {t('Source code')}
           </a>
         </Link>
 
@@ -78,12 +78,12 @@ const Navbar = (): JSX.Element => {
           >
             <Link href="/" passHref>
               <a className="hover:text-green-400 cursor-pointer hover:bg-[#181818] pl-4  py-4">
-                {t("Home")}
+                {t('Home')}
               </a>
             </Link>
             <Link href="/create" passHref>
               <a className="hover:text-green-400 cursor-pointer hover:bg-[#181818] pl-4 py-4">
-                {t("Create countdown")}
+                {t('Create countdown')}
               </a>
             </Link>
             <Link href="https://github.com/filiptronicek/CountDowner" passHref>
@@ -92,14 +92,14 @@ const Navbar = (): JSX.Element => {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {t("Source code")}
+                {t('Source code')}
               </a>
             </Link>
             <Menu>
               <Menu.Button as={Fragment}>
                 {({ open }) => (
                   <a className="p-4 flex text-gray-100 border-t-[1px] border-gray-700 hover:bg-[#181818]">
-                    Languages{" "}
+                    Languages{' '}
                     {open ? (
                       <BsCaretUpFill className="ml-2 mt-[2px]" />
                     ) : (
@@ -130,12 +130,12 @@ const Navbar = (): JSX.Element => {
                           {language}
                         </a>
                       );
-                    }
+                    },
                   )}
                 </Menu.Items>
               </Transition>
             </Menu>
-          </Menu.Items>{" "}
+          </Menu.Items>{' '}
         </Transition>
       </Menu>
     </>

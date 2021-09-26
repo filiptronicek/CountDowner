@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion } from 'framer-motion';
+import React from 'react';
 
 const QRCode = (props: {
   onClick: React.MouseEventHandler<SVGElement>;

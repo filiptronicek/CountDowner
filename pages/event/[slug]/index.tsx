@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import prisma from "../../../lib/prisma";
+import { getCountdown } from "../../api/countdownDetail";
 
 const CountDownRedirect = () => {
   const router = useRouter();
@@ -9,9 +9,7 @@ const CountDownRedirect = () => {
 };
 
 export async function getServerSideProps({ query }: { query: any }) {
-  const event = await prisma.countDown.findUnique({
-    where: { slug: query.slug },
-  });
+  const event = await getCountdown(query.slug);
   if (!event) {
     return {
       notFound: true,

@@ -1,4 +1,4 @@
-import getRandomValues from "get-random-values";
+import getRandomValues from 'get-random-values';
 
 const getRandomID = (n: number): string => {
   return [...getRandomValues(new Uint8Array(n))]
@@ -6,9 +6,9 @@ const getRandomID = (n: number): string => {
       (x, i) => (
         (i = ((x / 255) * 61) | 0),
         String.fromCharCode(i + (i > 9 ? (i > 35 ? 61 : 55) : 48))
-      )
+      ),
     )
-    .join("");
+    .join('');
 };
 
 export default getRandomID;

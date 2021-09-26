@@ -22,7 +22,7 @@ const timeSync = async (): Promise<number> => {
   const syncData: syncResponseType = await syncRequest.json();
   const nowstamp = Date.now();
   const adjustedOffset = Math.round(
-    syncData.result.ms - (nowstamp - currentTime) / 2
+    syncData.result.ms - (nowstamp - currentTime) / 2,
   );
 
   return adjustedOffset;

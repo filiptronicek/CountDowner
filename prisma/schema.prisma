@@ -2,9 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
@@ -14,8 +14,8 @@ generator client {
 }
 
 model CountDown {
-  id        Int     @id @default(autoincrement())
-  slug      String  @unique
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
   createdAt DateTime @default(now())
   name      String?
   timestamp Int

@@ -1,5 +1,5 @@
-import prisma from "@utils/prisma";
-import { VercelRequest, VercelResponse } from "@vercel/node";
+import prisma from '@utils/prisma';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const getCountdown = async (slug: string) => {
   const countDown = await prisma.countDown.findUnique({
@@ -10,25 +10,25 @@ export const getCountdown = async (slug: string) => {
 
 export default async function fetchCountDownInfo(
   req: VercelRequest,
-  res: VercelResponse
+  res: VercelResponse,
 ) {
   const { method, query } = req;
-  const { slug = "" } = query;
+  const { slug = '' } = query;
 
   switch (method) {
-    case "GET":
+    case 'GET':
       try {
         const countDown = await getCountdown(slug.toString());
         res
           .status(countDown ? 200 : 404)
-          .json(countDown || { error: "No countdowns match your search" });
+          .json(countDown || { error: 'No countdowns match your search' });
       } catch (e) {
-        console.error("Request error", e);
-        res.status(500).json({ error: "Error fetching countdown" });
+        console.error('Request error', e);
+        res.status(500).json({ error: 'Error fetching countdown' });
       }
       break;
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader('Allow', ['GET']);
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }

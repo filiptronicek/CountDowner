@@ -1,15 +1,15 @@
-import dayjs from "dayjs";
-import sum from "lodash.sum";
+import dayjs from 'dayjs';
+import sum from 'lodash.sum';
 
-import plural from "./plural";
+import plural from './plural';
 
 const parameters: Array<dayjs.UnitType> = [
-  "year",
-  "month",
-  "day",
-  "hour",
-  "minute",
-  "second",
+  'year',
+  'month',
+  'day',
+  'hour',
+  'minute',
+  'second',
 ];
 
 /**
@@ -24,7 +24,7 @@ const reduceOverview = (
   dateFrom: dayjs.Dayjs,
   dateTo: dayjs.Dayjs,
   diffs: number[],
-  units: Array<dayjs.UnitType> = parameters
+  units: Array<dayjs.UnitType> = parameters,
 ): number[] => {
   const newDiffs: number[] = [];
 
@@ -37,7 +37,7 @@ const reduceOverview = (
       // For other units, use dayjs.subtract() to prevent overflowing values
       const reducedDate = dateTo.subtract(
         diffs[index === 0 ? index : index - 1],
-        units[index === 0 ? index : index - 1]
+        units[index === 0 ? index : index - 1],
       );
       const newDiff = reducedDate.diff(dateFrom, units[index]);
       newDiffs.push(newDiff);
@@ -59,7 +59,7 @@ const reduceOverview = (
 const formatDiffs = (
   diffs: number[],
   short: boolean = false,
-  units: Array<dayjs.UnitType> = parameters
+  units: Array<dayjs.UnitType> = parameters,
 ): string => {
   const outputValues = [];
   const wentThrough = [];
@@ -71,29 +71,29 @@ const formatDiffs = (
     if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
       if (short) {
-        if (["year", "month", "day"].includes(unit)) {
+        if (['year', 'month', 'day'].includes(unit)) {
           outputValues.push(`${unitValue} ${plural(unit, unitValue)}`);
           break;
         } else {
           // If the unit is an hour, minute or a second, format the time in HH:mm:ss
-          outputValues.push(`${unitValue.toString().padStart(2, "0")}`);
+          outputValues.push(`${unitValue.toString().padStart(2, '0')}`);
         }
       } else {
         outputValues.push(
-          `${unitValue.toLocaleString()} ${plural(unit, unitValue)}`
+          `${unitValue.toLocaleString()} ${plural(unit, unitValue)}`,
         );
       }
     }
     index++;
   }
 
-  return short ? outputValues.join(":") : outputValues.join(" ");
+  return short ? outputValues.join(':') : outputValues.join(' ');
 };
 
 const getDiffParams = (
   from: dayjs.Dayjs,
   to: dayjs.Dayjs,
-  units: Array<dayjs.UnitType> = parameters
+  units: Array<dayjs.UnitType> = parameters,
 ): number[] => {
   const diffs: number[] = [];
 
@@ -109,7 +109,7 @@ const getFormattedDiffs = (
   today: dayjs.Dayjs,
   parsed: dayjs.Dayjs,
   short: boolean = false,
-  customParameters: Array<dayjs.UnitType> = parameters
+  customParameters: Array<dayjs.UnitType> = parameters,
 ): string => {
   const diffs = getDiffParams(today, parsed, customParameters);
 
@@ -117,7 +117,7 @@ const getFormattedDiffs = (
     const reducedDiffs = reduceOverview(today, parsed, diffs, customParameters);
     return formatDiffs(reducedDiffs, short, customParameters);
   } else {
-    return "Expired";
+    return 'Expired';
   }
 };
 

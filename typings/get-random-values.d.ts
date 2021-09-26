@@ -1,4 +1,4 @@
-declare module "get-random-values" {
+declare module 'get-random-values' {
   type TypedArray =
     | Int8Array
     | Uint8Array
@@ -7,5 +7,5 @@ declare module "get-random-values" {
     | Int32Array
     | Uint32Array;
 
-  export default function getRandomValues(array: TypedArray) : any;
+  export default function getRandomValues(array: TypedArray): any;
 }

@@ -1,5 +1,5 @@
-import Head from "next/head";
-import React from "react";
+import Head from 'next/head';
+import React from 'react';
 
 /**
  * A dynamically configurable <head> of the site.
@@ -20,7 +20,7 @@ const PageHead = (props: {
     name &&
     date &&
     `https://countdowner-og.vercel.app/${encodeURIComponent(
-      imageText
+      imageText,
     )}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fraw.githubusercontent.com%2Ffiliptronicek%2FCountDowner%2Fmain%2Fpublic%2Fapple-touch-icon.png`;
   return (
     <Head>

@@ -11,9 +11,9 @@ const getNextDefaultEvent = (now: Date): [string, Date] => {
 
   // If Christmas was this year already, return New Year's Day
   if (month === 12 && day > 24) {
-    return ["New Years", new Date(year + 1, 0, 1)];
+    return ['New Years', new Date(year + 1, 0, 1)];
   } else {
-    return ["Christmas", new Date(year, 11, 25)];
+    return ['Christmas', new Date(year, 11, 25)];
   }
 };
 

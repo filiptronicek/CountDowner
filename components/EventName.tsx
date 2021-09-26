@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { useTranslation } from 'react-i18next';
 
 /**
  * The component in which the user can change the date, time and name of the event.
@@ -34,7 +34,7 @@ const EventName = (props: {
             setEditingTitle(false);
           }}
           onKeyUp={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               setEditingTitle(false);
             }
           }}
@@ -55,7 +55,7 @@ const EventName = (props: {
         </div>
       )}
       <div className="text-3xl flex justify-center items-center flex-wrap">
-        <span>{t("Counting down to")}</span>
+        <span>{t('Counting down to')}</span>
         <DatePicker
           className="bg-white dark:bg-[#262A2B] text-black dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-xl p-2"
           dateFormat="dd/MM/yyyy"

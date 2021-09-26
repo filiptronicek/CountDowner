@@ -1,26 +1,26 @@
 // Datepicker
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
-import Button from "@components/Button";
-import { QRCode as QRIcon } from "@components/create/icons";
-import Footer from "@components/Footer";
-import Head from "@components/Head";
-import Menu from "@components/Menu";
-import { useWindowSize } from "@utils/helpers/useWindowSize";
-import { getTimeZoneCode } from "@utils/timeZones";
-import { timeZonesNames } from "@vvo/tzdb";
-import dayjs from "dayjs";
+import Button from '@components/Button';
+import { QRCode as QRIcon } from '@components/create/icons';
+import Footer from '@components/Footer';
+import Head from '@components/Head';
+import Menu from '@components/Menu';
+import { useWindowSize } from '@utils/helpers/useWindowSize';
+import { getTimeZoneCode } from '@utils/timeZones';
+import { timeZonesNames } from '@vvo/tzdb';
+import dayjs from 'dayjs';
 // Day.js customizations
-import relativeTime from "dayjs/plugin/relativeTime";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-import { AnimatePresence, motion } from "framer-motion";
-import { DateTime } from "luxon";
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import { toast, Toaster } from "react-hot-toast";
-import { useTranslation } from "react-i18next";
-import QRCode from "react-qr-code";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import { AnimatePresence, motion } from 'framer-motion';
+import { DateTime } from 'luxon';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { toast, Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+import QRCode from 'react-qr-code';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -30,9 +30,9 @@ export default function Create(props: { baseURL: string }): JSX.Element {
   const { t } = useTranslation();
   const [date, setDate] = useState<DateTime>(DateTime.now());
   const currentTimeZone = date.zoneName;
-  const [link, setLink] = useState<string>("");
+  const [link, setLink] = useState<string>('');
 
-  const defaultEventName = "";
+  const defaultEventName = '';
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
 
@@ -45,8 +45,8 @@ export default function Create(props: { baseURL: string }): JSX.Element {
   const createLink = async (copy?: boolean) => {
     const req = await fetch(
       `/api/createCountdown?date=${reducedDate}&name=${encodeURIComponent(
-        eventName
-      )}`
+        eventName,
+      )}`,
     );
     const data = await req.json();
     setLink(data.slug);
@@ -57,12 +57,12 @@ export default function Create(props: { baseURL: string }): JSX.Element {
   };
 
   const downloadIcal = async () => {
-    const createEvent = (await import("ics")).createEvent;
+    const createEvent = (await import('ics')).createEvent;
 
     createEvent(
       {
         title: eventName,
-        busyStatus: "FREE",
+        busyStatus: 'FREE',
         start: [date.year, date.month, date.day, date.hour, date.minute],
         duration: { minutes: 60 },
         url: eventURL,
@@ -72,25 +72,25 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           console.log(error);
         }
         // Create a blob of the value and save it as event.ics
-        const blob = new Blob([value], { type: "text/calendar" });
+        const blob = new Blob([value], { type: 'text/calendar' });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
+        const a = document.createElement('a');
         a.href = url;
 
-        const unidecode = (await import("unidecode")).default;
+        const unidecode = (await import('unidecode')).default;
 
         const fileName = `${unidecode(eventName)}.ics`
           .toLowerCase()
-          .replaceAll(" ", "-");
+          .replaceAll(' ', '-');
 
         a.download = fileName;
         a.click();
-      }
+      },
     );
   };
 
   const inputStyle =
-    "w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]";
+    'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
   return (
     <>
@@ -103,9 +103,9 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           animate={{ opacity: 1 }}
         >
           <Toaster />
-          <h1 className="text-3xl">{t("Create a new countdown")}</h1>
+          <h1 className="text-3xl">{t('Create a new countdown')}</h1>
 
-          <label htmlFor="name">{t("Event name")}: </label>
+          <label htmlFor="name">{t('Event name')}: </label>
           <input
             id="name"
             type="text"
@@ -117,7 +117,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           />
           <br />
           <label>
-            {t("Event date & time")}:
+            {t('Event date & time')}:
             <DatePicker
               dateFormat="dd/MM/yyyy"
               className={inputStyle}
@@ -171,7 +171,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                   <div className="mr-6">
                     <h2 className="text-4xl mb-2">{eventName}</h2>
                     <h3 className="text-2xl text-gray-400">
-                      {date.toFormat("D MMMM HH:mm")} (
+                      {date.toFormat('D MMMM HH:mm')} (
                       {getTimeZoneCode(currentTimeZone)})
                     </h3>
                   </div>
@@ -188,28 +188,28 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                       if (!navigator.clipboard) {
                         // Clipboard API not available
                         toast.error(
-                          "Failed to copy! Your browser doesn't support the Clipboard API."
+                          "Failed to copy! Your browser doesn't support the Clipboard API.",
                         );
                         return;
                       }
                       try {
                         await createLink(true);
-                        toast.success("Copied to clipboard");
+                        toast.success('Copied to clipboard');
                       } catch (err: any) {
-                        toast.error("Failed to copy!", err);
+                        toast.error('Failed to copy!', err);
                       }
                     }}
                   >
-                    <>{t("Copy link")}</>
+                    <>{t('Copy link')}</>
                   </Button>
 
                   <Button
                     onClick={() => {
-                      toast.success("Event created!");
+                      toast.success('Event created!');
                       downloadIcal();
                     }}
                   >
-                    <> {t("Download")} .ics</>
+                    <> {t('Download')} .ics</>
                   </Button>
                 </div>
               </motion.div>

@@ -1,4 +1,4 @@
-import plural from "./plural";
+import plural from './plural';
 
 /**
  * Returns a string which denotes an amount of seconds in a more human readable format (days, hours, minutes, seconds)
@@ -13,15 +13,15 @@ const formatTime = (seconds: number): string => {
   const secondsLeft = seconds % 60;
 
   if (days > 0) {
-    return `~${days} ${plural("day", days)}`;
+    return `~${days} ${plural('day', days)}`;
   }
   if (hours > 0) {
-    return `~${hours} ${plural("hour", hours)}`;
+    return `~${hours} ${plural('hour', hours)}`;
   }
   if (minutes > 0) {
-    return `~${minutes} ${plural("minute", minutes)}`;
+    return `~${minutes} ${plural('minute', minutes)}`;
   }
-  return `${secondsLeft.toFixed(2)} ${plural("second", secondsLeft)}`;
+  return `${secondsLeft.toFixed(2)} ${plural('second', secondsLeft)}`;
 };
 
 export default formatTime;

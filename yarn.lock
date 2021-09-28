@@ -1149,12 +1149,10 @@
     ts-node "8.9.1"
     typescript "4.3.4"
 
-"@vvo/tzdb@^6.19.0":
-  version "6.19.0"
-  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.19.0.tgz#05c346d079ba048e6efe6836e46f812f7803f16b"
-  integrity sha512-6Ecl/1H06EJpl77ADBf5pkrBxyQOSAnwMX2ao7NVWp+hcP8TE1DqKuitxHLmu293Naef5Q1ylb7tIAEyZzgYTw==
-  dependencies:
-    luxon "1.26.0"
+"@vvo/tzdb@^6.21.0":
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.21.0.tgz#22b17dc390ca9ab622ca089e518ffae83375976f"
+  integrity sha512-yW6tRzUihnW2we3yvsTmb9+iDHawkiABl1uaFVorrGwy4K5WAoPWGnNBR7o0uIRNqqitXGEFm66voXOlLYvR+g==
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
@@ -4273,11 +4271,6 @@ lru_map@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
   integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
-
-luxon@1.26.0:
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.26.0.tgz#d3692361fda51473948252061d0f8561df02b578"
-  integrity sha512-+V5QIQ5f6CDXQpWNICELwjwuHdqeJM1UenlZWx5ujcRMc9venvluCjFb4t5NYLhb6IhkbMVOxzVuOqkgMxee2A==
 
 luxon@^2.0.2:
   version "2.0.2"

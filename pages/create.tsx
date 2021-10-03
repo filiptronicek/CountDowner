@@ -8,12 +8,9 @@ import { useWindowSize } from '@utils/helpers/useWindowSize';
 import { getTimeZoneCode } from '@utils/timeZones';
 import { timeZonesNames } from '@vvo/tzdb';
 import dayjs from 'dayjs';
-
-// Day.js customizations
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-
 import { AnimatePresence, motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';

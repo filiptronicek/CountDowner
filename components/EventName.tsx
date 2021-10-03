@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
+
+const inputStyle =
+  'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
 /**
  * The component in which the user can change the date, time and name of the event.
@@ -17,7 +20,7 @@ const EventName = (props: {
   date: Date;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
 }): JSX.Element => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
   const { eventName, setName, date, setDate } = props;
@@ -56,15 +59,12 @@ const EventName = (props: {
       )}
       <div className="text-3xl flex justify-center items-center flex-wrap">
         <span>{t('Counting down to')}</span>
-        <DatePicker
-          className="bg-white dark:bg-[#262A2B] text-black dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-xl p-2"
-          dateFormat="dd/MM/yyyy"
-          selected={date}
-          showTimeSelect
-          timeIntervals={15}
-          minDate={new Date()}
-          onChange={(val: Date) => {
-            setDate(val);
+        <input
+          type="datetime-local"
+          className={inputStyle}
+          defaultValue={dayjs(date).format('YYYY-MM-DDThh:mm')}
+          onChange={(e) => {
+            setDate(new Date(e.target.value));
           }}
         />
       </div>

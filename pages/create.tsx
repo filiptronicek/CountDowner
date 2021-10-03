@@ -1,6 +1,4 @@
 // Datepicker
-import 'react-datepicker/dist/react-datepicker.css';
-
 import Button from '@components/Button';
 import { QRCode as QRIcon } from '@components/create/icons';
 import Footer from '@components/Footer';
@@ -10,13 +8,16 @@ import { useWindowSize } from '@utils/helpers/useWindowSize';
 import { getTimeZoneCode } from '@utils/timeZones';
 import { timeZonesNames } from '@vvo/tzdb';
 import dayjs from 'dayjs';
+
 // Day.js customizations
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 import { toast, Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'react-qr-code';
@@ -24,6 +25,9 @@ import QRCode from 'react-qr-code';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
+
+const inputStyle =
+  'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
 export default function Create(props: { baseURL: string }): JSX.Element {
   const { t } = useTranslation();
@@ -87,9 +91,6 @@ export default function Create(props: { baseURL: string }): JSX.Element {
       },
     );
   };
-
-  const inputStyle =
-    'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
   return (
     <>

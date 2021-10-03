@@ -12,7 +12,7 @@
     "react/prop-types": "off",
     "react/no-unescaped-entities": "off",
     "no-unused-vars": "warn",
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "warn",
     "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@next/next/no-img-element": "off",

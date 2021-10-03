@@ -17,7 +17,6 @@ import utc from 'dayjs/plugin/utc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import { toast, Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'react-qr-code';
@@ -118,15 +117,13 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           <br />
           <label>
             {t('Event date & time')}:
-            <DatePicker
-              dateFormat="dd/MM/yyyy"
+            <input
+              type="datetime-local"
               className={inputStyle}
-              selected={date.toJSDate()}
-              showTimeSelect
-              timeIntervals={15}
-              minDate={new Date()}
-              onChange={(selectedDate: Date) => {
-                setDate(DateTime.fromMillis(selectedDate.getTime()));
+              onChange={(e) => {
+                setDate(
+                  DateTime.fromMillis(new Date(e.target.value).getTime()),
+                );
               }}
             />
           </label>

@@ -2,24 +2,44 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@utils/*": ["./lib/*"]
+      "@components/*": [
+        "./components/*"
+      ],
+      "@utils/*": [
+        "./lib/*"
+      ]
     },
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext", "es2021"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2021"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "types": ["node", "jest"],
+    "types": [
+      "node",
+      "jest"
+    ],
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/event/[slug]"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/event/[slug]"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

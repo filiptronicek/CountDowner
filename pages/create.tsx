@@ -1,4 +1,6 @@
 // Datepicker
+import 'react-datepicker/dist/react-datepicker.css';
+
 import Button from '@components/Button';
 import { QRCode as QRIcon } from '@components/create/icons';
 import Footer from '@components/Footer';
@@ -14,7 +16,6 @@ import utc from 'dayjs/plugin/utc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
 import { toast, Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'react-qr-code';

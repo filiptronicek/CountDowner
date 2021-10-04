@@ -45,7 +45,7 @@
     "@types/react": "17.0.27",
     "@types/react-datepicker": "^4.1.7",
     "@types/unidecode": "^0.1.1",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@vercel/node": "^1.12.1",
     "autoprefixer": "^10.3.6",
     "dayjs": "^1.10.7",

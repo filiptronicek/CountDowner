@@ -44,4 +44,8 @@ li.react-datepicker__time-list-item {
     background: #0c0b12;
     color: white;
   }
+
+  input[type='datetime-local' i]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
 }

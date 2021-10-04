@@ -10,14 +10,12 @@ import { useWindowSize } from '@utils/helpers/useWindowSize';
 import { getTimeZoneCode } from '@utils/timeZones';
 import { timeZonesNames } from '@vvo/tzdb';
 import dayjs from 'dayjs';
-// Day.js customizations
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import { toast, Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'react-qr-code';
@@ -25,6 +23,9 @@ import QRCode from 'react-qr-code';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
+
+const inputStyle =
+  'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
 export default function Create(props: { baseURL: string }): JSX.Element {
   const { t } = useTranslation();
@@ -89,9 +90,6 @@ export default function Create(props: { baseURL: string }): JSX.Element {
     );
   };
 
-  const inputStyle =
-    'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
-
   return (
     <>
       <div className="flex flex-col items-center justify-between h-screen">
@@ -105,28 +103,27 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           <Toaster />
           <h1 className="text-3xl">{t('Create a new countdown')}</h1>
 
-          <label htmlFor="name">{t('Event name')}: </label>
-          <input
-            id="name"
-            type="text"
-            className={inputStyle}
-            value={eventName}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
+          <label>
+            {t('Event name')}:
+            <input
+              type="text"
+              className={inputStyle}
+              value={eventName}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </label>
           <br />
           <label>
             {t('Event date & time')}:
-            <DatePicker
-              dateFormat="dd/MM/yyyy"
+            <input
+              type="datetime-local"
               className={inputStyle}
-              selected={date.toJSDate()}
-              showTimeSelect
-              timeIntervals={15}
-              minDate={new Date()}
-              onChange={(selectedDate: Date) => {
-                setDate(DateTime.fromMillis(selectedDate.getTime()));
+              onChange={(e) => {
+                setDate(
+                  DateTime.fromMillis(new Date(e.target.value).getTime()),
+                );
               }}
             />
           </label>

@@ -103,16 +103,17 @@ export default function Create(props: { baseURL: string }): JSX.Element {
           <Toaster />
           <h1 className="text-3xl">{t('Create a new countdown')}</h1>
 
-          <label htmlFor="name">{t('Event name')}: </label>
-          <input
-            id="name"
-            type="text"
-            className={inputStyle}
-            value={eventName}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
+          <label>
+            {t('Event name')}:
+            <input
+              type="text"
+              className={inputStyle}
+              value={eventName}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </label>
           <br />
           <label>
             {t('Event date & time')}:

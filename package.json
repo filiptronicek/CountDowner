@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
-    "@prisma/client": "3.2.0",
+    "@prisma/client": "3.2.1",
     "@sentry/nextjs": "^6.13.3",
     "@vvo/tzdb": "^6.27.0",
     "framer-motion": "^4.1.17",

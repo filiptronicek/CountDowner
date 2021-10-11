@@ -53,7 +53,7 @@ export default function Home(props: {
 
   // Sync the date
   useEffect(() => {
-    const sync = async () => {
+    const sync = async (): Promise<void> => {
       const diff = await timeSync();
       const secondsOffset = Math.abs(diff / 1000);
       if (Math.abs(diff) > 1000) {

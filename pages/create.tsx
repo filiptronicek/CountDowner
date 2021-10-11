@@ -57,7 +57,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
     return data.slug;
   };
 
-  const downloadIcal = async () => {
+  const downloadIcal = async (): Promise<void> => {
     const createEvent = (await import('ics')).createEvent;
 
     createEvent(

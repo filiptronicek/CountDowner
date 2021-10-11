@@ -138,6 +138,10 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                 const tz = val.target.value;
                 setDate(date.setZone(tz, { keepLocalTime: true }));
               }}
+              onBlur={(val) => {
+                const tz = val.target.value;
+                setDate(date.setZone(tz, { keepLocalTime: true }));
+              }}
               defaultValue={currentTimeZone}
             >
               {timeZonesNames.map((name) => {

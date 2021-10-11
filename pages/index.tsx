@@ -44,7 +44,7 @@ export default function Home(props: {
   const [today, setToday] = useState<dayjs.Dayjs>(dayjs());
   const [offset, setOffset] = useState<number>(0);
 
-  const [shortTime, setShortTime] = useState<string>('');
+  const [shortTime, setShortTime] = useState<string | null>('');
   const pageTitle = parsedDate.isAfter(today)
     ? `${shortTime} ${t('until')} ${eventName}`
     : undefined;
@@ -69,13 +69,25 @@ export default function Home(props: {
   }, []);
 
   useEffect(() => {
-    if (parsedDate.isAfter(today)) {
+    if (parsedDate.isAfter(today.add(offset, 'milisecond'))) {
+      console.log('Creating interval');
       const countDown = setInterval(() => {
+        console.log('Executing interval');
         setToday(dayjs());
         setShortTime(
           getFormattedDiffs(today.add(offset, 'milisecond'), parsedDate, true),
         );
       }, 250);
+
+      return () => {
+        clearInterval(countDown);
+      };
+    } else {
+      const countDown = setInterval(() => {
+        console.log('Executing slow interval');
+        setToday(dayjs());
+        setShortTime(null);
+      }, 30 * 1000);
 
       return () => {
         clearInterval(countDown);

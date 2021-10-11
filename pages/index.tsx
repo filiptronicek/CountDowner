@@ -70,9 +70,7 @@ export default function Home(props: {
 
   useEffect(() => {
     if (parsedDate.isAfter(today.add(offset, 'milisecond'))) {
-      
       const countDown = setInterval(() => {
-        
         setToday(dayjs());
         setShortTime(
           getFormattedDiffs(today.add(offset, 'milisecond'), parsedDate, true),
@@ -84,7 +82,6 @@ export default function Home(props: {
       };
     } else {
       const countDown = setInterval(() => {
-        
         setToday(dayjs());
         setShortTime(null);
       }, 30 * 1000);

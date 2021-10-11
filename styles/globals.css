@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav > * {
+  @apply py-4;
+  @apply px-4;
+}
+
+nav > *:hover {
+  background: #181818;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.react-datepicker-wrapper {
+  width: unset !important;
+  margin-left: 0.4rem;
+}
+
+.react-datepicker-wrapper input {
+  width: 11rem;
+}
+
+li.react-datepicker__time-list-item {
+  display: flex;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0c0b12;
+    color: white;
+  }
+
+  input {
+    background: #0c0b12;
+    color: white;
+  }
+
+  input[type='datetime-local' i]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}

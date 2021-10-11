@@ -5,7 +5,7 @@
  * @returns a pluralized string of `word` according to `count`
  * @author @filiptronicek
  */
-const plural = (word: string, count: number): string  => {
+const plural = (word: string, count: number): string => {
   if (count === 1) {
     return word;
   }

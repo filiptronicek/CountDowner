@@ -70,7 +70,7 @@ export default function Create(props: { baseURL: string }): JSX.Element {
       },
       async (error, value) => {
         if (error) {
-          console.log(error);
+          
         }
         // Create a blob of the value and save it as event.ics
         const blob = new Blob([value], { type: 'text/calendar' });

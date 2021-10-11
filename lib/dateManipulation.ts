@@ -58,7 +58,7 @@ const reduceOverview = (
  */
 const formatDiffs = (
   diffs: number[],
-  short: boolean = false,
+  short = false,
   units: Array<dayjs.UnitType> = parameters,
 ): string => {
   const outputValues = [];
@@ -108,7 +108,7 @@ const getDiffParams = (
 const getFormattedDiffs = (
   today: dayjs.Dayjs,
   parsed: dayjs.Dayjs,
-  short: boolean = false,
+  short = false,
   customParameters: Array<dayjs.UnitType> = parameters,
 ): string => {
   const diffs = getDiffParams(today, parsed, customParameters);

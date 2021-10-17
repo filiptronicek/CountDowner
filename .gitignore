@@ -36,3 +36,9 @@ yarn-error.log*
 
 # Sentry
 .sentryclirc
+
+# PWA
+sw.js
+sw.js.map
+workbox*.js
+workbox*.js.map

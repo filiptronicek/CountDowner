@@ -2007,10 +2007,10 @@
     ts-node "8.9.1"
     typescript "4.3.4"
 
-"@vvo/tzdb@^6.28.0":
-  version "6.28.0"
-  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.28.0.tgz#562a35ce343c3d547575fd3cbac29e3f642347a0"
-  integrity sha512-nRApJUfYIjng1dxGdHekGY7wGtOcTSBze4zijnSIc9YYuD2r0jnlFMmyMLbh8BHSEW6j0PGVg+LR/rRjQOivGw==
+"@vvo/tzdb@^6.29.0":
+  version "6.29.0"
+  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.29.0.tgz#54ebcd814c3d6aac14b0fe75e152f3dbde0c2720"
+  integrity sha512-9N7FNfJZ7F38mTS4HeBw9VQqyfKBbU1Zl2SRdSyyKY7HmTtEwuwanRfusi6isdFLmGU63TNvV/lSprJyEeB4Og==
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"

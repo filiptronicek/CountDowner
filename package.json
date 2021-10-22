@@ -35,7 +35,7 @@
     "react-i18next": "^11.12.0",
     "react-icons": "^4.3.1",
     "react-qr-code": "^2.0.2",
-    "sass": "^1.42.1",
+    "sass": "^1.43.3",
     "unidecode": "^0.1.8"
   },
   "devDependencies": {

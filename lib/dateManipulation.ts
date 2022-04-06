@@ -98,8 +98,13 @@ const getDiffParams = (
   const diffs: number[] = [];
 
   for (const unit of units) {
-    const difference = to.diff(from, unit);
-    diffs.push(difference);
+    if (unit !== 'second') {
+      const difference = to.diff(from, unit);
+      diffs.push(difference);
+    } else {
+      const difference = to.diff(from, 'second', true);
+      diffs.push(Math.ceil(difference));
+    }
   }
 
   return diffs;

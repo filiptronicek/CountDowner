@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Footer from '@components/Footer';
 import Head from '@components/Head';
 import Menu from '@components/Menu';
+import { animationInterval } from '@utils/animationInterval';
 import getFormattedDiffs from '@utils/dateManipulation';
 import formatTime from '@utils/formatTime';
 import getNextDefaultEvent from '@utils/getNextDefaultEvent';
@@ -70,24 +71,28 @@ export default function Home(props: {
 
   useEffect(() => {
     if (parsedDate.isAfter(today.add(offset, 'milisecond'))) {
-      const countDown = setInterval(() => {
+      const controller = new AbortController();
+
+      animationInterval(1000, controller.signal, () => {
         setToday(dayjs());
         setShortTime(
           getFormattedDiffs(today.add(offset, 'milisecond'), parsedDate, true),
         );
-      }, 250);
+      });
 
       return () => {
-        clearInterval(countDown);
+        controller.abort();
       };
     } else {
-      const countDown = setInterval(() => {
+      const controller = new AbortController();
+
+      animationInterval(30 * 1000, controller.signal, () => {
         setToday(dayjs());
         setShortTime(null);
-      }, 30 * 1000);
+      });
 
       return () => {
-        clearInterval(countDown);
+        controller.abort();
       };
     }
   }, [parsedDate, today, offset]);

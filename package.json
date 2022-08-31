@@ -24,7 +24,7 @@
     "js-base64": "^3.7.2",
     "lodash.sum": "^4.0.2",
     "luxon": "^2.1.1",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.35",
     "next": "^12.1.0",
     "next-pwa": "^5.4.0",
     "node-fetch": "^2.6.2",

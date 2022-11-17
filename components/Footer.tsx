@@ -61,12 +61,8 @@ const Footer = (): JSX.Element => {
               href={`https://github.com/${contributor}`}
               passHref
             >
-              <a>
-                @
-                {`${contributor}${
-                  index !== contributors.length - 1 ? ', ' : ''
-                }`}
-              </a>
+              @
+              {`${contributor}${index !== contributors.length - 1 ? ', ' : ''}`}
             </Link>
           );
         })}{' '}

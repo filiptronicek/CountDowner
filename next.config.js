@@ -1,16 +1,6 @@
-const withPWA = require('next-pwa');
-const { withSentryConfig } = require('@sentry/nextjs');
-
-const moduleExports = withPWA({
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-  },
+const moduleExports = {
   reactStrictMode: true,
   experimental: { esmExternals: true },
-});
+};
 
-const SentryWebpackPluginOptions = {};
-
-module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
+module.exports = moduleExports;

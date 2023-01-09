@@ -22,7 +22,7 @@
     "ics": "^2.31.0",
     "js-base64": "^3.7.2",
     "lodash.sum": "^4.0.2",
-    "luxon": "^2.1.1",
+    "luxon": "^2.5.2",
     "moment-timezone": "^0.5.33",
     "next": "^13.0.3",
     "next-pwa": "^5.4.0",

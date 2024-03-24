@@ -177,7 +177,9 @@ export default function Create(): JSX.Element {
                         return;
                       }
                       try {
-                        await navigator.clipboard.writeText(`${baseURL}/?date=${reducedDate}&name=${eventName}`);
+                        await navigator.clipboard.writeText(
+                          `${baseURL}/?date=${reducedDate}&name=${eventName}`,
+                        );
                         toast.success('Copied to clipboard');
                       } catch (err: any) {
                         toast.error('Failed to copy!', err);

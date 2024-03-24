@@ -37,7 +37,9 @@ export default function Create(): JSX.Element {
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
 
   const reducedDate = Math.floor(date.toMillis() / 1000);
-  const baseURL = `${location.protocol}//${location.host}`;
+  const baseURL =
+    typeof window !== 'undefined' &&
+    `${window.location.protocol}//${window.location.host}`;
   const eventURL = `${baseURL}/?date=${reducedDate}&name=${eventName}`;
 
   const downloadIcal = async (): Promise<void> => {

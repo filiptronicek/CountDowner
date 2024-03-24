@@ -11,6 +11,7 @@
     "prettier/prettier": ["error"],
     "react/prop-types": "off",
     "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
     "no-unused-vars": "warn",
     "unused-imports/no-unused-imports": "error",
     "@typescript-eslint/ban-ts-comment": "warn",

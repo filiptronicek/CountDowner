@@ -2,9 +2,6 @@ import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const inputStyle =
-  'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
-
 /**
  * The component in which the user can change the date, time and name of the event.
  * @param props -
@@ -57,11 +54,13 @@ const EventName = (props: {
           {eventName}
         </div>
       )}
-      <div className="text-3xl flex justify-center items-center flex-wrap">
+      <div className="text-3xl flex justify-center items-center flex-wrap gap-4">
         <span>{t('Counting down to')}</span>
         <input
           type="datetime-local"
-          className={inputStyle}
+          className={
+            'w-1/2 p-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]'
+          }
           defaultValue={dayjs(date).format('YYYY-MM-DDThh:mm')}
           onChange={(e) => {
             setDate(new Date(e.target.value));

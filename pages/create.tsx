@@ -27,35 +27,20 @@ dayjs.extend(relativeTime);
 const inputStyle =
   'w-1/2 p-3 mt-3 ml-0 font-thin transition duration-200 focus:shadow-md focus:outline-none ring-offset-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 text-black dark:text-white bg-white dark:bg-[#262A2B]';
 
-export default function Create(props: { baseURL: string }): JSX.Element {
+export default function Create(): JSX.Element {
   const { t } = useTranslation();
   const [date, setDate] = useState<DateTime>(DateTime.now());
   const currentTimeZone = date.zoneName;
-  const [link, setLink] = useState<string>('');
 
   const defaultEventName = '';
   const [eventName, setName] = useState<string>(defaultEventName);
   const [qrCodeZoom, setQrCodeZoom] = useState<boolean>(false);
 
   const reducedDate = Math.floor(date.toMillis() / 1000);
-  const { baseURL } = props;
-  const eventURL = link
-    ? `${baseURL}/event/${link}`
-    : `${baseURL}/?date=${reducedDate}&name=${eventName}`;
-
-  const createLink = async (copy?: boolean) => {
-    const req = await fetch(
-      `/api/createCountdown?date=${reducedDate}&name=${encodeURIComponent(
-        eventName,
-      )}`,
-    );
-    const data = await req.json();
-    setLink(data.slug);
-    if (copy) {
-      await navigator.clipboard.writeText(`${baseURL}/event/${data.slug}`);
-    }
-    return data.slug;
-  };
+  const baseURL =
+    typeof window !== 'undefined' &&
+    `${window.location.protocol}//${window.location.host}`;
+  const eventURL = `${baseURL}/?date=${reducedDate}&name=${eventName}`;
 
   const downloadIcal = async (): Promise<void> => {
     const createEvent = (await import('ics')).createEvent;
@@ -194,7 +179,9 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                         return;
                       }
                       try {
-                        await createLink(true);
+                        await navigator.clipboard.writeText(
+                          `${baseURL}/?date=${reducedDate}&name=${eventName}`,
+                        );
                         toast.success('Copied to clipboard');
                       } catch (err: any) {
                         toast.error('Failed to copy!', err);
@@ -203,7 +190,6 @@ export default function Create(props: { baseURL: string }): JSX.Element {
                   >
                     <>{t('Copy link')}</>
                   </Button>
-
                   <Button
                     onClick={() => {
                       toast.success('Event created!');
@@ -250,7 +236,3 @@ const QRModal = (props: {
     </motion.div>
   );
 };
-
-export async function getServerSideProps() {
-  return { props: { baseURL: process.env.VERCEL_URL || process.env.BASE_URL } };
-}

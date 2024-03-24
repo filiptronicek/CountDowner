@@ -68,7 +68,10 @@ const formatDiffs = (
   for (const unitValue of diffs) {
     wentThrough.push(unitValue);
     const unit = units[index];
-    if ((unitValue !== 0 && wentThrough !== []) || sum(wentThrough) !== 0) {
+    if (
+      (unitValue !== 0 && wentThrough.length !== 0) ||
+      sum(wentThrough) !== 0
+    ) {
       // If all previous and the current value are 0, don't add to the string, otherwise, add the formatted string
       if (short) {
         if (['year', 'month', 'day'].includes(unit)) {

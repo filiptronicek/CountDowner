@@ -41,7 +41,7 @@ const Footer = (): JSX.Element => {
           .map((contributor: contributorType) => contributor.login);
         setContributors(contributorLogins);
       })
-      .catch((_error: string) => {
+      .catch(() => {
         toast.error(
           `There was an error fetching the contributors. Please try again later.`,
         );

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "&& next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
@@ -21,7 +21,7 @@
     "lodash.sum": "^4.0.2",
     "luxon": "^2.1.1",
     "moment-timezone": "^0.5.33",
-    "next": "^13.0.3",
+    "next": "^14.1.4",
     "next-pwa": "^5.4.0",
     "node-fetch": "^2.6.2",
     "react": "^18.2.0",
@@ -47,7 +47,7 @@
     "autoprefixer": "^10.3.7",
     "dayjs": "^1.10.7",
     "eslint": "7.32.0",
-    "eslint-config-next": "^13.0.3",
+    "eslint-config-next": "^14.1.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unused-imports": "^1.1.5",
@@ -57,6 +57,6 @@
     "prettier": "^2.4.1",
     "tailwindcss": "^3.0.0-alpha.1",
     "ts-jest": "^27.0.5",
-    "typescript": "^4.4.4"
+    "typescript": "^5.4.3"
   }
 }

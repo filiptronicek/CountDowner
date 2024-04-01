@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "wix.vscode-import-cost",
-    "prisma.prisma-insider",
     "esbenp.prettier-vscode"
   ]
 }

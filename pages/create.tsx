@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
@@ -86,10 +86,10 @@ export default function Create(): JSX.Element {
           animate={{ opacity: 1 }}
         >
           <Toaster />
-          <h1 className="text-3xl">{t('Create a new countdown')}</h1>
+          <h1 className="text-3xl">Create a new countdown</h1>
 
           <label>
-            {t('Event name')}:
+            Event name:
             <input
               type="text"
               className={inputStyle}
@@ -101,7 +101,7 @@ export default function Create(): JSX.Element {
           </label>
           <br />
           <label>
-            {t('Event date & time')}:
+            Event date & time:
             <input
               type="datetime-local"
               className={inputStyle}
@@ -139,69 +139,67 @@ export default function Create(): JSX.Element {
               ;
             </select>
           </label>
-          <AnimatePresence>
-            {qrCodeZoom && (
-              <QRModal eventURL={eventURL} setQrCodeZoom={setQrCodeZoom} />
-            )}
+          {qrCodeZoom && (
+            <QRModal eventURL={eventURL} setQrCodeZoom={setQrCodeZoom} />
+          )}
 
-            {defaultEventName !== eventName && (
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 100 }}
-                key="card"
-                id="output"
-                className="flex flex-col items-center mt-4 w-full"
-              >
-                <div className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom">
-                  <div className="mr-6">
-                    <h2 className="text-4xl mb-2">{eventName}</h2>
-                    <h3 className="text-2xl text-gray-400">
-                      {date.toFormat('D MMMM HH:mm')} (
-                      {getTimeZoneCode(currentTimeZone)})
-                    </h3>
-                  </div>
-                  <QRIcon
-                    onClick={() => {
-                      setQrCodeZoom(true);
-                    }}
-                  />
+          {defaultEventName !== eventName && (
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              key="card"
+              id="output"
+              className="flex flex-col items-center mt-4 w-full"
+            >
+              <div className="p-4 rounded-2xl mb-8 flex text-black dark:text-white bg-white dark:bg-[#262A2B] shadow-custom">
+                <div className="mr-6">
+                  <h2 className="text-4xl mb-2">{eventName}</h2>
+                  <h3 className="text-2xl text-gray-400">
+                    {date.toFormat('D MMMM HH:mm')} (
+                    {getTimeZoneCode(currentTimeZone)})
+                  </h3>
                 </div>
-                <div id="actions" className="flex gap-5">
-                  <Button
-                    onClick={async () => {
-                      // Copy the URL to clipboard
-                      if (!navigator.clipboard) {
-                        // Clipboard API not available
-                        toast.error(
-                          "Failed to copy! Your browser doesn't support the Clipboard API.",
-                        );
-                        return;
-                      }
-                      try {
-                        await navigator.clipboard.writeText(
-                          `${baseURL}/?date=${reducedDate}&name=${eventName}`,
-                        );
-                        toast.success('Copied to clipboard');
-                      } catch (err: any) {
-                        toast.error('Failed to copy!', err);
-                      }
-                    }}
-                  >
-                    <>{t('Copy link')}</>
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      toast.success('Event created!');
-                      downloadIcal();
-                    }}
-                  >
-                    <> {t('Download')} .ics</>
-                  </Button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <QRIcon
+                  onClick={() => {
+                    setQrCodeZoom(true);
+                  }}
+                />
+              </div>
+              <div id="actions" className="flex gap-5">
+                <Button
+                  onClick={async () => {
+                    // Copy the URL to clipboard
+                    if (!navigator.clipboard) {
+                      // Clipboard API not available
+                      toast.error(
+                        "Failed to copy! Your browser doesn't support the Clipboard API.",
+                      );
+                      return;
+                    }
+                    try {
+                      await navigator.clipboard.writeText(
+                        `${baseURL}/?date=${reducedDate}&name=${eventName}`,
+                      );
+                      toast.success('Copied to clipboard');
+                    } catch (err: any) {
+                      toast.error('Failed to copy!', err);
+                    }
+                  }}
+                >
+                  <>{t('Copy link')}</>
+                </Button>
+                <Button
+                  onClick={() => {
+                    toast.success('Event created!');
+                    downloadIcal();
+                  }}
+                >
+                  <> {t('Download')} .ics</>
+                </Button>
+              </div>
+            </motion.div>
+          )}
         </motion.main>
 
         <Footer />

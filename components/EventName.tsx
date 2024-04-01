@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 /**
  * The component in which the user can change the date, time and name of the event.
@@ -17,10 +16,9 @@ const EventName = (props: {
   date: Date;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
 }): JSX.Element => {
-  const { t } = useTranslation();
-
   const [editingTitle, setEditingTitle] = useState<boolean>(false);
   const { eventName, setName, date, setDate } = props;
+
   return (
     <>
       {editingTitle ? (
@@ -55,7 +53,7 @@ const EventName = (props: {
         </div>
       )}
       <div className="text-3xl flex justify-center items-center flex-wrap gap-4">
-        <span>{t('Counting down to')}</span>
+        <span>Counting down to</span>
         <input
           type="datetime-local"
           className={
